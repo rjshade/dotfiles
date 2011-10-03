@@ -1,0 +1,352 @@
+set nocompatible " be vImproved
+syntax on
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+Bundle 'wincent/Command-T'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'majutsushi/tagbar'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-markdown'
+
+" extended C++ syntax (STL etc.)
+Bundle 'vim-scripts/cpp.vim--Skvirsky'
+
+"""""""""""""""""""""""""""""""""
+" snipmate and dependancies
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "honza/snipmate-snippets"
+Bundle "garbas/vim-snipmate"
+"""""""""""""""""""""""""""""""""
+
+filetype plugin indent on
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" OS detection, s:sys = "win","linux", or "osx"
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:sys = "win"
+if has("unix")
+  if system("uname") == "Darwin\n"
+    let s:sys = "osx"
+  else
+    let s:sys = "linux"
+  endif
+endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" use system clipboard for copy/paste
+set clipboard=unnamed
+
+filetype plugin on
+filetype plugin indent on
+
+" we use , as the leader key
+let mapleader=","
+
+" terminal title
+set title
+
+"" mouse enabled all the time
+"set ttymouse=xterm
+set mouse=a
+
+" turn on current line highlight
+set cursorline
+
+" don't jump to start of line when jumping around
+set nostartofline
+
+
+" path for find, gf, etc.
+set path+=~/code/mrg/trunk/
+set path+=~/code/moos/trunk/
+
+
+" when re-opening a file, automatically jump to the line
+" we were on when we last exited, and additionally change
+" the working directory to match the location of the file
+if has("autocmd")
+    augroup vimrcEx
+    au!
+
+    " automatically change working directory to buffer
+    "au BufEnter * lcd %:p:h
+
+    " jump to last known cursor position (and center screen on that line)
+    au BufReadPost *
+      \ if line("'\"") > 1 && line("'\"") <= line("$") |
+      \   exe "normal! g`\" zz"  |
+      \ endif
+
+    augroup END
+endif
+
+" buffer navigation
+" leader-, for previous (< key)
+" leader-. for next (> key)
+nnoremap <leader>l :ls<CR>
+nnoremap <leader>, :bp<CR>
+nnoremap <leader>. :bn<CR>
+
+" ctags
+set tags+=~/.ctags/mrg
+set tags+=~/.ctags/moos
+
+" put swap files somewhere central
+set directory=~/.vim-tmp/
+
+" indent...
+set smartindent
+set autoindent
+
+" keep 5 context lines above/below cursor
+set scrolloff=5
+
+" line numbers on
+set nu
+
+" proper tab settings (2 spaces)
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2   " but make the spaces feel like tabs...
+
+" a kazillion lines of command line history...
+set history=100000
+
+" ...and a bajillion levels of undo
+set undolevels=100000
+
+" make searches case-insensitive, unless they contain upper-case letters:
+set ignorecase
+set smartcase
+
+" syntax highlighting in terminals which can display colours:
+if has('syntax') && (&t_Co > 2)
+   syntax on
+endif
+
+autocmd Filetype c,cpp source $HOME/.vim/syntax/opengl.vim
+
+" have command-line completion <Tab> (for filenames, help topics, option names)
+" first list the available options and complete the longest common part, then
+" have further <Tab>s cycle through the possibilities:
+set wildmode=list:longest,full
+
+" highlight matching braces
+set showmatch
+
+" search highlighting on
+set hlsearch
+
+" F2 toggles line numbering
+nnoremap <silent> <F1> :set number <CR>
+
+" F3 turns _off_ line numbering
+nnoremap <silent> <F3> :set nonumber <CR>
+
+" F4 toggles search term highlighting
+nnoremap <silent> <F4> :set hlsearch! <bar> set hlsearch?<CR>
+
+" find as you type
+set incsearch
+
+" always show status line
+set laststatus=2
+
+" Status line detail:
+set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %=\ lin:%l/%L\ col:%c\ %p%%
+
+" don't clear screen on exit
+set t_ti= t_te=
+
+" allow unsaved buffers to be hidden
+set hidden
+
+
+
+" Navigation
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" navigating split windows
+" ctrl + hjkl to move between split windows
+map <C-h> <C-W>h
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-l> <C-W>l
+
+" scroll down in normal mode with space
+nnoremap <Space> <C-e>
+
+" move up and down using visual lines rather than actual lines
+" this means that a long paragraph written on one line but 
+" wrapped visually can be more easily navigated
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+
+
+
+" ,a to switch between .cpp and .h
+nmap ,a :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+
+" Make Y consistent with D and C (instead of yy)
+noremap Y y$
+
+
+
+" Tab and Shift-Tab to indent, instead of << and >>
+nmap <tab> v>
+nmap <s-tab> v<
+
+vmap <tab> >
+vmap <s-tab> <
+
+
+" visualbell needed to disable audible bells in MacVim?
+set vb
+
+
+" copy/paste from system clipboard in OSX using pbcopy and pbpaste. to copy,
+" first yank into default register then run <leader>pc
+" TODO xcopy in linux?
+if s:sys == "osx"
+    map <silent> <leader>pc :call system("pbcopy", getreg(""))<CR>
+    map <silent> <leader>pv :r !pbpaste<CR>
+endif
+
+
+
+" not interested in pressing shift...
+nnoremap ; :
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" folding
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+set foldmethod=indent   "fold based on indent
+set foldnestmax=10      "deepest fold is 10 levels
+set nofoldenable        "dont fold by default
+set foldlevel=1
+
+" and save/load fold states on closeing/opening file
+"set viewdir=~/.vim-tmp/
+"au BufWinLeave * silent! mkview
+"au BufWinEnter * silent! loadview
+
+" space to toggle folds in normal mode
+nnoremap <space> za
+
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tagbar
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+if s:sys == "osx"
+    let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+endif
+
+nnoremap <silent> <leader>g :TagbarToggle<CR>
+let g:tagbar_compact = 1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDTree
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap ,n :NERDTreeToggle<CR>
+let NERDTreeWinSize = 30
+
+" single click to open directory or file
+let NERDTreeMouseMode = 3
+
+" automatically open NERDTree
+"autocmd VimEnter * NERDTree
+"autocmd VimEnter * wincmd p
+
+" Close all open buffers on entering a window if the only
+" buffer that's left is the NERDTree buffer
+autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+function! s:CloseIfOnlyNerdTreeLeft()
+  if exists("t:NERDTreeBufName")
+    if bufwinnr(t:NERDTreeBufName) != -1
+      if winnr("$") == 1
+        q
+      endif
+    endif
+  endif
+endfunction
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" Command-T
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <silent> <Leader>t :CommandT<CR>
+nmap <silent> <Leader>r :CommandTBuffer<CR>
+" dismiss command-t window with ctrl-x or ctrl-c
+let g:CommandTCancelMap=['<C-x>', '<C-c>']
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" Ack 
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>s :Ack -i
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" SuperTab 
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" tries to figure out completion type based on
+" surrounding text, e.g. file paths, methods, etc.
+let g:SuperTabDefaultCompletionType = "context"
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" Colors
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+if(&t_Co==256)
+    set background=dark
+    let g:solarized_termcolors=16
+    color solarized
+    "color sunburst
+    "color xoria256
+    "color topfunky-light
+    "color vividchalk
+endif
+
+if(has("gui_running"))
+    set background=dark
+    let g:solarized_italic=0
+    color solarized
+
+    set guioptions-=T
+
+    if s:sys == "osx"
+        set noantialias
+        set guifont=Andale\ Mono:h12
+    else
+        set guifont=Terminus\ 14
+    endif
+    
+    "color sunburst
+    "color topfunky-light
+    "color vividchalk
+    
+endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
