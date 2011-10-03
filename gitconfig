@@ -1,0 +1,12 @@
+[user]
+  name = rjshade
+  email = robbie.shade@gmail.com
+[color]
+  ui = auto
+  status = auto
+  branch = auto
+  interactive = auto
+[advice]
+  statusHints = false
+[core]
+  excludesfile = /home/rjs/.gitignore
