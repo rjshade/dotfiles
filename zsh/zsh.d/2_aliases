@@ -1,0 +1,265 @@
+# ------------------------------------------------------------------------------
+# Aliases
+# ------------------------------------------------------------------------------
+
+# open this file for editing
+alias ea='$EDITOR $FILE_ALIASES && source $FILE_ALIASES'
+
+
+# DPhil
+# ------------------------------------------------------------------------------
+alias t='cd $DIR_THESIS_SVN'
+alias tbld='cd $DIR_THESIS_SVN && make'
+alias tview='tbld && open thesis.pdf'
+
+alias tcom='cd $DIR_THESIS_SVN && svn add * --depth infinity --force && svn ci -m "auto-commit" && cp $DIR_THESIS_SVN/thesis.pdf $DIR_THESIS_BAK'
+alias tbib='cd $DIR_THESIS_SVN && bibtex thesis'
+
+
+# Coding
+# ------------------------------------------------------------------------------
+
+# find all cpp,h,c files in current tree
+alias find_cpp_src='find . \( -iname \*cpp -o -iname \*h -o -iname \*.c \)'
+
+# CLI
+# ------------------------------------------------------------------------------
+
+# nice listings
+if [[ $platform == 'linux' ]]; then
+    alias ls='ls --color=auto'
+elif [[ $platform == 'osx' ]]; then
+    alias ls='ls -G'
+fi
+alias l='ls -lh'
+
+alias la='ls -al'
+
+# list most recently modified at bottom
+alias lt='l -tr'
+
+# colorize tree
+alias tree='tree -C'
+
+# grep stuff
+alias gi='grep -RIinF --color=always'
+
+# ack > grep
+alias ai='ack -i'
+
+alias c='cl'
+
+# fat fingers...
+alias cd..='cd ..'
+alias maek='make'
+alias mkea='make'
+alias mkae='make'
+
+alias ...='cd ../../'
+alias ....='cd ../../../'
+
+# vim dependency!
+alias :q='exit'
+alias :wq='exit'
+alias v='vim'
+alias vi='vim'
+alias :e='vim'
+
+# run bc with mathlib
+alias calc='bc -l'
+
+# list top-10 most used commands
+alias most="history 1 | awk '{a[\$2]++}END{for(i in a){print a[i] \" \" i}}' | sort -rn | head"
+
+
+# Network
+# ------------------------------------------------------------------------------
+alias etf='ssh fred'
+alias ets='ssh shadow'
+
+# start simple web server serving current dir on port 8000 (ctrl-c kills it)
+alias websharedir='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
+
+alias myip='curl icanhazip.com'
+
+
+
+# Compilation
+# ------------------------------------------------------------------------------
+if [[ $platform == 'osx' ]]; then
+    NUM_CORES=`sysctl -n hw.ncpu`
+else
+    NUM_CORES=`grep processor /proc/cpuinfo | tail -n 1 | awk '{ print $3 }'`
+    # cores are 0 indexed in /proc/cpuinfo
+    NUM_CORES=`expr $NUM_CORES + 1`
+fi
+
+MAKE_CORES=`expr $NUM_CORES + 1`
+alias make='make -j$MAKE_CORES'
+alias m='make'
+
+alias mj='make -j1' #single core compile
+
+alias mcm='make clean && make'
+
+alias cm='ccmake ./'
+alias cmg='cmake-gui ./ &'
+
+
+
+# MRG
+# ------------------------------------------------------------------------------
+alias moos='cd $DIR_MOOS && l'
+alias mrg='cd $DIR_MRG && l && git status'
+alias mb='cd $DIR_MRG/bld && make && cd -'
+alias mvl='cd $DIR_MVL && l'
+alias mrgb='cd $DIR_MRGBASE && l'
+
+#runs cmake with some MRG sensible defaults
+alias ccm='ccmake\
+            -D EXECUTABLE_OUTPUT_PATH:string=$DIR_MY_BIN \
+            -D LIBRARY_OUTPUT_PATH:string=$DIR_MY_LIB \
+            -D MVL_DIR:string=$DIR_MVL \
+            -D MOOS_DIR:string=$DIR_MOOS \
+            -D GLConsole_DIR:string=$DIR_GLCONSOLE' \
+            -D CMAKE_INSTALL_PREFIX:string=$DIR_MY_BUILD
+
+alias lds='cd $DIR_MRG/Libraries/libDenseStereo && l'
+
+alias dv='cd $DIR_MRG/Devel/rjs/ && l && git status'
+alias dva='cd $DIR_MRG/Devel/rjs/Apps/ && l && git status'
+alias dvl='cd $DIR_MRG/Devel/rjs/Libs/ && l && git status'
+
+# dphil dir
+alias dp='cd $DIR_DPHIL && l'
+
+# icra 2011
+alias icra='cd $DIR_ICRA2011/ && ls -l'
+alias icra_bld='icra && pdflatex -output-directory ./bld/ ./rjs_pmn_icra2011.tex && bibtex ./bld/rjs_pmn_icra2011 && cp bld/rjs_pmn_icra2011.pdf ./ && evince ./rjs_pmn_icra2011.pdf &'
+
+# set up tunnel to MRG Wiki
+alias xerxestunnel='echo -e "Opening SSH tunnel to xerxes.robots.ox.ac.uk, on local port 8827...\n" && ssh -L 8827:xerxes.robots.ox.ac.uk:80 login2.robots.ox.ac.uk'
+
+#tunnel to shadow
+alias shadowtunnel='echo -e "Opening SSH tunnel to shadow.robots.ox.ac.uk, on local port 8826...\n" && ssh -L 8826:shadow.robots.ox.ac.uk:2626 login2.robots.ox.ac.uk'
+
+# Europa robot while in Begbroke
+alias europa='ssh -X mrg@europa'
+
+
+
+
+
+# Misc
+# ------------------------------------------------------------------------------
+
+# play Go
+alias playGo='javaws http://files.gokgs.com/javaBin/cgoban.jnlp'
+
+# run clojure REPL
+alias clj='java -cp /home/rjs/opt/clojure-1.1.0/jline-0_9_5.jar:/home/rjs/opt/clojure-1.1.0/clojure.jar jline.ConsoleRunner clojure.main'
+
+
+
+# Linux specific
+# ------------------------------------------------------------------------------
+if [[ $platform == 'linux' ]]; then
+    alias startx='ssh-agent startx' #ssh-agent wraps X
+    alias music='ncmpcpp'
+    alias vol='alsamixer'
+    alias t='(thunar&) >/dev/null 2>&1'
+    alias kp='(keepassx &) > /dev/null 2>&1'
+    alias record_desktop='xvidcap --quality 80 --gui no --auto --cap_geometry 1680x1050 --rescale 50 --file test.mpg'
+fi
+
+
+
+# OSX specific
+if [[ $platform == 'osx' ]]; then
+    function vol()
+    { osascript -e "set Volume $1" }
+
+
+    alias o='open .'
+
+    alias matlab='open /Applications/MATLAB_R2011a.app/'
+fi
+
+
+# Dropbox
+# ------------------------------------------------------------------------------
+
+alias db='cd $DIR_DROPBOX && ls'
+
+# edit quotes file
+alias quotes='vim ~/Dropbox/Notes/Quotes'
+# edit todo.txt
+alias td='vim $DIR_DROPBOX/Notes/todo.txt'
+# edit notes
+alias nts='cd $DIR_DROPBOX/Notes/ && ls'
+
+
+# Torrents
+# ------------------------------------------------------------------------------
+
+#alias tts='scp -P 2626 ~/Downloads/*torrent shadow.robots.ox.ac.uk:~/Downloads && rm ~/Downloads/*torrent'
+#alias ttf='scp -P 3000 ~/Downloads/*torrent 10renault.dyndns.org:~/torrents && rm ~/Downloads/*torrent'
+
+alias tup='scp ~/Downloads/*torrent rjshade@navajo-white.feralhosting.com:~/private/rtorrent/watch/ && rm ~/Downloads/*torrent'
+alias tdo='rsync -auh --progress --stats --delete rjshade@navajo-white.feralhosting.com:~/private/rtorrent/data/ ~/sync'
+alias tsh='ssh rjshade@navajo-white.feralhosting.com'
+
+# Web Dev
+# ------------------------------------------------------------------------------
+alias rjshade='cd ~/Dropbox/www/rjshade.com && l'
+alias jloc="cd ~/Dropbox/www/rjshade.com && jekyll && sed -i '' -e 's/\#Options \+FollowSymLinks/Options \+FollowSymLinks/' _site/.htaccess"
+alias jrem="cd ~/Dropbox/www/rjshade.com &&  jekyll"
+
+
+# VCS (Git, Subversion, etc.)
+# ------------------------------------------------------------------------------
+
+# Git
+# -------------------------------------
+alias g='git status'
+alias gd='git diff'
+alias ga='git add'
+alias gc='git commit'
+alias gcm='git commit -m'
+
+if [[ $platform == 'osx' ]]; then
+    alias gitgui='/Applications/GitX.app/Contents/MacOS/GitX'
+else
+    alias gitgui='gitg'
+fi
+
+alias gpull='git pull'
+alias gpush='git push'
+
+alias spull='git svn fetch && git svn rebase'
+alias spush='git svn rebase && git svn dcommit'
+
+# SVN
+# -------------------------------------
+
+#display modified, missing, deleted, added etc. svn items - *not* unknown
+alias svnmod='svn status | grep --color=always "^[ACDRM!]"'
+
+
+# MplayerX
+# -------------------------------------
+alias mpx='/Applications/MPlayerX.app/Contents/MacOS/MPlayerX'
+alias mplayer='/Applications/MPlayerX.app/Contents/MacOS/MPlayerX'
+
+# Network
+# -------------------------------------
+alias pg='ping google.com'
+
+
+
+# Websites
+# -------------------------------------
+alias blog='cd ~/Dropbox/www/rjshade.com/_posts && ls -l'
+
+
+alias hic-backup='heroku pgbackups:capture --expire --app high-impact-careers && curl -o ~/Dropbox/HIC/website_database_backups/hic_dump.`date "+%Y%m%d-%H:%M:%S"`.sql `heroku  pgbackups:url --app high-impact-careers`'
