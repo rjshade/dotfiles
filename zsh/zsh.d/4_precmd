@@ -27,8 +27,5 @@ precmd ()
     }
 
     vcs_info 
-     
-    #------- z: maintains a 'jump-list' of frequently used directories --------#
-    z --add "$(pwd -P)"
 }
 

@@ -14,6 +14,11 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
 fi
 
 
+#--- Autojump
+if [ -f `brew --prefix`/etc/autojump ]; then
+  . `brew --prefix`/etc/autojump
+fi
+
 # ------------------------------------------------------------------------------
 HISTFILE=~/.zsh_history
 HISTSIZE=10000

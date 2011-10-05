@@ -2,11 +2,6 @@
 # Functions
 #**************************************#
 
-#------- z: maintains a 'jump-list' of frequently used directories --------#
-if [ "$(id -u)" != "0" ]; then
-    . $HOME/bin/z.sh
-fi
-
 # refactor files
 function refactor()
 {
