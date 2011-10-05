@@ -9,4 +9,4 @@
 [advice]
   statusHints = false
 [core]
-  excludesfile = /home/rjs/.gitignore
+  excludesfile = ~/.gitignore
