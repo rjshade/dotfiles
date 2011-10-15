@@ -12,6 +12,9 @@ Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-markdown'
 
+
+Bundle 'mikewest/vimroom'
+
 " extended C++ syntax (STL etc.)
 Bundle 'vim-scripts/cpp.vim--Skvirsky'
 
@@ -348,3 +351,24 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" Rails.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" run :Rpreview to open rails app in browser
+command -bar -nargs=1 OpenURL :!open <args>
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vimroom plugin
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+"if has('gui_running')
+  "let g:vimroom_background = '#002b36'
+"else
+  let g:vimroom_background = 8
+"endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""
