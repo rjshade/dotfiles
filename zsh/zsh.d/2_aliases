@@ -256,6 +256,11 @@ alias mplayer='/Applications/MPlayerX.app/Contents/MacOS/MPlayerX'
 alias pg='ping google.com'
 
 
+# File system
+# -------------------------------------
+# size of files/directories at depth 0, sorted by size in kb
+alias dus='du -ks | sort -n'
+
 
 # Websites
 # -------------------------------------
