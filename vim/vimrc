@@ -133,6 +133,10 @@ if has('syntax') && (&t_Co > 2)
    syntax on
 endif
 
+
+" ctrl-k runs :make
+nnoremap <C-m> :make <CR>
+
 " have command-line completion <Tab> (for filenames, help topics, option names)
 " first list the available options and complete the longest common part, then
 " have further <Tab>s cycle through the possibilities:
