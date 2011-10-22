@@ -1,0 +1,78 @@
+urxvt*cutchars:             "()*,<>[]{}|'
+urxvt*jumpScroll:           true
+urxvt*multiScroll:          true
+urxvt*scrollKey:            true
+urxvt*secondaryScroll:      true
+urxvt*loginShell:           true
+urxvt*scrollBar:            false
+urxvt*scrollTtyOutput:      false
+urxvt*scrollWithBuffer:     true
+urxvt*scrollTtyKeypress:    true
+urxvt*internalBorder:       5
+urxvt*externalBorder:       0
+urxvt*saveLines:            8192
+urxvt*mapAlert:             true
+urxvt*geometry:             90x25
+urxvt*tripleclickwords:     true
+urxvt*pastableTabs:         true
+urxvt*pointerBlank:         true
+urxvt*imLocale:             en_US.utf8
+urxvt*depth:                32
+urxvt*buffered:             true
+urxvt*transparent:          false
+uwxvt*iconFile:             /usr/share/pixmaps/rxvt-unicode.png
+
+
+!urxvt*font:       xft:dejavu sans condensed:size=12
+!urxvt*font:       xft:Bitstream Vera Sans Mono:size=12
+urxvt*font:        xft:Terminus:size=12
+!urxvt*font:       xft:Andale Mono:size=12
+
+
+
+urxvt*perl-ext-common:      default,matcher
+urxvt*urlLauncher:          chromium
+urxvt*matcher.button:       1
+
+
+! solarized https://github.com/altercation/solarized
+urxvt*background:            #002b36
+urxvt*foreground:            #657b83
+urxvt*cursorColor:           #93a1a1
+urxvt*pointerColorBackground:#586e75
+urxvt*pointerColorForeground:#93a1a1
+urxvt*fading:                0
+urxvt*fadeColor:             #002b36
+
+
+!! black dark/light
+urxvt*color0:                #073642
+urxvt*color8:                #002b36
+
+!! red dark/light
+urxvt*color1:                #dc322f
+urxvt*color9:                #d30102
+
+!! green dark/light
+urxvt*color2:                #859900
+urxvt*color10:               #586e75
+
+!! yellow dark/light
+urxvt*color3:                #b58900
+urxvt*color11:               #657b83
+
+!! blue dark/light
+urxvt*color4:                #268bd2
+urxvt*color12:               #839496
+
+!! magenta dark/light
+urxvt*color5:                #d33682
+urxvt*color13:               #268bd2
+
+!! cyan dark/light
+urxvt*color6:                #2aa198
+urxvt*color14:               #93a1a1
+
+!! white dark/light
+urxvt*color7:                #eee8d5
+urxvt*color15:               #fdf6e3
