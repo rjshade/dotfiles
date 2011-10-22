@@ -225,6 +225,7 @@ alias g='git status'
 alias gd='git diff'
 alias ga='git add'
 alias gc='git commit'
+alias gco='git checkout'
 alias gcm='git commit -m'
 
 if [[ $platform == 'osx' ]]; then
