@@ -1,0 +1,40 @@
+# Global upload and download rate in KiB. "0" for unlimited.
+download_rate = 0
+upload_rate = 80 
+
+# Default directory to save the downloaded torrents.
+directory = /home/rjs/torrents/
+
+# throttle back in evenings
+schedule = throttle_1,01:00:00,24:00:00,download_rate=0
+schedule = throttle_2,01:00:00,24:00:00,upload_rate=90
+schedule = throttle_3,17:00:00,24:00:00,download_rate=500 
+schedule = throttle_4,17:00:00,24:00:00,upload_rate=40 
+
+# Watch a directory for new torrents, and stop those that have been
+# deleted.
+schedule = watch_directory,10,10,load_start=/home/rjs/Dropbox/Torrents/*.torrent
+#*/
+schedule = tied_directory,10,10,start_tied=
+schedule = untied_directory,10,10,close_untied=
+
+# When the torrent finishes, it executes "mv -n <base_path> /home/rjs/torrents/data/done"
+# and then sets the destination directory to "/home/rjs/torrents/data/done"
+#on_finished = move_complete,"execute=mv,-u,$d.get_base_path=,/home/rjs/torrents/data/done ;d.set_directory=/home/rjs/torrents/data/done"
+
+# Close torrents when diskspace is low.
+schedule = low_diskspace,5,60,close_low_diskspace=100M
+
+# Port range to use for listening.
+port_range = 52626-62626 
+
+# Start opening ports at a random position within the port range.
+port_random = yes 
+
+# Check hash for finished torrents. Might be usefull until the bug is
+# fixed that causes lack of diskspace not to be properly reported.
+check_hash = yes 
+
+# Set whetever the client should try to connect to UDP trackers.
+use_udp_trackers = yes
+
