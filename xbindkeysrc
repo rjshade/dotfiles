@@ -1,0 +1,59 @@
+# To specify a key, you can use 'xbindkeys --key' or
+# 'xbindkeys --multikey' and put one of the two lines in this file.
+#
+# The format of a command line is:
+#    "command to start"
+#       associated key
+#
+#
+# A list of keys is in /usr/include/X11/keysym.h and in
+# /usr/include/X11/keysymdef.h
+# The XK_ is not needed.
+#
+# List of modifier:
+#   Release, Control, Shift, Mod1 (Alt), Mod2 (NumLock),
+#   Mod3 (CapsLock), Mod4, Mod5 (Scroll).
+#
+
+"urxvt -e tmux"
+  alt+shift + s
+
+"urxvt"
+  m:0x9 + c:38
+  #alt+shift + a
+
+#"(thunar&) >/dev/null 2>&1"
+#  alt+shift + t
+#
+"chromium"
+ alt+shift + f
+#
+"xlock -mode blank"
+ control + F12
+#
+## thinkpad volume buttons
+#"amixer sset Master toggle"
+#  XF86AudioMute
+#"amixer sset Master 1- unmute"
+#  XF86AudioLowerVolume
+#"amixer sset Master 1+ unmute"
+#  XF86AudioRaiseVolume
+#
+#"mpc next"
+#    XF86AudioNext
+#
+#"mpc prev"
+#    XF86AudioPrev
+#
+#"mpc toggle"
+#    XF86AudioPlay
+#
+#"wicd-client -n"
+#    XF86WLAN
+#
+##"sudo pm-suspend"
+##    XF86Sleep
+#
+#"ToggleExternalDisplayXrandr"
+#    XF86Display
+

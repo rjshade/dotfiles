@@ -1,0 +1,19 @@
+# don't want hidden files to be autocompleted
+# when doing something like: cat ~/[tab]
+set match-hidden-files off
+
+# vi mode!
+#set editing-mode vi
+#set keymap vi
+#set convert-meta on
+
+# ^l clear screen
+# bind -m vi-insert "\C-k":clear-screen
+
+# incremental history search w. up/down arrows
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+"\e[C": forward-char
+"\e[D": backward-char
+
+
