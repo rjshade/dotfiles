@@ -12,9 +12,6 @@ Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-markdown'
 
-
-Bundle 'mikewest/vimroom'
-
 " extended C++ syntax (STL etc.)
 Bundle 'vim-scripts/cpp.vim--Skvirsky'
 
