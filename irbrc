@@ -8,17 +8,13 @@ def load( lib )
   end
 end
 
-if load( 'wirble' )
-  Wirble.init
-  Wirble.colorize
+# provides colorized output and syntax highlighting
+if load 'wirb' 
+  Wirb.start
 end
 
-# prints results on same line as expression
-load( 'irb_rocket' )
-
-# every object gets an .ls method which displays color coded methods
-load( 'looksee' )
-
-# 'awesome_print myObj' to pretty print an object
-load( 'awesome_print' )
+# prints result on same line as expression
+if load 'fancy_irb'
+  FancyIrb.start
+end
 
