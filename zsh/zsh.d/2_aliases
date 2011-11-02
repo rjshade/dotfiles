@@ -58,6 +58,12 @@ alias mkae='make'
 alias ...='cd ../../'
 alias ....='cd ../../../'
 
+# make and enter a directory
+function cmd() {
+  mkdir -p $1
+  cd $1
+}
+
 # vim dependency!
 alias :q='exit'
 alias :wq='exit'
