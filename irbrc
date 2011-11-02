@@ -13,8 +13,6 @@ if load 'wirb'
   Wirb.start
 end
 
-# prints result on same line as expression
-if load 'fancy_irb'
-  FancyIrb.start
-end
+# allows irb sessions to be edited in vim
+load 'interactive_editor'
 
