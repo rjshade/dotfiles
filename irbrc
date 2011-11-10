@@ -9,9 +9,9 @@ def load( lib )
 end
 
 # provides colorized output and syntax highlighting
-if load 'wirb' 
-  Wirb.start
-end
+#if load 'wirb' 
+#  Wirb.start
+#end
 
 # allows irb sessions to be edited in vim
 load 'interactive_editor'
