@@ -213,17 +213,6 @@ vmap <s-tab> <
 " visualbell needed to disable audible bells in MacVim?
 set vb
 
-
-" copy/paste from system clipboard in OSX using pbcopy and pbpaste. to copy,
-" first yank into default register then run <leader>pc
-" TODO xcopy in linux?
-if s:sys == "osx"
-    map <silent> <leader>pc :call system("pbcopy", getreg(""))<CR>
-    map <silent> <leader>pv :r !pbpaste<CR>
-endif
-
-
-
 " not interested in pressing shift...
 nnoremap ; :
 
