@@ -41,13 +41,12 @@ alias lt='l -tr'
 # colorize tree
 alias tree='tree -C'
 
-# grep stuff
-alias gi='grep -RIinF --color=always'
+# grep 
+alias grep='echo "use ack!" && grep --color=always'
+alias gi='echo "use ack!" &&  grep -RIinF'
 
 # ack > grep
-alias ai='ack -i'
-
-alias c='cl'
+alias a='ack'
 
 # fat fingers...
 alias cd..='cd ..'
@@ -179,47 +178,18 @@ if [[ $platform == 'linux' ]]; then
 fi
 
 
-
 # OSX specific
 if [[ $platform == 'osx' ]]; then
-    function vol()
-    { osascript -e "set Volume $1" }
-
-
     alias o='open .'
-
-    alias matlab='open /Applications/MATLAB_R2011a.app/'
 fi
-
-
-# Dropbox
-# ------------------------------------------------------------------------------
-
-alias db='cd $DIR_DROPBOX && ls'
-
-# edit quotes file
-alias quotes='vim ~/Dropbox/Notes/Quotes'
-# edit todo.txt
-alias td='vim $DIR_DROPBOX/Notes/todo.txt'
-# edit notes
-alias nts='cd $DIR_DROPBOX/Notes/ && ls'
 
 
 # Torrents
 # ------------------------------------------------------------------------------
 
-#alias tts='scp -P 2626 ~/Downloads/*torrent shadow.robots.ox.ac.uk:~/Downloads && rm ~/Downloads/*torrent'
-#alias ttf='scp -P 3000 ~/Downloads/*torrent 10renault.dyndns.org:~/torrents && rm ~/Downloads/*torrent'
-
-alias tup='scp ~/Downloads/*torrent rjshade@navajo-white.feralhosting.com:~/private/rtorrent/watch/ && rm ~/Downloads/*torrent'
-alias tdo='rsync -auh --progress --stats --delete rjshade@navajo-white.feralhosting.com:~/private/rtorrent/data/ ~/sync'
-alias tsh='ssh rjshade@navajo-white.feralhosting.com'
-
-# Web Dev
-# ------------------------------------------------------------------------------
-alias rjshade='cd ~/Dropbox/www/rjshade.com && l'
-alias jloc="cd ~/Dropbox/www/rjshade.com && jekyll && sed -i '' -e 's/\#Options \+FollowSymLinks/Options \+FollowSymLinks/' _site/.htaccess"
-alias jrem="cd ~/Dropbox/www/rjshade.com &&  jekyll"
+alias tup='scp ~/Downloads/*torrent torrentHost:~/private/rtorrent/watch/ && rm ~/Downloads/*torrent'
+alias tdo='rsync -auh --progress --stats --delete torrentHost:~/private/rtorrent/data/ ~/sync'
+alias tsh='ssh torrentHost'
 
 
 # VCS (Git, Subversion, etc.)
@@ -231,7 +201,9 @@ alias g='git status'
 alias gd='git diff'
 alias ga='git add'
 alias gc='git commit'
+alias gb='git branch'
 alias gco='git checkout'
+alias gcob='git checkout -b'
 alias gcm='git commit -m'
 
 if [[ $platform == 'osx' ]]; then
@@ -268,10 +240,3 @@ alias pg='ping google.com'
 # size of files/directories at depth 0, sorted by size in kb
 alias dus='du -ks ./* | sort -n'
 
-
-# Websites
-# -------------------------------------
-alias blog='cd ~/Dropbox/www/rjshade.com/_posts && ls -l'
-
-
-alias hic-backup='heroku pgbackups:capture --expire --app high-impact-careers && curl -o ~/Dropbox/HIC/website_database_backups/hic_dump.`date "+%Y%m%d-%H:%M:%S"`.sql `heroku  pgbackups:url --app high-impact-careers`'
