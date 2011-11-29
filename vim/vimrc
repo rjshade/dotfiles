@@ -99,6 +99,9 @@ set tags+=~/.ctags/moos
 " put swap files somewhere central
 set directory=~/.vim-tmp/
 
+" tmp files (fixes crontab -e issue on OSX...)
+set backupskip=/tmp/*,/private/tmp/*"
+
 " indent...
 set smartindent
 set autoindent
@@ -192,7 +195,8 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-
+" Resize splits when the window is resized
+au VimResized * exe "normal! \<c-w>="
 
 " ,a to switch between .cpp and .h
 nmap ,a :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
