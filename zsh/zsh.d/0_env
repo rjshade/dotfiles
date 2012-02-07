@@ -70,7 +70,7 @@ export CMAKE_INCLUDE_PATH=~/build/include/
 
 #default include paths
 export C_INCLUDE_PATH=~/build/include:/usr/X11/include:$C_INCLUDE_PATH
-export CPP_INCLUDE_PATH=~/build/include:/usr/X11/include:$CPP_INCLUDE_PATH
+export CPLUS_INCLUDE_PATH=~/build/include:/usr/X11/include:$CPLUS_INCLUDE_PATH
 
 # X11 (OSX only?)
 if [[ $platform == 'osx' ]]; then
