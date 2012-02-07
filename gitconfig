@@ -1,5 +1,5 @@
 [user]
-  name = rjshade
+	name = rjshade
   email = robbie.shade@gmail.com
 [color]
   ui = auto
@@ -9,4 +9,10 @@
 [advice]
   statusHints = false
 [core]
-  excludesfile = ~/.gitignore
+	excludesfile = /Users/rjs/.gitignore
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
