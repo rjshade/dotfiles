@@ -250,7 +250,7 @@ nnoremap <space> za
 " Tagbar
 """""""""""""""""""""""""""""""""""""""""""""""""""
 if s:sys == "osx"
-    let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+    let g:tagbar_ctags_bin = '/usr/local/bin/etags'
 endif
 
 nnoremap <silent> <leader>g :TagbarToggle<CR>
