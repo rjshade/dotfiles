@@ -12,6 +12,9 @@ Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-markdown'
 
+" Ack is better than grep
+Bundle 'mileszs/ack.vim'
+
 " extended C++ syntax (STL etc.)
 Bundle 'vim-scripts/cpp.vim--Skvirsky'
 
@@ -86,11 +89,11 @@ if has("autocmd")
 endif
 
 " buffer navigation
-" leader-, for previous (< key)
-" leader-. for next (> key)
+" leader-z for previous (< key)
+" leader-x for next (> key)
 nnoremap <leader>l :ls<CR>
-nnoremap <leader>, :bp<CR>
-nnoremap <leader>. :bn<CR>
+nnoremap <leader>z :bp<CR>
+nnoremap <leader>x :bn<CR>
 
 " ctags
 set tags+=~/.ctags/mrg
@@ -133,9 +136,6 @@ if has('syntax') && (&t_Co > 2)
    syntax on
 endif
 
-
-" ctrl-k runs :make
-nnoremap <C-m> :make <CR>
 
 " have command-line completion <Tab> (for filenames, help topics, option names)
 " first list the available options and complete the longest common part, then
