@@ -61,42 +61,11 @@ bindkey "\e[B" history-beginning-search-forward
 # Paths
 # ------------------------------------------------------------------------------
 
-# compiler options
-export CPATH=usr/local/include/:~/build/include/:$CPATH # include search path
-export LIBRARY_PATH=~/build/lib/:/usr/local/lib/:$LIBRARY_PATH # library search path
-export LD_LIBRARY_PATH=/usr/local/lib:~/build/lib:$LD_LIBRARY_PATH
-export LD_RUN_PATH=~/build/lib/:/usr/local/lib/:$LD_RUN_PATH # execution time library path
-export CMAKE_INCLUDE_PATH=~/build/include/
-
-#default include paths
-export C_INCLUDE_PATH=~/build/include:/usr/X11/include:$C_INCLUDE_PATH
-export CPLUS_INCLUDE_PATH=~/build/include:/usr/X11/include:$CPLUS_INCLUDE_PATH
-
-# X11 (OSX only?)
-if [[ $platform == 'osx' ]]; then
-    export LIBRARY_PATH=/usr/X11/lib:$LIBRARY_PATH
-    export HEADER_SEARCH_PATH=/usr/X11/include:$HEADER_SEARCH_PATH
-fi
-
 #fix for cgoban3
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-
-
-export PATH=/usr/local/Cellar/ccache/3.1.5/libexec:$PATH
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-export PATH=/usr/lib/colorgcc/bin:$PATH
+# path
 export PATH=~/bin:~/build/bin:$PATH
-export PATH=~/code/simulator3d/bin:$PATH
-export PATH=~/code/mrg/Devel/rjs/bin:$PATH
-
-#cuda
-export PATH=/usr/local/cuda/bin:$PATH
-export DYLD_LIBRARY_PATH=/usr/local/cuda/lib:$DYLD_LIBRARY_PATH
-
-# python and homebrew
-export PATH=/usr/local/share/python:$PATH
-export PYTHONPATH=/usr/local/lib/python:/usr/local/lib/python2.7/site-packages/:/usr/local/share/python/:$PYTHONPATH
 
 # ------------------------------------------------------------------------------
 # ZSH options
