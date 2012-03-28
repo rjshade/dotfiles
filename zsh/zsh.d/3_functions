@@ -315,3 +315,26 @@ d() {
     cd ~$dir
 }
 
+# Setting color profiles with iTerm on OSX
+
+function toggle_colors()
+{
+  if [ -e ~/.color_profile_dark ]
+  then
+    rm ~/.color_profile_dark
+  else
+    touch ~/.color_profile_dark
+  fi
+  set_colors
+}
+
+function set_colors()
+{
+  if [ -e ~/.color_profile_dark ]
+  then
+    echo -en "\033]50;SetProfile=light\a" && export ITERM_PROFILE=light && export COLORFGBG="11;15"
+  else
+    echo -en "\033]50;SetProfile=dark\a" && export ITERM_PROFILE=dark && export COLORFGBG="12;8"
+  fi
+}
+set_colors
