@@ -14,7 +14,9 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-fugitive'
 Bundle 'mileszs/ack.vim'
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'kchmck/vim-coffee-script'
+""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " OS detection, s:sys = "win","linux", or "osx"
@@ -39,6 +41,7 @@ set nostartofline                         " don't jump to start of line when jum
 set backspace=indent,eol,start            " allow backspace to overwrite indents etc.
 set smartindent
 set autoindent
+
 
 " when re-opening a file, automatically jump to the line
 " we were on when we last exited
@@ -97,6 +100,7 @@ nnoremap <Leader>x :bn<CR>
 " first list the available options and complete the longest common part, then
 " have further <Tab>s cycle through the possibilities:
 set wildmode=list:longest,full
+set wildignore=*.o,*.obj,.git,tmp
 
 " Navigation
 """""""""""""""""""""""""""""""""""""""""""""""""""
