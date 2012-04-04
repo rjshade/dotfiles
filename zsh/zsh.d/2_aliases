@@ -244,3 +244,9 @@ alias pg='ping google.com'
 # size of files/directories at depth 0, sorted by size in kb
 alias dus='du -ks ./* | sort -n'
 
+
+# Rails
+# -------------------------------------
+alias cuke='cucumber --drb'
+alias be='bundle exec'
+

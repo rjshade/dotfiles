@@ -61,7 +61,13 @@ bindkey "\e[B" history-beginning-search-forward
 # Paths
 # ------------------------------------------------------------------------------
 
-#fix for cgoban3
+# homebrew gets priority
+export PATH=/usr/local/sbin:/usr/local/bin:$PATH
+
+# homebrew python
+export PATH=/usr/local/share/python:$PATH
+
+# fix for cgoban3
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # path
