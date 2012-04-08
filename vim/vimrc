@@ -2,8 +2,8 @@ set nocompatible " be vImproved
 syntax on
 filetype off
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle plugin manger
+""""""""""""""""""""""""""""""""""""""""""""""""""
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
@@ -16,12 +16,10 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'mileszs/ack.vim'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'fholgado/minibufexpl.vim'
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""
 " OS detection, s:sys = "win","linux", or "osx"
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:sys = "win"
 if has("unix")
   if system("uname") == "Darwin\n"
@@ -30,7 +28,7 @@ if has("unix")
     let s:sys = "linux"
   endif
 endif
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set clipboard=unnamed                     " use system clipboard for copy/paste
 filetype plugin indent on
@@ -102,7 +100,7 @@ set wildmode=list:longest,full
 set wildignore=*.o,*.obj,.git,tmp
 
 " Navigation
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " navigating split windows
 " ctrl + hjkl to move between split windows
@@ -121,6 +119,7 @@ nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
+""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Resize splits when the window is resized
 au VimResized * exe "normal! \<c-w>="
@@ -136,25 +135,9 @@ vmap <s-tab> <
 nnoremap ; :
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugins
-"""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Tagbar
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-if s:sys == "osx"
-    let g:tagbar_ctags_bin = '/usr/local/bin/etags'
-endif
-
-nnoremap <silent> <leader>g :TagbarToggle<CR>
-let g:tagbar_compact = 1
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap ,n :NERDTreeToggle<CR>
 let NERDTreeWinSize = 30
 
@@ -173,12 +156,11 @@ function! s:CloseIfOnlyNerdTreeLeft()
     endif
   endif
 endfunction
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Command-T
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-
+""""""""""""""""""""""""""""""""""""""""""""""""""
 " search tree with <Leader>t
 nmap <silent> <Leader>t :CommandT<CR>
 
@@ -187,29 +169,25 @@ nmap <silent> <Leader>r :CommandTBuffer<CR>
 
 " dismiss command-t window with ctrl-x or ctrl-c
 let g:CommandTCancelMap=['<C-x>', '<C-c>']
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Ack 
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Ack
+""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>a :Ack -i 
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Colors
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""
 if(&t_Co==256)
   let g:solarized_termcolors=16
   color solarized
 endif
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" MiniBufExplorer 
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" show minibufexplorer (not usually needed)
-nnoremap <Leader>b :MiniBufExplorer<cr>
 
-" single click on buffer names
-let g:miniBufExplUseSingleClick = 1
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+" tpope/fugitive
+""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <Leader>gs :Gstatus<cr>
+""""""""""""""""""""""""""""""""""""""""""""""""""
