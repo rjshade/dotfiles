@@ -161,14 +161,14 @@ endfunction
 
 " Command-T
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" search tree with <Leader>t
-nmap <silent> <Leader>t :CommandT<CR>
-
-" search buffers with <Leader>r
-nmap <silent> <Leader>r :CommandTBuffer<CR>
-
 " dismiss command-t window with ctrl-x or ctrl-c
 let g:CommandTCancelMap=['<C-x>', '<C-c>']
+
+" search tree
+map <leader>t :CommandTFlush<cr>\|:CommandT<cr>
+
+" search buffers
+map <leader>r :CommandTFlush<cr>\|:CommandTBuffer<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -191,3 +191,20 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <Leader>gs :Gstatus<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" MULTIPURPOSE TAB KEY
+" Indent if we're at the beginning of a line.
+" Else, do completion.
+""""""""""""""""""""""""""""""""""""""""""""""""""
+function! InsertTabWrapper()
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<tab>"
+  else
+    return "\<c-p>"
+  endif
+endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <s-tab> <c-n>
