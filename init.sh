@@ -13,8 +13,11 @@ git submodule update
 
 ln -s $DOTFILES/vim ~/.vim
 ln -s $DOTFILES/vim/vimrc ~/.vimrc
+mkdir ~/.vim-tmp
+
 ln -s $DOTFILES/zsh ~/.zsh
 ln -s $DOTFILES/zsh/zshrc ~/.zshrc
+
 ln -s $DOTFILES/tmux.conf ~/.tmux.conf
 ln -s $DOTFILES/gitignore ~/.gitignore
 ln -s $DOTFILES/gitconfig ~/.gitconfig
