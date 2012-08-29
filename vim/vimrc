@@ -7,7 +7,6 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
-Bundle 'wincent/Command-T'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'altercation/vim-colors-solarized'
@@ -16,6 +15,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'mileszs/ack.vim'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'kien/ctrlp.vim'
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 " OS detection, s:sys = "win","linux", or "osx"
@@ -159,16 +159,13 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 
-" Command-T
+" Fuzzy search through directory trees
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" dismiss command-t window with ctrl-x or ctrl-c
-let g:CommandTCancelMap=['<C-x>', '<C-c>']
-
 " search tree
-map <leader>t :CommandTFlush<cr>\|:CommandT<cr>
+map <leader>t :CtrlP<cr>
 
 " search buffers
-map <leader>r :CommandTFlush<cr>\|:CommandTBuffer<cr>
+map <leader>r :CtrlPBuffer<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -181,7 +178,7 @@ nnoremap <leader>a :Ack -i
 " Colors
 """"""""""""""""""""""""""""""""""""""""""""""""""
 if(&t_Co==256)
-  let g:solarized_termcolors=16
+  "let g:solarized_termcolors=16
   color solarized
 endif
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -208,3 +205,4 @@ function! InsertTabWrapper()
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
+""""""""""""""""""""""""""""""""""""""""""""""""""
