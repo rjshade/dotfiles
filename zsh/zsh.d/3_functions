@@ -338,3 +338,16 @@ function set_colors()
   fi
 }
 set_colors
+
+
+# read man pages as PDF
+function pman()
+{
+    PMANFILE="/tmp/pman-${1}.pdf"
+    if [ ! -e $PMANFILE ]; then   # only create if it doesn't already exist
+        man -t "${1}" | pstopdf -i -o "$PMANFILE"
+    fi
+    if [ -e $PMANFILE ]; then     # in case create failed
+        open -a /Applications/Preview.app/ "$PMANFILE"
+    fi
+}

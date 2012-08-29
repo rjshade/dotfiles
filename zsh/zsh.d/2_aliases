@@ -33,6 +33,12 @@ elif [[ $platform == 'osx' ]]; then
 fi
 alias l='ls -lh'
 
+# use gnu du/sort to display human readable sorted sizes
+# (from coreutils in homebrew)
+alias ds='gdu -sh * | gsort -h'
+
+alias df='df -h'
+
 alias la='ls -al'
 
 # list most recently modified at bottom

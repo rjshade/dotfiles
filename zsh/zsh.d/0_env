@@ -16,7 +16,7 @@ fi
 
 #--- Autojump
 if [[ $platform == 'osx' ]]; then
-  if [ -f `brew --prefix`/etc/autojump ]; then
+  if [[ -f `brew --prefix`/etc/autojump ]]; then
     . `brew --prefix`/etc/autojump
   fi
 fi
