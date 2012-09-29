@@ -193,12 +193,13 @@ fi
 # Torrents
 # ------------------------------------------------------------------------------
 
-alias tup='scp ~/Downloads/*torrent torrentHost:~/private/rtorrent/watch/ && rm ~/Downloads/*torrent'
-alias tdo='rsync -auh --progress --stats --delete torrentHost:~/private/rtorrent/data/ ~/sync'
-alias tdo_300='rsync -auh --bwlimit=300 --progress --stats --delete torrentHost:~/private/rtorrent/data/ ~/sync'
-alias tdo_500='rsync -auh --bwlimit=500 --progress --stats --delete torrentHost:~/private/rtorrent/data/ ~/sync'
-alias tsh='ssh torrentHost'
+#alias tup='scp ~/Downloads/*torrent torrentHost:~/private/rtorrent/watch/ && rm ~/Downloads/*torrent'
+#alias tdo='rsync -auh --progress --stats --delete torrentHost:~/private/rtorrent/data/ ~/sync'
+#alias tdo_300='rsync -auh --bwlimit=300 --progress --stats --delete torrentHost:~/private/rtorrent/data/ ~/sync'
+#alias tdo_500='rsync -auh --bwlimit=500 --progress --stats --delete torrentHost:~/private/rtorrent/data/ ~/sync'
+#alias tsh='ssh torrentHost'
 
+alias tup='mv ~/Downloads/*torrent ~/torrents'
 
 # VCS (Git, Subversion, etc.)
 # ------------------------------------------------------------------------------
