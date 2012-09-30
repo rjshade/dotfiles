@@ -4,4 +4,3 @@ for file in ~/.zsh/zsh.d/*;
 do
     source $file
 done
-

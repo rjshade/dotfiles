@@ -273,3 +273,9 @@ function itunes_im() {
 if [ -f ~/.secrets.sh ]; then
   source ~/.secrets.sh;
 fi
+
+function c {
+  cd "$@"
+  local new_path="$(pwd)"
+  echo -e "\\033[31m${new_path}\\033[0m"
+}
