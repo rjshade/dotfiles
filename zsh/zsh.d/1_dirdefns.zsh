@@ -20,5 +20,5 @@ DIR_MY_BLD=~/build
     DIR_MY_BIN=$DIR_MY_BLD/bin
     DIR_MY_LIB=$DIR_MY_BLD/lib
 
-FILE_ALIASES=$HOME/.zsh/zsh.d/2_aliases
+FILE_ALIASES=$HOME/.zsh/zsh.d/2_aliases.zsh
 
