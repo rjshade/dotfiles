@@ -167,10 +167,6 @@ alias europa='ssh -X mrg@europa'
 # play Go
 alias playGo='javaws http://files.gokgs.com/javaBin/cgoban.jnlp'
 
-# run clojure REPL
-alias clj='java -cp /home/rjs/opt/clojure-1.1.0/jline-0_9_5.jar:/home/rjs/opt/clojure-1.1.0/clojure.jar jline.ConsoleRunner clojure.main'
-
-
 
 # Linux specific
 # ------------------------------------------------------------------------------
@@ -276,6 +272,7 @@ fi
 
 function c {
   cd "$@"
+  ls -l
   local new_path="$(pwd)"
   echo -e "\\033[31m${new_path}\\033[0m"
 }
