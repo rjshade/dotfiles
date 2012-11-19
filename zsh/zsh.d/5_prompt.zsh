@@ -19,12 +19,12 @@ fi
 
 
 # ~/code/github/eighty-thousand-hours/ git:master >>>>
-#PROMPT='${host_prefix}%{$fg[blue]%}%~%{$reset_color%} ${vcs_info_msg_0_}%(!.%{$fg[red]%}>.%{$fg[gray]%}>)%{$reset_color%} '
+PROMPT='${host_prefix}%{$fg[blue]%}%~%{$reset_color%} ${vcs_info_msg_0_}%(!.%{$fg[red]%}>.%{$fg[gray]%}>)%{$reset_color%} '
 
 # git:master >>>>
-PROMPT='${host_prefix}%{$reset_color%}${vcs_info_msg_0_}%(!.%{$fg[red]%}>.%{$fg[gray]%}>)%{$reset_color%} '
+#PROMPT='${host_prefix}%{$reset_color%}${vcs_info_msg_0_}%(!.%{$fg[red]%}>.%{$fg[gray]%}>)%{$reset_color%} '
 
 # right prompt: Thu 5th Oct 18:45
-#RPROMPT='%{$fg[gray]%}%D{%a %e %b %H:%M}%{$reset_color%}'
+RPROMPT='%{$fg[gray]%}%D{%a %e %b %H:%M}%{$reset_color%}'
 
 PROMPT2="%{$fg[blue]%}%_%{$reset_color%} > "
