@@ -15,18 +15,11 @@
 #   Mod3 (CapsLock), Mod4, Mod5 (Scroll).
 #
 
-"urxvt -e tmux"
-  alt+shift + s
-
 "urxvt"
-  m:0x9 + c:38
-  #alt+shift + a
+ Control+alt+a
 
-#"(thunar&) >/dev/null 2>&1"
-#  alt+shift + t
-#
-"chromium"
- alt+shift + f
+"google-chrome"
+ Control+alt+f
 #
 "xlock -mode blank"
  control + F12
