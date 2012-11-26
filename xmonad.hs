@@ -14,7 +14,9 @@ import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 import System.IO
 -- Data.List provides isPrefixOf isSuffixOf and isInfixOf
-import Data.List 
+import Data.List
+
+import XMonad.Config.Gnome
 
 -- for viewShift
 import Control.Monad (liftM2)
@@ -41,19 +43,12 @@ myManageHook = composeAll . concat $
         myMatchAnywhereFloatsT = ["VLC","KGS"]
         viewShift = doF . liftM2 (.) W.greedyView W.shift
 
-myWorkSpaces = ["dev:1","dev:2","web","music","misc","keepassx"]
+myWorkSpaces = ["dev:1","dev:2","corp","home","irc","float"]
 myNormalBorderColor  = "#073642"
 myFocusedBorderColor = "#586e75"
 myBorderWidth = 1
 
 myTerminal = "urxvt"
-
-{-main = do-}
-    {-xmproc <- spawnPipe "xmobar ~/.xmobarrc"-}
-    {-xmonad $-}
-    
-
-main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
 
 myBar = "xmobar"
 
@@ -67,15 +62,10 @@ myPP = xmobarPP {
 
 -- keybinding to toggle gap for xmobar
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
-    
-myConfig = defaultConfig
+
+myConfig = gnomeConfig
         {
           workspaces = myWorkSpaces
-        {-, logHook = dynamicLogWithPP $ xmobarPP-}
-            {-{ ppOutput = hPutStrLn xmproc-}
-            {-, ppTitle  = xmobarColor "#ee9a00" "" . shorten 50-}
-            {-, ppHiddenNoWindows  = xmobarColor "grey" ""-}
-            {-}-}
         , terminal              = myTerminal
         , borderWidth           = myBorderWidth
         , normalBorderColor     = myNormalBorderColor
@@ -83,3 +73,4 @@ myConfig = defaultConfig
         , manageHook = myManageHook <+> manageHook defaultConfig
         }
 
+main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
