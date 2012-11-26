@@ -52,6 +52,10 @@ alias grep='grep --color=always'
 alias gi='grep -RIinF'
 
 # ack > grep
+if [[ $platform == 'linux' ]]; then
+  # Certainly in Ubuntu...
+  alias ack='ack-grep'
+fi
 alias a='ack'
 
 # fat fingers...
@@ -183,6 +187,8 @@ fi
 # OSX specific
 if [[ $platform == 'osx' ]]; then
     alias o='open .'
+elif [[ $platform == 'linux' ]]; then
+    alias o='thunar .'
 fi
 
 

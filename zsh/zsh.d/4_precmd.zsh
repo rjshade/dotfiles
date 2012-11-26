@@ -16,18 +16,20 @@ zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' enable git svn
 
 # precmd is called just before the prompt is printed
-precmd () 
-{ 
+precmd ()
+{
     # vcs_info doesnt yet have support for untracked files so we check here
     # and add a red > to the vcs_info format if needed...
     if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]] {
-       #zstyle ':vcs_info:*' formats '%s:%{'${fg[yellow]}'%}%b%{'${reset_color}'%} %c%u%{'${reset_color}'%}'
-       zstyle ':vcs_info:*' formats '%c%u%{'${reset_color}'%}'
+       # zstyle ':vcs_info:*' formats '%s:%{'${fg[yellow]}'%}%b%{'${reset_color}'%} %c%u%{'${reset_color}'%}'
+       zstyle ':vcs_info:*' formats '%{'${fg[yellow]}'%}%b%{'${reset_color}'%} %c%u%{'${reset_color}'%}'
+       # zstyle ':vcs_info:*' formats '%c%u%{'${reset_color}'%}'
     } else {
-       #zstyle ':vcs_info:*' formats '%s:%{'${fg[yellow]}'%}%b%{'${reset_color}'%} %c%u%{'${fg[red]}'%}>%{'${reset_color}'%}'
-       zstyle ':vcs_info:*' formats '%c%u%{'${fg[red]}'%}>%{'${reset_color}'%}'
+       # zstyle ':vcs_info:*' formats '%s:%{'${fg[yellow]}'%}%b%{'${reset_color}'%} %c%u%{'${fg[red]}'%}>%{'${reset_color}'%}'
+       zstyle ':vcs_info:*' formats '%{'${fg[yellow]}'%}%b%{'${reset_color}'%} %c%u%{'${fg[red]}'%}>%{'${reset_color}'%}'
+       # zstyle ':vcs_info:*' formats '%c%u%{'${fg[red]}'%}>%{'${reset_color}'%}'
     }
 
-    vcs_info 
+    vcs_info
 }
 

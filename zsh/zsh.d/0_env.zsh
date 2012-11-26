@@ -35,12 +35,16 @@ autoload -Uz vcs_info
 autoload -U promptinit && promptinit
 
 # ------------------------------------------------------------------------------
-export TERM=xterm-256color
-#if [[ $platform == 'osx' ]]; then
-#    export TERM=rxvt-256color
-#else
-#    export TERM=rxvt-unicode-256color
-#fi
+# export TERM=xterm-256color
+if [[ $platform == 'osx' ]]; then
+  export TERM=rxvt-256color
+else
+  export TERM=rxvt-unicode-256color
+fi
+
+# for tmux: export 256color
+[ -n "$TMUX" ] && export TERM=screen-256color
+
 # ------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------
@@ -52,6 +56,7 @@ export TERM=xterm-256color
 export EDITOR=vim   # use a sensible editor...
 export VISUAL=vim
 bindkey -e          # but still use emacs bindings on CLI
+
 
 # ------------------------------------------------------------------------------
 # up/down arrows search through history like MATLAB
@@ -77,13 +82,6 @@ export PATH=~/bin:~/build/bin:$PATH
 
 # node package manager
 export PATH=/usr/local/share/npm/bin/:$PATH
-
-# Amazon EC2
-export JAVA_HOME="$(/usr/libexec/java_home)"
-export EC2_PRIVATE_KEY="$(/bin/ls $HOME/.ec2/pk-*.pem)"
-export EC2_CERT="$(/bin/ls $HOME/.ec2/cert-*.pem)"
-export EC2_AMITOOL_HOME="/usr/local/Cellar/ec2-ami-tools/1.3-45758/jars"
-export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.5.2.5/jars"
 
 # ------------------------------------------------------------------------------
 # ZSH options

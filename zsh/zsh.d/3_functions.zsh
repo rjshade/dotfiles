@@ -234,54 +234,6 @@ have()
     type $1 >/dev/null 2>&1 && have="yes"
 }
 
-# check if we have apt-get installed and set aliases appropriately
-function _agi()
-{
-    local cur prev
-    COMPREPLY=()
-    cur=${COMP_WORDS[COMP_CWORD]}
-    prev=${COMP_WORDS[COMP_CWORD-1]}
-    COMPREPLY=( $( apt-cache pkgnames $cur 2> /dev/null ) )
-    return 0
-}
-if have apt-get ; then
-    alias acs='apt-cache search'
-    alias acS='apt-cache show'
-    alias agi='sudo apt-get install'
-    complete -F _agi $filenames agi acs acS
-
-    alias agu='sudo apt-get update && sudo apt-get upgrade' 
-fi
-
-# pacman stuff (on Arch)
-if have yaourt ; then
-    function ins() 
-    {
-        yaourt -Ss $@
-        #echo    -e "$(pacman -Ss "$@" | sed \
-        #        -e 's#^core/.*#\\033[1;31m&\\033[0;37m#g' \
-        #        -e 's#^extra/.*#\\033[0;32m&\\033[0;37m#g' \
-        #        -e 's#^community/.*#\\033[1;35m&\\033[0;37m#g' \
-        #        -e 's#^.*/.* [0-9].*#\\033[0;36m&\\033[0;37m#g' ) \
-        #        \033[0m"
-    }
-    
-    #alias inu="sudo pacman -Syu"
-    alias inu="yaourt -Syu"
-
-    alias inr="yaourt -R"
-
-    function in()
-    {
-        if [ $# -eq 0 ]; then
-            echo "usage: in <package to install>"
-        else
-            yaourt -S $@
-        fi
-    }
-fi
-
-
 function rsync_backup
 {
     echo -e 'rsync -auh --progress --stats --delete SOURCE DESTINATION'

@@ -4,3 +4,8 @@ for file in ~/.zsh/zsh.d/*;
 do
     source $file
 done
+
+# any settings specific to this machine
+if [[ -f ~/.zsh-local ]]; then
+  source ~/.zsh-local
+fi
