@@ -67,16 +67,15 @@ set directory=~/.vim-tmp/                 " put swap files somewhere central
 set backupskip=/tmp/*,/private/tmp/*"     " tmp files (fixes crontab -e issue on OSX...)
 set scrolloff=10                           " keep 5 context lines above/below cursor
 set nu                                    " line numbers on
-set rnu                                   " relative line numbering
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set number
-  else
-    set relativenumber
-  endif
-endfunc
-
-nnoremap <C-n> :call NumberToggle()<cr>
+"set rnu                                   " relative line numbering
+"function! NumberToggle()
+"  if(&relativenumber == 1)
+"    set number
+"  else
+"    set relativenumber
+"  endif
+"endfunc
+"nnoremap <leader>0 :call NumberToggle()<cr>
 
 set expandtab                             " turn tabs into spaces
 set tabstop=2                             " tab == 2 spaces
@@ -94,7 +93,7 @@ set incsearch                             " find as you type
 set hlsearch                              " search highlighting on
 
 " toggle search term highlighting
-nnoremap <Leader>h :set hlsearch!<bar>set hlsearch?<CR>
+nnoremap <leader>h :set hlsearch!<bar>set hlsearch?<CR>
 
 set laststatus=2                          " always show status line
 set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %=\ lin:%l/%L\ col:%c\ %p%%
@@ -104,15 +103,22 @@ set t_ti= t_te=                           " don't clear screen on exit
 set hidden                                " allow unsaved buffers to be hidden
 
 " list buffers, and navigate prev/next
-nnoremap <Leader>l :ls<CR>
+nnoremap <leader>l :ls<CR>
 nnoremap <leader>, :bp<CR>
 nnoremap <leader>. :bn<CR>
+nnoremap <C-n> :bp<CR>
+nnoremap <C-m> :bn<CR>
 
 " have command-line completion <Tab> (for filenames, help topics, option names)
 " first list the available options and complete the longest common part, then
 " have further <Tab>s cycle through the possibilities:
 set wildmode=list:longest,full
 set wildignore=*.o,*.obj,.git,tmp
+
+
+" search and replace current word in file
+" r for (r)efactor
+noremap <leader>r :%s/\<<C-R><C-W>\>/
 
 " Navigation
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -123,9 +129,6 @@ map <C-h> <C-W>h
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-l> <C-W>l
-
-" scroll down in normal mode with space
-nnoremap <Space> <C-e>
 
 " move up and down using visual lines rather than actual lines
 " this means that a long paragraph written on one line but 
@@ -140,8 +143,8 @@ vnoremap k gk
 au VimResized * exe "normal! \<c-w>="
 
 " Tab and Shift-Tab to indent, instead of << and >>
-nmap <tab> v>
-nmap <s-tab> v<
+" nmap <tab> v>
+" nmap <s-tab> v<
 
 " not interested in pressing shift...
 nnoremap ; :
@@ -151,7 +154,7 @@ map Y y$
 
 " NERDTree/Commenter
 """"""""""""""""""""""""""""""""""""""""""""""""""
-nmap ,n :NERDTreeToggle<CR>
+nmap <leader>n :NERDTreeToggle<CR>
 let NERDTreeWinSize = 50
 
 " single click to open directory or file
@@ -178,7 +181,7 @@ let g:NERDSpaceDelims = 1
 " note that by default it will open automatically
 " when more than one eligible buffer is open
 """"""""""""""""""""""""""""""""""""""""""""""""""
-map <Leader>b :TMiniBufExplorer<cr>
+" map <Leader>b :TMiniBufExplorer<cr>
 let g:miniBufExplorerMoreThanOne=2
 
 " Fuzzy search through directory trees
@@ -187,7 +190,7 @@ let g:miniBufExplorerMoreThanOne=2
 map <leader>t :CtrlP<cr>
 
 " search buffers
-map <leader>r :CtrlPBuffer<cr>
+map <leader>b :CtrlPBuffer<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 " Ack
@@ -202,10 +205,9 @@ nnoremap <leader>sw :Ack --smart-case  <cword> <CR>
 " Tagbar
 """"""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>l :TagbarToggle <CR>
-nnoremap <silent> <F8> :TagbarToggle<CR>
 let g:tagbar_width = 60      "window width
 let g:tagbar_autofocus = 1   "focus on open
-let g:tagbar_left = 1        "show on left
+" let g:tagbar_left = 1        "show on left
 let g:tagbar_compact = 1     "hide help text
 let g:tagbar_autoshowtag = 1 "highlight current tag
 let g:tagbar_foldlevel = 2   "close all higher folds
