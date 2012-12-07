@@ -87,7 +87,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export PATH=~/bin:~/build/bin:$PATH
 
 # node package manager
-export PATH=/usr/local/share/npm/bin/:$PATH
+export PATH=/usr/local/share/npm/bin:$PATH
 
 # ------------------------------------------------------------------------------
 # ZSH options
