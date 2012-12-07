@@ -13,13 +13,19 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     platform='osx'
 fi
 
+command_exists () {
+  type "$1" &> /dev/null ;
+}
 
 #--- Autojump
 if [[ $platform == 'osx' ]]; then
-  if [[ -f `brew --prefix`/etc/autojump ]]; then
-    . `brew --prefix`/etc/autojump
+  if command_exists brew; then
+    if [[ -f `brew --prefix`/etc/autojump ]]; then
+      . `brew --prefix`/etc/autojump
+    fi
   fi
 fi
+
 
 # ------------------------------------------------------------------------------
 HISTFILE=~/.zsh_history
