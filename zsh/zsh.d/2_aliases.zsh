@@ -189,13 +189,13 @@ fi
 # Torrents
 # ------------------------------------------------------------------------------
 
-#alias tup='scp ~/Downloads/*torrent torrentHost:~/private/rtorrent/watch/ && rm ~/Downloads/*torrent'
+alias tup='scp ~/Downloads/*torrent torrentHost:~/torrents/ && rm ~/Downloads/*torrent'
 #alias tdo='rsync -auh --progress --stats --delete torrentHost:~/private/rtorrent/data/ ~/sync'
 #alias tdo_300='rsync -auh --bwlimit=300 --progress --stats --delete torrentHost:~/private/rtorrent/data/ ~/sync'
 #alias tdo_500='rsync -auh --bwlimit=500 --progress --stats --delete torrentHost:~/private/rtorrent/data/ ~/sync'
 #alias tsh='ssh torrentHost'
 
-alias tup='mv ~/Downloads/*torrent ~/torrents'
+#alias tup='mv ~/Downloads/*torrent ~/torrents'
 
 # VCS (Git, Subversion, etc.)
 # ------------------------------------------------------------------------------
@@ -270,7 +270,7 @@ if [ -f ~/.secrets.sh ]; then
   source ~/.secrets.sh;
 fi
 
-function c {
+function cl {
   cd "$@"
   ls -l
   local new_path="$(pwd)"
