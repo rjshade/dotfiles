@@ -23,20 +23,37 @@ urxvt*transparent:          false
 uwxvt*iconFile:             /usr/share/pixmaps/rxvt-unicode.png
 
 
+!-- Xft settings -- !
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hinstyle:   hintslight
+
 !urxvt*font:       xft:dejavu sans condensed:size=12
 !urxvt*font:       xft:Bitstream Vera Sans Mono:size=12
-urxvt*font:        xft:Terminus:size=12
-!urxvt*font:       xft:Andale Mono:size=12
+!urxvt*font:        xft:Terminus:size=12
+! urxvt*font:       xft:Andale Mono:size=12
+! urxvt*font:       xft:Inconsolata:size=14
+! urxvt*font:       xft:Droid Sans Mono:pixelsize=13
+URxvt*font:     xft:terminus:pixelsize=13
+URxvt*boldFont: xft:terminus:bold:pixelsize=13
 
 
 
 urxvt*perl-ext-common:      default,matcher
-urxvt*urlLauncher:          chromium
+urxvt*urlLauncher:          google-chrome
 urxvt*matcher.button:       1
+urxvt.matcher.pattern.1:    b/[0-9]*
+urxvt.matcher.pattern.2:    cl/[0-9]*
+urxvt.matcher.pattern.3:    go/[\\w-]*
+! color URLs
+urxvt.colorUL:              #86a2be
 
 
 ! solarized https://github.com/altercation/solarized
-urxvt*background:            #002b36
+! urxvt*background:            #073642
+urxvt*background:            #111111
 urxvt*foreground:            #657b83
 urxvt*cursorColor:           #93a1a1
 urxvt*pointerColorBackground:#586e75
@@ -46,8 +63,10 @@ urxvt*fadeColor:             #002b36
 
 
 !! black dark/light
-urxvt*color0:                #073642
-urxvt*color8:                #002b36
+! urxvt*color0:                #073642
+! urxvt*color8:                #002b36
+urxvt*color0:                #1a1a1a
+urxvt*color8:                #111111
 
 !! red dark/light
 urxvt*color1:                #dc322f
