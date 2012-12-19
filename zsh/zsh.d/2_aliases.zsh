@@ -2,8 +2,18 @@
 # Aliases
 # ------------------------------------------------------------------------------
 
+
+# Source any machine-specific settings
+# ------------------------------------------------------------------------------
+if [[ -f ~/.aliases-local.sh ]]; then
+  source ~/.aliases-local.sh
+fi
+
 # open this file for editing
 alias ea='$EDITOR $FILE_ALIASES && source $FILE_ALIASES'
+
+# open local aliases file for editing
+alias eal='$EDITOR ~/.aliases-local.sh && source $FILE_ALIASES'
 
 
 # DPhil
@@ -282,3 +292,8 @@ function c {
   local new_path="$(pwd)"
   echo -e "\\033[31m${new_path}\\033[0m"
 }
+
+
+# tmux
+# -------------------------------------
+alias tmat='tmux attach -t'
