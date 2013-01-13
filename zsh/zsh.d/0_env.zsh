@@ -13,13 +13,19 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     platform='osx'
 fi
 
+command_exists () {
+  type "$1" &> /dev/null ;
+}
 
 #--- Autojump
 if [[ $platform == 'osx' ]]; then
-  if [[ -f `brew --prefix`/etc/autojump ]]; then
-    . `brew --prefix`/etc/autojump
+  if command_exists brew; then
+    if [[ -f `brew --prefix`/etc/autojump ]]; then
+      . `brew --prefix`/etc/autojump
+    fi
   fi
 fi
+
 
 # ------------------------------------------------------------------------------
 HISTFILE=~/.zsh_history
@@ -35,12 +41,16 @@ autoload -Uz vcs_info
 autoload -U promptinit && promptinit
 
 # ------------------------------------------------------------------------------
-export TERM=xterm-256color
-#if [[ $platform == 'osx' ]]; then
-#    export TERM=rxvt-256color
-#else
-#    export TERM=rxvt-unicode-256color
-#fi
+# export TERM=xterm-256color
+if [[ $platform == 'osx' ]]; then
+  export TERM=rxvt-256color
+else
+  export TERM=rxvt-unicode-256color
+fi
+
+# for tmux: export 256color
+[ -n "$TMUX" ] && export TERM=screen-256color
+
 # ------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------
@@ -52,6 +62,7 @@ export TERM=xterm-256color
 export EDITOR=vim   # use a sensible editor...
 export VISUAL=vim
 bindkey -e          # but still use emacs bindings on CLI
+
 
 # ------------------------------------------------------------------------------
 # up/down arrows search through history like MATLAB

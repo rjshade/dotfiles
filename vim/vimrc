@@ -16,6 +16,11 @@ Bundle 'mileszs/ack.vim'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
+Bundle 'vim-scripts/a.vim'
+Bundle 'fholgado/minibufexpl.vim'
+Bundle 'majutsushi/tagbar'
+Bundle 'ervandew/supertab'
+Bundle 'SirVer/ultisnips'
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 " OS detection, s:sys = "win","linux", or "osx"
@@ -41,7 +46,7 @@ set smartindent
 set autoindent
 
 " WARNING: can really slow things down in long files/files with long lines
-"set cursorline                            " highlight current line
+" set cursorline                            " highlight current line
 
 " when re-opening a file, automatically jump to the line
 " we were on when we last exited
@@ -60,8 +65,17 @@ endif
 
 set directory=~/.vim-tmp/                 " put swap files somewhere central
 set backupskip=/tmp/*,/private/tmp/*"     " tmp files (fixes crontab -e issue on OSX...)
-set scrolloff=5                           " keep 5 context lines above/below cursor
+set scrolloff=10                           " keep 5 context lines above/below cursor
 set nu                                    " line numbers on
+"set rnu                                   " relative line numbering
+"function! NumberToggle()
+"  if(&relativenumber == 1)
+"    set number
+"  else
+"    set relativenumber
+"  endif
+"endfunc
+"nnoremap <leader>0 :call NumberToggle()<cr>
 
 set expandtab                             " turn tabs into spaces
 set tabstop=2                             " tab == 2 spaces
@@ -79,7 +93,7 @@ set incsearch                             " find as you type
 set hlsearch                              " search highlighting on
 
 " toggle search term highlighting
-nnoremap <Leader>h :set hlsearch!<bar>set hlsearch?<CR>
+nnoremap <leader>h :set hlsearch!<bar>set hlsearch?<CR>
 
 set laststatus=2                          " always show status line
 set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %=\ lin:%l/%L\ col:%c\ %p%%
@@ -89,15 +103,22 @@ set t_ti= t_te=                           " don't clear screen on exit
 set hidden                                " allow unsaved buffers to be hidden
 
 " list buffers, and navigate prev/next
-nnoremap <Leader>l :ls<CR>
-nnoremap <Leader>z :bp<CR>
-nnoremap <Leader>x :bn<CR>
+nnoremap <leader>l :ls<CR>
+nnoremap <leader>, :bp<CR>
+nnoremap <leader>. :bn<CR>
+nnoremap <C-n> :bp<CR>
+nnoremap <C-m> :bn<CR>
 
 " have command-line completion <Tab> (for filenames, help topics, option names)
 " first list the available options and complete the longest common part, then
 " have further <Tab>s cycle through the possibilities:
 set wildmode=list:longest,full
 set wildignore=*.o,*.obj,.git,tmp
+
+
+" search and replace current word in file
+" r for (r)efactor
+noremap <leader>r :%s/\<<C-R><C-W>\>/
 
 " Navigation
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -108,9 +129,6 @@ map <C-h> <C-W>h
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-l> <C-W>l
-
-" scroll down in normal mode with space
-nnoremap <Space> <C-e>
 
 " move up and down using visual lines rather than actual lines
 " this means that a long paragraph written on one line but 
@@ -124,25 +142,23 @@ vnoremap k gk
 " Resize splits when the window is resized
 au VimResized * exe "normal! \<c-w>="
 
-
 " Tab and Shift-Tab to indent, instead of << and >>
-nmap <tab> v>
-nmap <s-tab> v<
-vmap <tab> >
-vmap <s-tab> <
+" nmap <tab> v>
+" nmap <s-tab> v<
 
 " not interested in pressing shift...
 nnoremap ; :
 
+" Y behaves like D, C
+map Y y$
 
-
-" NERDTree
+" NERDTree/Commenter
 """"""""""""""""""""""""""""""""""""""""""""""""""
-nmap ,n :NERDTreeToggle<CR>
-let NERDTreeWinSize = 30
+nmap <leader>n :NERDTreeToggle<CR>
+let NERDTreeWinSize = 50
 
 " single click to open directory or file
-let NERDTreeMouseMode = 3
+let NERDTreeMouseMode = 2
 
 " Close all open buffers on entering a window if the only
 " buffer that's left is the NERDTree buffer
@@ -156,8 +172,17 @@ function! s:CloseIfOnlyNerdTreeLeft()
     endif
   endif
 endfunction
+
+" comments have a space after delimeter
+let g:NERDSpaceDelims = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
+" MiniBufExplorer
+" note that by default it will open automatically
+" when more than one eligible buffer is open
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" map <Leader>b :TMiniBufExplorer<cr>
+let g:miniBufExplorerMoreThanOne=2
 
 " Fuzzy search through directory trees
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -165,44 +190,51 @@ endfunction
 map <leader>t :CtrlP<cr>
 
 " search buffers
-map <leader>r :CtrlPBuffer<cr>
+map <leader>b :CtrlPBuffer<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""
-
 
 " Ack
 """"""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>a :Ack -i 
+" ack in current tree
+" (trailing space is intentional)
+nnoremap <leader>ss :Ack --smart-case
+" ack for current word
+nnoremap <leader>sw :Ack --smart-case  <cword> <CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
+" Tagbar
+""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>l :TagbarToggle <CR>
+let g:tagbar_width = 60      "window width
+let g:tagbar_autofocus = 1   "focus on open
+" let g:tagbar_left = 1        "show on left
+let g:tagbar_compact = 1     "hide help text
+let g:tagbar_autoshowtag = 1 "highlight current tag
+let g:tagbar_foldlevel = 2   "close all higher folds
+
+" a.vim - switch between cpp header/source
+""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>a :A <CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Colors
 """"""""""""""""""""""""""""""""""""""""""""""""""
 if(&t_Co==256)
-  "let g:solarized_termcolors=16
+  " let g:solarized_termcolors=256
   color solarized
 endif
 """"""""""""""""""""""""""""""""""""""""""""""""""
-
 
 " tpope/fugitive
 """"""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <Leader>gs :Gstatus<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
+" UltiSnips
+""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:UltiSnipsSnippetDirectories=['UltiSnips','snippets']
 
+" Source any machine-specific settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" MULTIPURPOSE TAB KEY
-" Indent if we're at the beginning of a line.
-" Else, do completion.
-""""""""""""""""""""""""""""""""""""""""""""""""""
-function! InsertTabWrapper()
-  let col = col('.') - 1
-  if !col || getline('.')[col - 1] !~ '\k'
-    return "\<tab>"
-  else
-    return "\<c-p>"
-  endif
-endfunction
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <s-tab> <c-n>
-""""""""""""""""""""""""""""""""""""""""""""""""""
+let VIMRC_LOCAL=expand("~/.vimrc-local")
+if filereadable(VIMRC_LOCAL) | exe "source " . VIMRC_LOCAL | endif
