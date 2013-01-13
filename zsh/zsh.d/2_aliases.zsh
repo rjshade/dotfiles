@@ -257,13 +257,13 @@ alias rc='rails console'
 
 
 # Import new music using Beets (http://beets.radbox.org/)
-BEETS_IMPORT=~/Music/.beets_import
-alias bim='if [ ! -d $BEETS_IMPORT ]; then mkdir $BEETS_IMPORT; fi; beet import "$@"'
-function itunes_im() {
-  ITUNES_IMPORT=~/Music/Automatically\ Add\ to\ iTunes.localized
-  rm -rf $ITUNES_IMPORT/*
-  mv $BEETS_IMPORT/* $ITUNES_IMPORT
-}
+#BEETS_IMPORT=~/Music/.beets_import
+#alias bim='if [ ! -d $BEETS_IMPORT ]; then mkdir $BEETS_IMPORT; fi; beet import "$@"'
+#function itunes_im() {
+#  ITUNES_IMPORT=~/Music/Automatically\ Add\ to\ iTunes.localized
+#  rm -rf $ITUNES_IMPORT/*
+#  mv $BEETS_IMPORT/* $ITUNES_IMPORT
+#}
 
 ## secrets that we may or may not have such as API keys
 if [ -f ~/.secrets.sh ]; then
@@ -276,3 +276,6 @@ function c {
   local new_path="$(pwd)"
   echo -e "\\033[31m${new_path}\\033[0m"
 }
+
+
+alias ssh-keychain='eval $(ssh-agent) && security unlock-keychain'

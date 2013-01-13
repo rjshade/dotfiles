@@ -1,5 +1,6 @@
 .Spotlight-*/
 .Trashes
+.fseventsd
 /tmp/*
 /Network/*
 /cores/*
