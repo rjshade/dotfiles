@@ -99,8 +99,8 @@ alias most="history 1 | awk '{a[\$2]++}END{for(i in a){print a[i] \" \" i}}' | s
 
 # Network
 # ------------------------------------------------------------------------------
-alias etf='ssh fred'
-alias ets='ssh shadow'
+# To avoid terminfo problems on remotes hosts
+alias ssh='TERM=screen ssh'
 
 # start simple web server serving current dir on port 8000 (ctrl-c kills it)
 alias websharedir='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'

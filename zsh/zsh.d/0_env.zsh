@@ -18,11 +18,15 @@ command_exists () {
 }
 
 #--- Autojump
-if [[ $platform == 'osx' ]]; then
+if [[ "$platform" == 'osx' ]]; then
   if command_exists brew; then
     if [[ -f `brew --prefix`/etc/autojump ]]; then
       . `brew --prefix`/etc/autojump
     fi
+  fi
+elif [[ "$platform" == 'linux' ]]; then
+  if [[ -f '/usr/share/autojump/autojump.zsh' ]]; then
+    . '/usr/share/autojump/autojump.zsh'
   fi
 fi
 
