@@ -205,13 +205,13 @@ fi
 # Torrents
 # ------------------------------------------------------------------------------
 
-#alias tup='scp ~/Downloads/*torrent torrentHost:~/private/rtorrent/watch/ && rm ~/Downloads/*torrent'
+alias tup='scp ~/Downloads/*torrent torrentHost:~/torrents/ && rm ~/Downloads/*torrent'
 #alias tdo='rsync -auh --progress --stats --delete torrentHost:~/private/rtorrent/data/ ~/sync'
 #alias tdo_300='rsync -auh --bwlimit=300 --progress --stats --delete torrentHost:~/private/rtorrent/data/ ~/sync'
 #alias tdo_500='rsync -auh --bwlimit=500 --progress --stats --delete torrentHost:~/private/rtorrent/data/ ~/sync'
 #alias tsh='ssh torrentHost'
 
-alias tup='mv ~/Downloads/*torrent ~/torrents'
+#alias tup='mv ~/Downloads/*torrent ~/torrents'
 
 # VCS (Git, Subversion, etc.)
 # ------------------------------------------------------------------------------
@@ -273,20 +273,20 @@ alias rc='rails console'
 
 
 # Import new music using Beets (http://beets.radbox.org/)
-BEETS_IMPORT=~/Music/.beets_import
-alias bim='if [ ! -d $BEETS_IMPORT ]; then mkdir $BEETS_IMPORT; fi; beet import "$@"'
-function itunes_im() {
-  ITUNES_IMPORT=~/Music/Automatically\ Add\ to\ iTunes.localized
-  rm -rf $ITUNES_IMPORT/*
-  mv $BEETS_IMPORT/* $ITUNES_IMPORT
-}
+#BEETS_IMPORT=~/Music/.beets_import
+#alias bim='if [ ! -d $BEETS_IMPORT ]; then mkdir $BEETS_IMPORT; fi; beet import "$@"'
+#function itunes_im() {
+#  ITUNES_IMPORT=~/Music/Automatically\ Add\ to\ iTunes.localized
+#  rm -rf $ITUNES_IMPORT/*
+#  mv $BEETS_IMPORT/* $ITUNES_IMPORT
+#}
 
 ## secrets that we may or may not have such as API keys
 if [ -f ~/.secrets.sh ]; then
   source ~/.secrets.sh;
 fi
 
-function c {
+function cl {
   cd "$@"
   ls -l
   local new_path="$(pwd)"
@@ -297,3 +297,5 @@ function c {
 # tmux
 # -------------------------------------
 alias tmat='tmux attach -t'
+
+alias ssh-keychain='eval $(ssh-agent) && security unlock-keychain'
