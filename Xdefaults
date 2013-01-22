@@ -44,7 +44,7 @@ URxvt*boldFont: xft:terminus:bold:pixelsize=13
 urxvt*perl-ext-common:      default,matcher
 urxvt*urlLauncher:          google-chrome
 urxvt*matcher.button:       1
-urxvt.matcher.pattern.1:    b/[0-9]*
+urxvt.matcher.pattern.1:    \\bb/[0-9+]*
 urxvt.matcher.pattern.2:    cl/[0-9]*
 urxvt.matcher.pattern.3:    go/[\\w-]*
 ! color URLs
