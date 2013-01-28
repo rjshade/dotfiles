@@ -297,5 +297,3 @@ function cl {
 # tmux
 # -------------------------------------
 alias tmat='tmux attach -t'
-
-alias ssh-keychain='eval $(ssh-agent) && security unlock-keychain'
