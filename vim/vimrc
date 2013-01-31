@@ -17,7 +17,7 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
 Bundle 'vim-scripts/a.vim'
-Bundle 'fholgado/minibufexpl.vim'
+" Bundle 'fholgado/minibufexpl.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'ervandew/supertab'
 Bundle 'SirVer/ultisnips'
@@ -182,7 +182,7 @@ let g:NERDSpaceDelims = 1
 " when more than one eligible buffer is open
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " map <Leader>b :TMiniBufExplorer<cr>
-let g:miniBufExplorerMoreThanOne=2
+" let g:miniBufExplorerMoreThanOne=2
 
 " Fuzzy search through directory trees
 """"""""""""""""""""""""""""""""""""""""""""""""""
