@@ -226,7 +226,7 @@ alias gb='git branch'
 alias gco='git checkout'
 alias gcob='git checkout -b'
 alias gcm='git commit -m'
-alias gl=' git log --decorate --graph --date=short'
+alias gl=' git log --decorate --graph --date=short --oneline --all'
 alias gpgph='git push && git push heroku'
 
 if [[ $platform == 'osx' ]]; then
