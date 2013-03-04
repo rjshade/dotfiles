@@ -125,22 +125,6 @@ function svn_update()
     svn log -r $PreRev:$PostRev
 }
 
-
-
-# if given a path then svn up in that directory and
-# display logs - otherwise we do an update of moos/mrg/pymrg and ctags
-
-gen_cpp_ctags()
-{
-    CTAG_DIR="$HOME/.ctags"
-    CTAG_FILE="$CTAG_DIR/$1"
-    touch CTAG_FILE
-
-    SRC_DIR=$2
-
-    ctags -R --c++-kinds=+p --exclude=*.tex --fields=+iaS --extra=+q -f $CTAG_FILE $SRC_DIR
-}
-
 # use ex to extract compressed files
 ex () {
     if [ -f $1 ] ; then
@@ -163,52 +147,6 @@ ex () {
         echo "'$1' is not a valid file!"
     fi
 }
-# Usage: smartcompress <file> (<type>)
-#f5# Smart archive creator
-comp() {
-    if [[ -n $2 ]] ; then
-        case $2 in
-            tgz | tar.gz)   tar -zcvf$1.$2 $1 ;;
-            tbz2 | tar.bz2) tar -jcvf$1.$2 $1 ;;
-            tar.Z)          tar -Zcvf$1.$2 $1 ;;
-            tar)            tar -cvf$1.$2  $1 ;;
-            gz | gzip)      gzip           $1 ;;
-            bz2 | bzip2)    bzip2          $1 ;;
-            *)
-                echo "Error: $2 is not a valid compression type"
-                ;;
-        esac
-    else
-        comp $1 tar.gz
-    fi
-}
-# Usage: show-archive <archive>
-#f5# List an archive's content
-lsarc() {
-    if [[ -f $1 ]] ; then
-        case $1 in
-            *.tar.gz)      gunzip -c $1 | tar -tf - -- ;;
-            *.tar)         tar -tf $1 ;;
-            *.tgz)         tar -ztf $1 ;;
-            *.zip)         unzip -l $1 ;;
-            *.bz2)         bzless $1 ;;
-            *.deb)         dpkg-deb --fsys-tarfile $1 | tar -tf - -- ;;
-            *)             echo "'$1' Error. Please go away" ;;
-        esac
-    else
-        echo "'$1' is not a valid archive"
-    fi
-}
-
-# open .h and .cpp files in vim with vertical split
-function vs()
-{
-    if [ $# = 0 ]; then
-        vi
-    else
-        vi -O $1h $1cpp
-    fi
-}
 
 # ficd = find in current directory
 # e.g. ficd PartOfFileName
@@ -227,69 +165,4 @@ have()
 function rsync_backup
 {
     echo -e 'rsync -auh --progress --stats --delete SOURCE DESTINATION'
-}
-
-# go to new dir
-function md() 
-{
-    mkdir -p "$1" && cd "$1";
-}
-
-# note: option AUTO_PUSHD has to be set
-# Jump between directories
-d() {
-    emulate -L zsh
-    autoload -U colors
-    local color=$fg_bold[blue]
-    integer i=0
-    dirs -p | while read dir; do
-        local num="${$(printf "%-4d " $i)/ /.}"
-        printf " %s  $color%s$reset_color\n" $num $dir
-        (( i++ ))
-    done
-    integer dir=-1
-    read -r 'dir?Jump to directory: ' || return
-    (( dir == -1 )) && return
-    if (( dir < 0 || dir >= i )); then
-        echo d: no such directory stack entry: $dir
-        return 1
-    fi
-    cd ~$dir
-}
-
-# Setting color profiles with iTerm on OSX
-
-function toggle_colors()
-{
-  if [ -e ~/.color_profile_dark ]
-  then
-    rm ~/.color_profile_dark
-  else
-    touch ~/.color_profile_dark
-  fi
-  set_colors
-}
-
-function set_colors()
-{
-  if [ -e ~/.color_profile_dark ]
-  then
-    echo -en "\033]50;SetProfile=light\a" && export ITERM_PROFILE=light && export COLORFGBG="11;15"
-  else
-    echo -en "\033]50;SetProfile=dark\a" && export ITERM_PROFILE=dark && export COLORFGBG="12;8"
-  fi
-}
-set_colors
-
-
-# read man pages as PDF
-function pman()
-{
-    PMANFILE="/tmp/pman-${1}.pdf"
-    if [ ! -e $PMANFILE ]; then   # only create if it doesn't already exist
-        man -t "${1}" | pstopdf -i -o "$PMANFILE"
-    fi
-    if [ -e $PMANFILE ]; then     # in case create failed
-        open -a /Applications/Preview.app/ "$PMANFILE"
-    fi
 }
