@@ -200,15 +200,6 @@ lsarc() {
     fi
 }
 
-# cd and ls - together at last
-function cl () {
-   if [ $# = 0 ]; then
-      cd && ls
-   else
-    cd "$*" && ls
-   fi
-}
-
 # open .h and .cpp files in vim with vertical split
 function vs()
 {
@@ -224,12 +215,6 @@ function vs()
 function ficd()
 {
     find . -iname "*$1*"
-}
-
-# open google search in browser
-google() 
-{
-    python -c "import sys, webbrowser, urllib;   webbrowser.open('http://www.google.com/search?' + urllib.urlencode({'q': ' '.join(sys.argv[1:]) }))" $@
 }
 
 # the have function checks for existence of executable
