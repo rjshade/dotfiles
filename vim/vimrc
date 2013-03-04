@@ -220,7 +220,7 @@ nnoremap <leader>a :A <CR>
 " Colors
 """"""""""""""""""""""""""""""""""""""""""""""""""
 if(&t_Co==256)
-  " let g:solarized_termcolors=256
+  set background=dark
   color solarized
 endif
 """"""""""""""""""""""""""""""""""""""""""""""""""
