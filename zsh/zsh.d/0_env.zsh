@@ -18,11 +18,15 @@ command_exists () {
 }
 
 #--- Autojump
-if [[ $platform == 'osx' ]]; then
+if [[ "$platform" == 'osx' ]]; then
   if command_exists brew; then
     if [[ -f `brew --prefix`/etc/autojump ]]; then
       . `brew --prefix`/etc/autojump
     fi
+  fi
+elif [[ "$platform" == 'linux' ]]; then
+  if [[ -f '/usr/share/autojump/autojump.zsh' ]]; then
+    . '/usr/share/autojump/autojump.zsh'
   fi
 fi
 
@@ -81,13 +85,20 @@ export PATH=/usr/local/sbin:/usr/local/bin:$PATH
 export PATH=/usr/local/share/python:$PATH
 
 # fix for cgoban3
-export _JAVA_AWT_WM_NONREPARENTING=1
+#export _JAVA_AWT_WM_NONREPARENTING=1
 
 # path
 export PATH=~/bin:~/build/bin:$PATH
 
 # node package manager
-export PATH=/usr/local/share/npm/bin:$PATH
+export PATH=/usr/local/share/npm/bin/:$PATH
+
+# Amazon EC2
+#export JAVA_HOME="$(/usr/libexec/java_home)"
+#export EC2_PRIVATE_KEY="$(/bin/ls $HOME/.ec2/pk-*.pem)"
+#export EC2_CERT="$(/bin/ls $HOME/.ec2/cert-*.pem)"
+#export EC2_AMITOOL_HOME="/usr/local/Cellar/ec2-ami-tools/1.3-45758/jars"
+#export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.5.2.5/jars"
 
 # ------------------------------------------------------------------------------
 # ZSH options

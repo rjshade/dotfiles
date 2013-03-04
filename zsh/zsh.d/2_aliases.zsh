@@ -89,8 +89,8 @@ alias most="history 1 | awk '{a[\$2]++}END{for(i in a){print a[i] \" \" i}}' | s
 
 # Network
 # ------------------------------------------------------------------------------
-alias etf='ssh fred'
-alias ets='ssh shadow'
+# To avoid terminfo problems on remotes hosts
+alias ssh='TERM=screen ssh'
 
 # start simple web server serving current dir on port 8000 (ctrl-c kills it)
 alias websharedir='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
@@ -216,7 +216,7 @@ alias gb='git branch'
 alias gco='git checkout'
 alias gcob='git checkout -b'
 alias gcm='git commit -m'
-alias gl=' git log --decorate --graph --date=short'
+alias gl=' git log --decorate --graph --date=short --oneline --all'
 alias gpgph='git push && git push heroku'
 
 if [[ $platform == 'osx' ]]; then
@@ -263,13 +263,13 @@ alias rc='rails console'
 
 
 # Import new music using Beets (http://beets.radbox.org/)
-BEETS_IMPORT=~/Music/.beets_import
-alias bim='if [ ! -d $BEETS_IMPORT ]; then mkdir $BEETS_IMPORT; fi; beet import "$@"'
-function itunes_im() {
-  ITUNES_IMPORT=~/Music/Automatically\ Add\ to\ iTunes.localized
-  rm -rf $ITUNES_IMPORT/*
-  mv $BEETS_IMPORT/* $ITUNES_IMPORT
-}
+#BEETS_IMPORT=~/Music/.beets_import
+#alias bim='if [ ! -d $BEETS_IMPORT ]; then mkdir $BEETS_IMPORT; fi; beet import "$@"'
+#function itunes_im() {
+#  ITUNES_IMPORT=~/Music/Automatically\ Add\ to\ iTunes.localized
+#  rm -rf $ITUNES_IMPORT/*
+#  mv $BEETS_IMPORT/* $ITUNES_IMPORT
+#}
 
 ## secrets that we may or may not have such as API keys
 if [ -f ~/.secrets.sh ]; then
@@ -282,3 +282,8 @@ function cl {
   local new_path="$(pwd)"
   echo -e "\\033[31m${new_path}\\033[0m"
 }
+
+
+# tmux
+# -------------------------------------
+alias tmat='tmux attach -t'

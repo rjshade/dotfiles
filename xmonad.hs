@@ -22,6 +22,9 @@ import XMonad.Config.Gnome
 import Control.Monad (liftM2)
 import qualified XMonad.StackSet as W
 
+-- for fullscreen Chrome
+import XMonad.Hooks.EwmhDesktops
+
 -- this manage hook makes nameless windows float by default
 -- OpenGL windows have name "" for some reason, so this makes
 -- my apps float
@@ -70,6 +73,7 @@ myConfig = gnomeConfig
         , borderWidth           = myBorderWidth
         , normalBorderColor     = myNormalBorderColor
         , focusedBorderColor    = myFocusedBorderColor
+        , handleEventHook       = fullscreenEventHook
         , manageHook = myManageHook <+> manageHook defaultConfig
         }
 
