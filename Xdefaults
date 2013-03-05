@@ -52,8 +52,11 @@ urxvt.colorUL:              #86a2be
 
 
 ! solarized https://github.com/altercation/solarized
-! urxvt*background:            #073642
-urxvt*background:            #111111
+
+!solarized default bg
+urxvt*background:            #073642
+! darker solarized bg
+!urxvt*background:            #002b36
 urxvt*foreground:            #657b83
 urxvt*cursorColor:           #93a1a1
 urxvt*pointerColorBackground:#586e75
@@ -63,10 +66,10 @@ urxvt*fadeColor:             #002b36
 
 
 !! black dark/light
-! urxvt*color0:                #073642
-! urxvt*color8:                #002b36
-urxvt*color0:                #1a1a1a
-urxvt*color8:                #111111
+urxvt*color0:                #073642
+urxvt*color8:                #002b36
+!urxvt*color0:                #1a1a1a
+!urxvt*color8:                #111111
 
 !! red dark/light
 urxvt*color1:                #dc322f
