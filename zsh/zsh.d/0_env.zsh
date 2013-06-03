@@ -33,8 +33,10 @@ fi
 
 # ------------------------------------------------------------------------------
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
+# timestamp history entries
+setopt extendedhistory
 
 # ------------------------------------------------------------------------------
 autoload -U zutil
@@ -207,6 +209,9 @@ zstyle ':completion:*:man:*'      menu yes select
 
 # provide .. as a completion
 zstyle ':completion:*' special-dirs ..
+
+# what's causing the completion delay?
+zstyle ":completion:*" show-completer true
 
 ## TODO: This could use some additional information
 if [[ "$NOMENU" -eq 0 ]] ; then
