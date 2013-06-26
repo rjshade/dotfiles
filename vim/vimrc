@@ -7,7 +7,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-fugitive'
 Bundle 'mileszs/ack.vim'
@@ -17,11 +16,9 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'vim-scripts/a.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/syntastic'
-Bundle 'airblade/vim-gitgutter'
+Bundle 'vim-scripts/xoria256.vim'
+" Bundle 'airblade/vim-gitgutter'
 " Bundle 'SirVer/ultisnips'
-if (v:version >= 703) && has('patch584') && has('python')
-  Bundle 'Valloric/YouCompleteMe'
-endif
 
 " OS detection -----------------------------------------------------------------
 " s:sys = "win", "linux", or "osx"
@@ -206,18 +203,14 @@ let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " Colors -----------------------------------------------------------------------
-if(&t_Co==256)
-  set background=dark
-  colorscheme solarized
+colorscheme xoria256
 
-  " don't highlight the left column (used by Syntastic, GitGutter etc.)
-  highlight clear SignColumn
-endif
+" don't highlight the left column (used by Syntastic, GitGutter etc.)
+highlight clear SignColumn
 
 " YouCompleteMe ----------------------------------------------------------------
 " whitelist ycm extra conf file in home dir
 let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
-
 
 " GitGutter --------------------------------------------------------------------
 nmap <leader>dn :GitGutterNextHunk<CR>

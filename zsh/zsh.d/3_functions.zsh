@@ -9,15 +9,11 @@ function refactor()
     echo "Usage: refactor /path/to/files/ text_to_find text_to_replace"
   else
     echo "Refactoring: $2 -> $3, in the following files:"
-    sed_cmd="sed -i -e \"s/$2/$3/g\""
-    if [[ "$platform" == 'osx' ]]; then
-      sed_cmd="sed -i \"\" -e \"s/$2/$3/g\""
-    fi
     find $1 \( -iname \*.h \
                -o -iname \*.cpp \
                -o -iname \*.cc \
                -o -iname \*.hh \
-               -o -name CMakeLists.txt \) -print -exec $sed_cmd {} \;
+               -o -name CMakeLists.txt \) -print -exec sed -i 's/$2/$3/g' {} \;
   fi
 }
 

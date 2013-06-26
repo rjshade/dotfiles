@@ -47,7 +47,7 @@ alias lt='l -tr'
 # colorize tree
 alias tree='tree -C'
 
-# grep 
+# grep
 alias grep='grep --color=always'
 alias gi='grep -RIinF'
 
@@ -275,14 +275,6 @@ alias rc='rails console'
 if [ -f ~/.secrets.sh ]; then
   source ~/.secrets.sh;
 fi
-
-function cl {
-  cd "$@"
-  ls -l
-  local new_path="$(pwd)"
-  echo -e "\\033[31m${new_path}\\033[0m"
-}
-
 
 # tmux
 # -------------------------------------
