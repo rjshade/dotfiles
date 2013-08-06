@@ -126,6 +126,10 @@ set wildignore=*.o,*.obj,.git,tmp
 " remove trailing whitespace
 autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
 
+" Show suspicious characters (e.g. non breaking spaces)
+" Use ":set list" to display them.
+set listchars=nbsp:¬,eol:¶,tab:>-,extends:»,precedes:«,trail:•
+
 " Navigation -------------------------------------------------------------------
 " ctrl + hjkl to move between split windows
 map <C-h> <C-W>h
