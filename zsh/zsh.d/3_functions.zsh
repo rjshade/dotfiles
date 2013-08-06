@@ -70,3 +70,30 @@ function autotmux ()
     sleep 3
   done
 }
+
+# Traverses upwards through directory tree until it finds a matching directory.
+# If a matching directory is found, change to that directory, otherwise print error.
+# e.g. $ find_parent_dir .git
+function find_parent_dir () {
+  if [[ $# != 1 ]]; then
+    echo "usage: $0 directory_name"
+    return 0
+  fi
+
+  start_dir="$PWD"
+  search_dir="$1"
+
+  while [[ "$PWD" != / ]]; do
+    # Does the directory exist and is it a directory (not a file)?
+    if [[ -e $search_dir && -d $search_dir ]]; then
+      cd "$1"
+      return
+    fi
+    cd ..
+  done
+
+  # Print error and return to original dir.
+  echo "Could not find parent directory $search_dir"
+  cd $start_dir
+  return 1
+}
