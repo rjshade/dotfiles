@@ -15,7 +15,6 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
 Bundle 'vim-scripts/a.vim'
 Bundle 'majutsushi/tagbar'
-Bundle 'scrooloose/syntastic'
 Bundle 'vim-scripts/xoria256.vim'
 " Bundle 'airblade/vim-gitgutter'
 " Bundle 'SirVer/ultisnips'
@@ -122,7 +121,7 @@ set wildignore=*.o,*.obj,.git,tmp
 
 " search and replace current word in file
 " r for (r)efactor
-noremap <leader>r :%s/\<<C-R><C-W>\>/
+" noremap <leader>r :%s/\<<C-R><C-W>\>/
 
 " remove trailing whitespace
 autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
