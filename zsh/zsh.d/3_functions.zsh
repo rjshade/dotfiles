@@ -13,7 +13,7 @@ function refactor()
                -o -iname \*.cpp \
                -o -iname \*.cc \
                -o -iname \*.hh \
-               -o -name CMakeLists.txt \) -print -exec sed -i 's/$2/$3/g' {} \;
+               -o -name CMakeLists.txt \) -print -exec sed -i "s/$2/$3/g" {} \;
   fi
 }
 
