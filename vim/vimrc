@@ -127,15 +127,15 @@ function! s:CloseIfOnlyNerdTreeLeft()
 endfunction
 
 " CtrlP for fuzzy file search --------------------------------------------------
-map <leader>t :CtrlP<cr>
 " search tree
+map <leader>t :CtrlP<cr>
 " search buffers
 map <leader>b :CtrlPBuffer<cr>
 
 " Ack --------------------------------------------------------------------------
 " ack in current tree
 " (trailing space is intentional)
-nnoremap <leader>ss :Ack --smart-case
+nnoremap <leader>ss :Ack --smart-case 
 " ack for current word
 nnoremap <leader>sw :Ack --smart-case  <cword> <CR>
 
