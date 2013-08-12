@@ -154,6 +154,18 @@ nnoremap <leader>a :A <CR>
 " whitelist ycm extra conf file in home dir
 let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
 
+" Colors -----------------------------------------------------------------------
+color desert
+
+" Make highlighted text (searches etc.) more readable
+hi Search cterm=NONE ctermfg=0 ctermbg=11
+
+" Better vimdiff colors
+highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17
+highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17
+highlight DiffChange cterm=bold ctermfg=10 ctermbg=17
+highlight DiffText   cterm=bold ctermfg=10 ctermbg=88
+
 " Source any machine-specific settings -----------------------------------------
 let VIMRC_LOCAL=expand("~/.vimrc-local")
 if filereadable(VIMRC_LOCAL) | exe "source " . VIMRC_LOCAL | endif
