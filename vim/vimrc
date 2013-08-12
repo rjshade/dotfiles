@@ -161,10 +161,10 @@ color desert
 hi Search cterm=NONE ctermfg=0 ctermbg=11
 
 " Better vimdiff colors
-highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17
-highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17
-highlight DiffChange cterm=bold ctermfg=10 ctermbg=17
-highlight DiffText   cterm=bold ctermfg=10 ctermbg=88
+highlight DiffAdd     ctermfg=0 ctermbg=113 cterm=none
+highlight DiffDelete  ctermfg=0 ctermbg=88  cterm=none
+highlight DiffText    ctermfg=0 ctermbg=111 cterm=none
+highlight DiffChange            ctermbg=17  cterm=none
 
 " Source any machine-specific settings -----------------------------------------
 let VIMRC_LOCAL=expand("~/.vimrc-local")
