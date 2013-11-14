@@ -77,7 +77,7 @@ function autotmux ()
 function find_parent_dir () {
   if [[ $# != 1 ]]; then
     echo "usage: $0 directory_name"
-    return 0
+    return 1
   fi
 
   start_dir="$PWD"
@@ -87,7 +87,7 @@ function find_parent_dir () {
     # Does the directory exist and is it a directory (not a file)?
     if [[ -e $search_dir && -d $search_dir ]]; then
       cd "$1"
-      return
+      return 0
     fi
     cd ..
   done
