@@ -14,6 +14,8 @@ git submodule update
 ln -s $DOTFILES/vim ~/.vim
 ln -s $DOTFILES/vim/vimrc ~/.vimrc
 mkdir ~/.vim-tmp
+rm -rf ~/.vim/bundle/vundle
+git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 ln -s $DOTFILES/zsh ~/.zsh
 ln -s $DOTFILES/zsh/zshrc ~/.zshrc
