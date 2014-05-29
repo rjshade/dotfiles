@@ -7,7 +7,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/syntastic'
 Bundle 'mileszs/ack.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'vim-scripts/a.vim'
@@ -75,6 +74,10 @@ nnoremap <leader>vs :88vs<CR>
 
 " not interested in pressing shift...
 nnoremap ; :
+
+" Map jk and kj to escape
+inoremap jk <esc>
+inoremap kj <esc>
 
 " Resize splits when the window is resized
 au VimResized * exe "normal! \<c-w>="
@@ -150,10 +153,6 @@ let g:tagbar_foldlevel = 2   "close all higher folds
 
 " a.vim - switch between cpp header/source -------------------------------------
 nnoremap <leader>a :A <CR>
-
-" YouCompleteMe ----------------------------------------------------------------
-" whitelist ycm extra conf file in home dir
-let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
 
 " Colors -----------------------------------------------------------------------
 color desert
