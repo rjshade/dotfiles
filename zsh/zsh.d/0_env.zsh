@@ -61,7 +61,7 @@ fi
 
 # ------------------------------------------------------------------------------
 # ruby rvm
-[[ -s "/Users/rjs/.rvm/scripts/rvm" ]] && source "/Users/rjs/.rvm/scripts/rvm"
+# [[ -s "/Users/rjs/.rvm/scripts/rvm" ]] && source "/Users/rjs/.rvm/scripts/rvm"
 
 
 # ------------------------------------------------------------------------------
