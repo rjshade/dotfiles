@@ -8,7 +8,7 @@
 # xsetroot -cursor_name left_ptr              # xmonad cursor
 
 
-gnome-settings-daemon & # handles themes, starts gnome-screensaver
+#gnome-settings-daemon # handles themes, starts gnome-screensaver
 
 # xmodmap ~/.xmodmaprc &
 
@@ -17,12 +17,11 @@ gnome-settings-daemon & # handles themes, starts gnome-screensaver
 # (sleep 5 && xmodmap /home/rjs/.xmodmaprc) & # caps lock -> escape, and hash key stuff
 
 #urxvtd -q -f -o
+xset r rate 250 100                      & # keyboard repeat rate
 
-xset r rate 250 100 &                       # keyboard repeat rate
-
-xsetroot -solid '#111111'
+xmodmap ~/.xmodmaprc &
 
 #/home/rjs/bin/slimlock &                    # lock 'er up
 
-# setxkbmap -option terminate:ctrl_alt_bksp   # ctrl-alt-bksp to terminate Xorg
-# exec xmonad                                # start Xmonad
+setxkbmap -option terminate:ctrl_alt_bksp &    # ctrl-alt-bksp to terminate Xorg
+exec xmonad                                # start Xmonad
