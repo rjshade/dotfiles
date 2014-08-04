@@ -1,6 +1,6 @@
 [user]
-	name = rjshade
-  email = robbie.shade@gmail.com
+	name = Robbie Shade
+	email = robbie.shade@google.com
 [color]
   ui = auto
   status = auto
@@ -12,6 +12,8 @@
   statusHints = false
 [core]
 	excludesfile = /Users/rjs/.gitignore
+	autocrlf = false
+	filemode = false
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -20,3 +22,5 @@
 	trustExitCode = true
 [push]
 	default = simple
+[branch]
+	autosetuprebase = always
