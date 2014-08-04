@@ -50,8 +50,8 @@ set tabstop=2                             " tab == 2 spaces
 set shiftwidth=2                          " tab == 2 spaces
 set softtabstop=2                         " but make the spaces feel like tabs
 
-set history=100000                        " a big history
-set undolevels=100000                     " and a big undo history
+set history=10000                         " a big history
+set undolevels=100000                     " and a bigger undo history
 
 set ignorecase                            " case insensitive search...
 set smartcase                             " unless search term has uppercase
