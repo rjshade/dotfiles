@@ -2,19 +2,20 @@ set nocompatible " be vImproved
 filetype off
 
 " Vundle plugin manger ---------------------------------------------------------
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'mileszs/ack.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'vim-scripts/a.vim'
-Bundle 'majutsushi/tagbar'
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'mileszs/ack.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'vim-scripts/a.vim'
+Plugin 'majutsushi/tagbar'
+call vundle#end() " required
 
 " General settings -------------------------------------------------------------
 syntax on                                 " syntax highlighting enabled
-set clipboard=unnamed                     " use system clipboard for c/p
 filetype plugin indent on
 let mapleader=","                         " use , as the leader key
 set title                                 " terminal title
