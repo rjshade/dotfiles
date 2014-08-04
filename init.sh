@@ -24,3 +24,4 @@ ln -s $DOTFILES/tmux.conf ~/.tmux.conf
 ln -s $DOTFILES/gitignore ~/.gitignore
 ln -s $DOTFILES/gitconfig ~/.gitconfig
 ln -s $DOTFILES/ackrc ~/.ackrc
+ln -s $DOTFILES/Xdefaults ~/.Xdefaults
