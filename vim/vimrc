@@ -12,6 +12,8 @@ Plugin 'mileszs/ack.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'vim-scripts/a.vim'
 Plugin 'majutsushi/tagbar'
+Plugin 'fatih/vim-go'
+Plugin 'Valloric/YouCompleteMe'
 call vundle#end() " required
 
 " General settings -------------------------------------------------------------
@@ -161,3 +163,10 @@ color xoria256
 " Source any machine-specific settings -----------------------------------------
 let VIMRC_LOCAL=expand("~/.vimrc-local")
 if filereadable(VIMRC_LOCAL) | exe "source " . VIMRC_LOCAL | endif
+
+" golang
+"au BufRead,BufNewFile *.go set filetype=go
+"filetype plugin indent off
+"set runtimepath+=$GOROOT/misc/vim
+"filetype plugin indent on
+"syntax on
