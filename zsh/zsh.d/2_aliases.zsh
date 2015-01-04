@@ -104,7 +104,7 @@ alias myip='curl icanhazip.com'
 if [[ $platform == 'osx' ]]; then
     NUM_CORES=`sysctl -n hw.ncpu`
 else
-    NUM_CORES=`grep processor /proc/cpuinfo | tail -n 1 | awk '{ print $3 }'`
+    NUM_CORES=`grep "^processor" /proc/cpuinfo | tail -n 1 | awk '{ print $3 }'`
     # cores are 0 indexed in /proc/cpuinfo
     NUM_CORES=`expr $NUM_CORES + 1`
 fi
