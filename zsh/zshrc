@@ -1,8 +1,7 @@
 source /etc/profile
 
-for file in ~/.zsh/zsh.d/*;
-do
-    source $file
+for file in ~/.zsh/zsh.d/*; do
+  source $file
 done
 
 # any settings specific to this machine
