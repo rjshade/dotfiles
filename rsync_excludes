@@ -1,15 +1,4 @@
-.Spotlight-*/
-.Trashes
-.fseventsd
-/tmp/*
-/Network/*
-/cores/*
-/afs/*
-/automount/*
-/private/tmp/*
-/private/var/run/*
-/private/var/spool/postfix/*
-/private/var/vm/*
-/Previous Systems.localized
-/Volumes/*
-*/.Trash
+*.lrprev
+.DS_Store
+*Lightroom Catalog Previews.lrdata*
+*Lightroom 5 Catalog Previews.lrdata*
