@@ -93,7 +93,7 @@ export PATH=/usr/local/share/python:$PATH
 export PATH=~/bin:~/build/bin:$PATH
 
 # node package manager
-export PATH=/usr/local/share/npm/bin/:$PATH
+export PATH=/usr/local/share/npm/bin:$PATH
 
 # Amazon EC2
 #export JAVA_HOME="$(/usr/libexec/java_home)"
