@@ -8,11 +8,8 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'mileszs/ack.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'vim-scripts/a.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'fatih/vim-go'
 Plugin 'Valloric/YouCompleteMe'
 call vundle#end() " required
 
@@ -135,21 +132,6 @@ map <leader>t :CtrlP<cr>
 " search buffers
 map <leader>b :CtrlPBuffer<cr>
 
-" Ack --------------------------------------------------------------------------
-" ack in current tree
-" (trailing space is intentional)
-nnoremap <leader>ss :Ack --smart-case 
-" ack for current word
-nnoremap <leader>sw :Ack --smart-case  <cword> <CR>
-
-" Tagbar -----------------------------------------------------------------------
-nnoremap <leader>l :TagbarToggle <CR>
-let g:tagbar_width = 60      "window width
-let g:tagbar_autofocus = 1   "focus on open
-let g:tagbar_compact = 1     "hide help text
-let g:tagbar_autoshowtag = 1 "highlight current tag
-let g:tagbar_foldlevel = 2   "close all higher folds
-
 " a.vim - switch between cpp header/source -------------------------------------
 nnoremap <leader>a :A <CR>
 
@@ -159,10 +141,3 @@ color xoria256
 " Source any machine-specific settings -----------------------------------------
 let VIMRC_LOCAL=expand("~/.vimrc-local")
 if filereadable(VIMRC_LOCAL) | exe "source " . VIMRC_LOCAL | endif
-
-" golang
-"au BufRead,BufNewFile *.go set filetype=go
-"filetype plugin indent off
-"set runtimepath+=$GOROOT/misc/vim
-"filetype plugin indent on
-"syntax on
