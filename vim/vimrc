@@ -10,7 +10,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'kien/ctrlp.vim'
 Plugin 'vim-scripts/a.vim'
-Plugin 'Valloric/YouCompleteMe'
+" Not needed in Google environment
+" Plugin 'Valloric/YouCompleteMe'
 call vundle#end() " required
 
 " General settings -------------------------------------------------------------
