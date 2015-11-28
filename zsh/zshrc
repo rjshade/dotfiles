@@ -9,5 +9,5 @@ if [[ -f ~/.zshrc-local ]]; then
   source ~/.zshrc-local
 fi
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+# FuzzyFinder
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
