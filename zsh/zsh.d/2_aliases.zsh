@@ -110,6 +110,9 @@ function rsync_backup
   echo -e 'rsync -auh --progress --stats --delete SOURCE DESTINATION'
 }
 
+# tmux
+alias tmux="TERM=xterm-256color /usr/bin/tmux"
+
 # Traverses upwards through directory tree until it finds a matching directory.
 # If a matching directory is found, change to that directory, otherwise print error.
 # e.g. $ find_parent_dir .git
