@@ -1,12 +1,16 @@
 [user]
-	name = Robbie Shade
-	email = robbie.shade@gmail.com
+  name = Robbie Shade
+  email = rjshade@google.com
 [color]
   ui = auto
   status = auto
   branch = auto
   interactive = auto
-[format]
-  pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
+[advice]
+  statusHints = false
+[core]
+  excludesfile = ~/.gitignore
+  autocrlf = false
+  filemode = false
 [push]
-	default = simple
+  default = simple
