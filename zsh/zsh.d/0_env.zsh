@@ -112,8 +112,7 @@ export PATH=$GOPATH/bin/:$PATH
 # ------------------------------------------------------------------------------
 
 # history:
-setopt inc_append_history   # Immediately append to history file, rather than at end of session
-setopt share_history        # Share history between terminals
+setopt append_history       # Append to history file at end of session
 setopt hist_ignore_all_dups # Do not store duplicate entries in history (even if non consecutive)
 setopt histignorealldups    # If  a  new  command  line being added to the history
                             # list duplicates an older one, the older command is removed from the list
