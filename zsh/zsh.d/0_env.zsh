@@ -128,10 +128,8 @@ setopt hash_list_all        # Whenever a command completion is attempted, make s
                             # the entire command path is hashed first.
 setopt completeinword       # not just at the end
 setopt nohup                # and don't kill them, either
-setopt auto_pushd           # make cd push the old directory onto the directory stack.
 setopt nonomatch            # try to avoid the 'zsh: no matches found...'
 setopt nobeep               # avoid "beep"ing
-setopt pushd_ignore_dups    # don't push the same dir twice.
 setopt noglobdots           # * shouldn't match dotfiles. ever.
 
 setopt no_clobber           # Keep echo "station" > station from clobbering station
