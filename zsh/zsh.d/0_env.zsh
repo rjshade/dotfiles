@@ -102,11 +102,6 @@ export PATH=/usr/local/share/npm/bin:$PATH
 #export EC2_AMITOOL_HOME="/usr/local/Cellar/ec2-ami-tools/1.3-45758/jars"
 #export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.5.2.5/jars"
 
-# golang
-export GOROOT="/usr/local/opt/go/libexec/"
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin/:$PATH
-
 # ------------------------------------------------------------------------------
 # ZSH options
 # ------------------------------------------------------------------------------
