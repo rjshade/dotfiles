@@ -125,14 +125,9 @@ function! s:CloseIfOnlyNerdTreeLeft()
   endif
 endfunction
 
-" CtrlP for fuzzy file search --------------------------------------------------
-" search tree
-map <leader>t :CtrlP<cr>
-" search buffers
-map <leader>b :CtrlPBuffer<cr>
-
-" FuzzyFinder
+" FuzzyFinder ------------------------------------------------------------------
 set rtp+=~/.fzf
+map <leader>t :FZF<cr>
 
 " Tagbar -----------------------------------------------------------------------
 nnoremap <leader>l :TagbarToggle <CR>
