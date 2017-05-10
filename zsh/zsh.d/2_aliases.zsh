@@ -39,7 +39,7 @@ alias playGo='javaws http://files.gokgs.com/javaBin/cgoban.jnlp'
 if [[ $platform == 'osx' ]]; then
   alias o='open .'
 elif [[ $platform == 'linux' ]]; then
-  alias o='nautilus .'
+  alias o='nautilus . &'
 fi
 
 alias tup='scp ~/Downloads/*torrent torrentHost:~/torrents/ && rm ~/Downloads/*torrent'
