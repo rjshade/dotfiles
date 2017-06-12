@@ -39,7 +39,8 @@ alias playGo='javaws http://files.gokgs.com/javaBin/cgoban.jnlp'
 if [[ $platform == 'osx' ]]; then
   alias o='open .'
 elif [[ $platform == 'linux' ]]; then
-  alias o='nautilus . &> /dev/null &'
+  # The &! is a zsh-specific instruction to background *and* disown
+  alias o='nautilus . &> /dev/null &!'
 fi
 
 alias tup='scp ~/Downloads/*torrent torrentHost:~/torrents/ && rm ~/Downloads/*torrent'
