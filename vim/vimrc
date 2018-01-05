@@ -144,5 +144,5 @@ nnoremap <leader>a :A <CR>
 color xoria256
 
 " Source any machine-specific settings -----------------------------------------
-let VIMRC_LOCAL=expand("~/.vimrc-local")
+let VIMRC_LOCAL=expand("~/.config/local/vimrc-local")
 if filereadable(VIMRC_LOCAL) | exe "source " . VIMRC_LOCAL | endif

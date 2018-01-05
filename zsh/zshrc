@@ -5,8 +5,8 @@ for file in ~/.zsh/zsh.d/*; do
 done
 
 # any settings specific to this machine
-if [[ -f ~/.zshrc-local ]]; then
-  source ~/.zshrc-local
+if [[ -f ~/.config/local/zshrc-local ]]; then
+  source ~/.config/local/zshrc-local
 fi
 
 # FuzzyFinder
