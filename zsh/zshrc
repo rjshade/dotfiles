@@ -11,3 +11,6 @@ fi
 
 # FuzzyFinder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Syntax highlighting of CLI commands
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
