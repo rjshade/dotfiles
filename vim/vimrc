@@ -10,10 +10,10 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'kien/ctrlp.vim'
 Plugin 'vim-scripts/a.vim'
-" Not needed in Google environment
-" Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'majutsushi/tagbar'
 Plugin 'ervandew/supertab'
+Plugin 'pboettch/vim-cmake-syntax'
 call vundle#end() " required
 
 " General settings -------------------------------------------------------------
