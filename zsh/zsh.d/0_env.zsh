@@ -95,6 +95,9 @@ export PATH=~/bin:~/build/bin:$PATH
 # node package manager
 export PATH=/usr/local/share/npm/bin:$PATH
 
+# python/pip path
+export PATH=~/.local/bin:$PATH
+
 # Amazon EC2
 #export JAVA_HOME="$(/usr/libexec/java_home)"
 #export EC2_PRIVATE_KEY="$(/bin/ls $HOME/.ec2/pk-*.pem)"
