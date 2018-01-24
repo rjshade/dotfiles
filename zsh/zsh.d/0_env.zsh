@@ -86,24 +86,11 @@ export PATH=/usr/local/sbin:/usr/local/bin:$PATH
 # homebrew python
 export PATH=/usr/local/share/python:$PATH
 
-# fix for cgoban3
-#export _JAVA_AWT_WM_NONREPARENTING=1
-
-# path
-export PATH=~/bin:~/build/bin:$PATH
-
-# node package manager
-export PATH=/usr/local/share/npm/bin:$PATH
+# home directory scripts
+export PATH=~/bin:$PATH
 
 # python/pip path
 export PATH=~/.local/bin:$PATH
-
-# Amazon EC2
-#export JAVA_HOME="$(/usr/libexec/java_home)"
-#export EC2_PRIVATE_KEY="$(/bin/ls $HOME/.ec2/pk-*.pem)"
-#export EC2_CERT="$(/bin/ls $HOME/.ec2/cert-*.pem)"
-#export EC2_AMITOOL_HOME="/usr/local/Cellar/ec2-ami-tools/1.3-45758/jars"
-#export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.5.2.5/jars"
 
 # ------------------------------------------------------------------------------
 # ZSH options

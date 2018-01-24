@@ -5,15 +5,19 @@ filetype off
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'kien/ctrlp.vim'
-Plugin 'vim-scripts/a.vim'
-" Not needed in Google environment
-" Plugin 'Valloric/YouCompleteMe'
-Plugin 'majutsushi/tagbar'
+Plugin 'chriskempson/base16-vim'
 Plugin 'ervandew/supertab'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'mhinz/vim-signify'
+Plugin 'pboettch/vim-cmake-syntax'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-fugitive'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-scripts/a.vim'
 call vundle#end() " required
 
 " General settings -------------------------------------------------------------
@@ -127,7 +131,28 @@ endfunction
 
 " FuzzyFinder ------------------------------------------------------------------
 set rtp+=~/.fzf
+
+" <leader>t to fzf files in current working directory
 map <leader>t :FZF<cr>
+
+function! s:buflist()
+  redir => ls
+  silent ls
+  redir END
+  return split(ls, '\n')
+endfunction
+
+function! s:bufopen(e)
+  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
+endfunction
+
+" <leader>b to fzf all open buffers
+map <leader>b :call fzf#run({
+\   'source':  reverse(<sid>buflist()),
+\   'sink':    function('<sid>bufopen'),
+\   'options': '+m',
+\   'down':    len(<sid>buflist()) + 2
+\ })<CR>
 
 " Tagbar -----------------------------------------------------------------------
 nnoremap <leader>l :TagbarToggle <CR>
@@ -141,7 +166,14 @@ let g:tagbar_foldlevel = 2   "close all higher folds
 nnoremap <leader>a :A <CR>
 
 " Colors -----------------------------------------------------------------------
-color xoria256
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
+
+" Airlne powerline--------------------------------------------------------------
+let g:airline_powerline_fonts = 1
+let g:airline_theme='base16'
 
 " Source any machine-specific settings -----------------------------------------
 let VIMRC_LOCAL=expand("~/.config/local/vimrc-local")
