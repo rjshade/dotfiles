@@ -22,8 +22,15 @@ alias mkae='make'
 # vim dependency!
 alias :q='exit'
 alias :wq='exit'
-alias v='vim'
-alias vi='vim'
+if command -v nvim > /dev/null; then
+  alias v='nvim'
+  alias vi='nvim'
+  alias vim='nvim'
+else
+  alias v='vim'
+  alias vi='vim'
+fi
+
 alias :e='vim'
 
 # run bc with mathlib

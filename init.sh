@@ -21,6 +21,10 @@ cd $DOTFILES
 git submodule init
 git submodule update
 
+# Need python support for YouCompleteMe in neovim
+pip2 install --user --upgrade neovim
+pip3 install --user --upgrade neovim
+
 vim_path=~/.vim
 if [ -e $vim_path ]; then mv $vim_path $backup_dir; fi
 ln -s $DOTFILES/vim $vim_path
