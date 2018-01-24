@@ -11,6 +11,10 @@ cd $DOTFILES
 git submodule init
 git submodule update
 
+# Install fuzzyfinder.
+ln -s $DOTFILES/fzf ~/.fzf
+yes | ~/.fzf/install
+
 ln -s $DOTFILES/vim ~/.vim
 ln -s $DOTFILES/vim/vimrc ~/.vimrc
 mkdir ~/.vim-tmp
