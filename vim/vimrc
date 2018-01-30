@@ -5,20 +5,21 @@ filetype off
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'chriskempson/base16-vim'
-Plugin 'ervandew/supertab'
-Plugin 'gmarik/Vundle.vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'mhinz/vim-signify'
-Plugin 'pboettch/vim-cmake-syntax'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-fugitive'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'vim-scripts/a.vim'
+Plugin 'gmarik/vundle'                  " plugin manager
+Plugin 'google/vim-codefmt'             " code formatting
+Plugin 'google/vim-glaive'              " needed for vim-maktaba
+Plugin 'google/vim-maktaba'             " needed for vim-codefmt
+Plugin 'majutsushi/tagbar'              " show tags in current file
+Plugin 'mhinz/vim-signify'              " shows git status in sidebar
+Plugin 'pboettch/vim-cmake-syntax'      " cmake syntax/formatting
+Plugin 'scrooloose/nerdcommenter'       " comment/uncomment quickly
+Plugin 'scrooloose/nerdtree'            " show directory tree
+Plugin 'tpope/vim-fugitive'             " git commands in vim
+Plugin 'valloric/youcompleteme'         " magic auto-completion
+Plugin 'vim-scripts/a.vim'              " switch between .c and .h
+Plugin 'tpope/vim-dispatch'
 call vundle#end() " required
+call glaive#Install()
 
 " General settings -------------------------------------------------------------
 syntax on                                 " syntax highlighting enabled
@@ -55,6 +56,8 @@ set expandtab                             " turn tabs into spaces
 set tabstop=2                             " tab == 2 spaces
 set shiftwidth=2                          " tab == 2 spaces
 set softtabstop=2                         " but make the spaces feel like tabs
+" Use 2 space indentation in Python.
+au FileType python setl shiftwidth=2 softtabstop=2 expandtab
 
 set history=10000                         " a big history
 set undolevels=100000                     " and a bigger undo history
@@ -165,17 +168,26 @@ let g:tagbar_foldlevel = 2   "close all higher folds
 " a.vim - switch between cpp header/source -------------------------------------
 nnoremap <leader>a :A <CR>
 
-" Colors -----------------------------------------------------------------------
-if isdirectory(expand("~/.vim/bundle/base16-vim"))
-  if filereadable(expand("~/.vimrc_background"))
-    let base16colorspace=256
-    source ~/.vimrc_background
-  endif
-endif
+" vim-codefmt ------------------------------------------------------------------
+" Format currently highlighted lines.
+map <C-F> :FormatLines<CR>
+map <C-G> :FormatCode<CR>
 
-" Airlne powerline--------------------------------------------------------------
-let g:airline_powerline_fonts = 1
-let g:airline_theme='base16'
+" Colors -----------------------------------------------------------------------
+colorscheme Tomorrow-Night
+highlight clear SignColumn
+highlight SignifySignAdd    ctermfg=112
+highlight SignifySignDelete ctermfg=160
+highlight SignifySignChange ctermfg=220
+
+" Show trailing whitespace (except when typing at end of line)
+highlight ExtraWhitespace ctermbg=yellow guibg=yellow
+match ExtraWhitespace /\s\+\%#\@<!$/
+
+" neovim -----------------------------------------------------------------------
+if has('nvim')
+  set inccommand=nosplit
+endif
 
 " Source any machine-specific settings -----------------------------------------
 let VIMRC_LOCAL=expand("~/.config/local/vimrc-local")
