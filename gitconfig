@@ -1,6 +1,6 @@
 [user]
   name = Robbie Shade
-  email = rjshade@google.com
+  email = robbie.shade@gmail.com
 [color]
   ui = auto
   status = auto
@@ -14,3 +14,5 @@
   filemode = false
 [push]
   default = simple
+[credential]
+  helper = cache --timeout=3600
