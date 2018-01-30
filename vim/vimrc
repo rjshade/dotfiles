@@ -13,7 +13,6 @@ Plugin 'majutsushi/tagbar'              " show tags in current file
 Plugin 'mhinz/vim-signify'              " shows git status in sidebar
 Plugin 'pboettch/vim-cmake-syntax'      " cmake syntax/formatting
 Plugin 'scrooloose/nerdcommenter'       " comment/uncomment quickly
-Plugin 'scrooloose/nerdtree'            " show directory tree
 Plugin 'tpope/vim-fugitive'             " git commands in vim
 Plugin 'valloric/youcompleteme'         " magic auto-completion
 Plugin 'vim-scripts/a.vim'              " switch between .c and .h
@@ -112,27 +111,7 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-" NERDTree/Commenter -----------------------------------------------------------
-nmap <leader>n :NERDTreeToggle<CR>
-let NERDTreeWinSize = 50
-let NERDTreeHijackNetrw=1 " Use NERDTree for normal file browsing
-let NERDTreeMouseMode = 2 " single click to open directory or file
-let g:NERDSpaceDelims = 1 " comments have a space after delimeter
-
-" Close all open buffers on entering a window if the only
-" buffer that's left is the NERDTree buffer
-autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
-function! s:CloseIfOnlyNerdTreeLeft()
-  if exists("t:NERDTreeBufName")
-    if bufwinnr(t:NERDTreeBufName) != -1
-      if winnr("$") == 1
-        q
-      endif
-    endif
-  endif
-endfunction
-
-" FuzzyFinder ------------------------------------------------------------------
+ "FuzzyFinder ------------------------------------------------------------------
 set rtp+=~/.fzf
 
 " <leader>t to fzf files in current working directory
