@@ -16,7 +16,6 @@ Plugin 'scrooloose/nerdcommenter'       " comment/uncomment quickly
 Plugin 'tpope/vim-fugitive'             " git commands in vim
 Plugin 'valloric/youcompleteme'         " magic auto-completion
 Plugin 'vim-scripts/a.vim'              " switch between .c and .h
-Plugin 'tpope/vim-dispatch'
 call vundle#end() " required
 call glaive#Install()
 
@@ -30,6 +29,33 @@ set nostartofline                         " don't jump to start of line
 set backspace=indent,eol,start            " allow backspace to overwrite
 set smartindent
 set autoindent
+set directory=~/.vim-tmp/                 " put swap files somewhere central
+set backupskip=/tmp/*,/private/tmp/*"     " tmp files (crontab issue on OSX)
+set scrolloff=10                          " keep 5 context lines around cursor
+set nu                                    " line numbers on
+set expandtab                             " turn tabs into spaces
+set tabstop=2                             " tab == 2 spaces
+set shiftwidth=2                          " tab == 2 spaces
+set softtabstop=2                         " but make the spaces feel like tabs
+set history=10000                         " a big history
+set undolevels=100000                     " and a bigger undo history
+set ignorecase                            " case insensitive search...
+set smartcase                             " unless search term has uppercase
+set showmatch                             " highlight matching braces
+set incsearch                             " find as you type
+set hlsearch                              " search highlighting on
+set laststatus=2                          " always show status line
+set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %=\ lin:%l/%L\ col:%c\ %p%%
+set hidden                                " allow unsaved buffers to be hidden
+
+" pressing shift is too much work
+nnoremap ; :
+
+" Y behaves like D, C
+map Y y$
+
+" Use 2 space indentation in Python.
+au FileType python setl shiftwidth=2 softtabstop=2 expandtab
 
 " when re-opening a file, automatically jump to the line
 " we were on when we last exited
@@ -45,56 +71,6 @@ if has("autocmd")
 
     augroup END
 endif
-
-set directory=~/.vim-tmp/                 " put swap files somewhere central
-set backupskip=/tmp/*,/private/tmp/*"     " tmp files (crontab issue on OSX)
-set scrolloff=10                          " keep 5 context lines around cursor
-set nu                                    " line numbers on
-
-set expandtab                             " turn tabs into spaces
-set tabstop=2                             " tab == 2 spaces
-set shiftwidth=2                          " tab == 2 spaces
-set softtabstop=2                         " but make the spaces feel like tabs
-" Use 2 space indentation in Python.
-au FileType python setl shiftwidth=2 softtabstop=2 expandtab
-
-set history=10000                         " a big history
-set undolevels=100000                     " and a bigger undo history
-
-set ignorecase                            " case insensitive search...
-set smartcase                             " unless search term has uppercase
-
-set showmatch                             " highlight matching braces
-set incsearch                             " find as you type
-set hlsearch                              " search highlighting on
-
-" toggle search term highlighting
-nnoremap <leader>h :set hlsearch!<bar>set hlsearch?<CR>
-
-set laststatus=2                          " always show status line
-set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %=\ lin:%l/%L\ col:%c\ %p%%
-
-set t_ti= t_te=                           " don't clear screen on exit
-
-set hidden                                " allow unsaved buffers to be hidden
-
-" vertical split with specified width (columns)
-nnoremap <leader>vs :88vs<CR>
-
-" not interested in pressing shift...
-nnoremap ; :
-
-" Resize splits when the window is resized
-au VimResized * exe "normal! \<c-w>="
-
-" Y behaves like D, C
-map Y y$
-
-" have command-line completion <Tab> (for filenames, help topics, etc.)
-" first list the available options and complete the longest common part, then
-" have further <Tab>s cycle through the possibilities:
-set wildmode=list:longest,full
-set wildignore=*.o,*.obj,.git,tmp
 
 " Navigation -------------------------------------------------------------------
 " ctrl + hjkl to move between split windows
