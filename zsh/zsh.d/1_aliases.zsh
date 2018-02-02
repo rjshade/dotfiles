@@ -1,5 +1,6 @@
 # open this file for editing
-alias ea='$EDITOR $FILE_ALIASES && source $FILE_ALIASES'
+ALIASES_FILE=$0:A
+alias ea='$EDITOR $ALIASES_FILE && source $ALIASES_FILE'
 
 # nice listings
 if [[ $platform == 'linux' ]]; then
