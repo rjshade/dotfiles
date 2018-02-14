@@ -9,6 +9,7 @@ Plugin 'gmarik/vundle'                  " plugin manager
 Plugin 'google/vim-codefmt'             " code formatting
 Plugin 'google/vim-glaive'              " needed for vim-maktaba
 Plugin 'google/vim-maktaba'             " needed for vim-codefmt
+Plugin 'junegunn/fzf.vim'               " useful fzf commands in Vim
 Plugin 'majutsushi/tagbar'              " show tags in current file
 Plugin 'mhinz/vim-signify'              " shows git status in sidebar
 Plugin 'pboettch/vim-cmake-syntax'      " cmake syntax/formatting
@@ -90,27 +91,14 @@ vnoremap k gk
  "FuzzyFinder ------------------------------------------------------------------
 set rtp+=~/.fzf
 
-" <leader>t to fzf files in current working directory
-map <leader>t :FZF<cr>
+" <leader>t to search files in current working directory
+map <leader>t :Files<cr>
 
-function! s:buflist()
-  redir => ls
-  silent ls
-  redir END
-  return split(ls, '\n')
-endfunction
+" <leader>s to search inside files using ag
+map <leader>s :Ag<cr>
 
-function! s:bufopen(e)
-  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
-endfunction
-
-" <leader>b to fzf all open buffers
-map <leader>b :call fzf#run({
-\   'source':  reverse(<sid>buflist()),
-\   'sink':    function('<sid>bufopen'),
-\   'options': '+m',
-\   'down':    len(<sid>buflist()) + 2
-\ })<CR>
+" <leader>b to search open buffer file names
+map <leader>b :Buffers<cr>
 
 " Tagbar -----------------------------------------------------------------------
 nnoremap <leader>l :TagbarToggle <CR>
