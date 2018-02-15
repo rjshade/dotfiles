@@ -42,6 +42,7 @@ alias g='git status'
 alias gd='git diff'
 alias gb='git branch'
 alias gco='git checkout'
+alias gt='git log --all --graph --decorate --oneline --simplify-by-decoration'
 
 # Rename something in C/C++ files.
 function rename_c() {
