@@ -1,6 +1,9 @@
 [user]
   name = Robbie Shade
   email = robbie.shade@gmail.com
+[include]
+  # Override email on work machine(s).
+  path = ~/.config/local/gitconfig-local
 [color]
   ui = auto
   status = auto
