@@ -83,9 +83,6 @@ bindkey "\e[B" history-beginning-search-forward
 # homebrew gets priority
 export PATH=/usr/local/sbin:/usr/local/bin:$PATH
 
-# homebrew python
-export PATH=/usr/local/share/python:$PATH
-
 # home directory scripts
 export PATH=~/bin:$PATH
 
