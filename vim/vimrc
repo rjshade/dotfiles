@@ -133,5 +133,5 @@ if has('nvim')
 endif
 
 " Source any machine-specific settings -----------------------------------------
-let VIMRC_LOCAL=expand("~/.config/local/vimrc-local")
+let VIMRC_LOCAL=expand("~/.config/local/vimrc")
 if filereadable(VIMRC_LOCAL) | exe "source " . VIMRC_LOCAL | endif

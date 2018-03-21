@@ -3,7 +3,7 @@
   email = robbie.shade@gmail.com
 [include]
   # Override email on work machine(s).
-  path = ~/.config/local/gitconfig-local
+  path = ~/.config/local/gitconfig
 [color]
   ui = auto
   status = auto
