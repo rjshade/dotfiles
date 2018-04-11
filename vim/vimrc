@@ -49,6 +49,9 @@ set laststatus=2                          " always show status line
 set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %=\ lin:%l/%L\ col:%c\ %p%%
 set hidden                                " allow unsaved buffers to be hidden
 
+" clear search on enter
+:nnoremap <CR> :nohlsearch<CR>
+
 " pressing shift is too much work
 nnoremap ; :
 
