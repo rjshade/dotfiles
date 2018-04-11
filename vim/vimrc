@@ -46,7 +46,7 @@ set showmatch                             " highlight matching braces
 set incsearch                             " find as you type
 set hlsearch                              " search highlighting on
 set laststatus=2                          " always show status line
-set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %=\ lin:%l/%L\ col:%c\ %p%%
+set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %=\ line:%l/%L\ col:%c\ %p%%
 set hidden                                " allow unsaved buffers to be hidden
 
 " clear search on enter
