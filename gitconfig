@@ -19,3 +19,5 @@
   default = simple
 [credential]
   helper = cache --timeout=3600
+[alias]
+  l = log --pretty=format:'%C(yellow)%h %C(green)%>(12)%ad %C(blue)%<(10)%an%C(red)%d %C(reset)%s' --date=relative --graph
