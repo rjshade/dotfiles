@@ -5,6 +5,7 @@ filetype off
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+Plugin 'chriskempson/base16-vim'        " colorschemes
 Plugin 'gmarik/vundle'                  " plugin manager
 Plugin 'google/vim-codefmt'             " code formatting
 Plugin 'google/vim-glaive'              " needed for vim-maktaba
@@ -15,7 +16,6 @@ Plugin 'mhinz/vim-signify'              " shows git status in sidebar
 Plugin 'pboettch/vim-cmake-syntax'      " cmake syntax/formatting
 Plugin 'scrooloose/nerdcommenter'       " comment/uncomment quickly
 Plugin 'tpope/vim-fugitive'             " git commands in vim
-Plugin 'valloric/youcompleteme'         " magic auto-completion
 Plugin 'vim-scripts/a.vim'              " switch between .c and .h
 call vundle#end() " required
 call glaive#Install()
@@ -120,11 +120,16 @@ map <C-F> :FormatLines<CR>
 map <C-G> :FormatCode<CR>
 
 " Colors -----------------------------------------------------------------------
-colorscheme Tomorrow-Night
-highlight clear SignColumn
-highlight SignifySignAdd    ctermfg=112
-highlight SignifySignDelete ctermfg=160
-highlight SignifySignChange ctermfg=220
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+else
+  colorscheme Tomorrow-Night
+  highlight clear SignColumn
+  highlight SignifySignAdd    ctermfg=112
+  highlight SignifySignDelete ctermfg=160
+  highlight SignifySignChange ctermfg=220
+endif
 
 " Show trailing whitespace (except when typing at end of line)
 highlight ExtraWhitespace ctermbg=yellow guibg=yellow
@@ -136,5 +141,5 @@ if has('nvim')
 endif
 
 " Source any machine-specific settings -----------------------------------------
-let VIMRC_LOCAL=expand("~/.config/local/vimrc-local")
+let VIMRC_LOCAL=expand("~/.config/local/vimrc")
 if filereadable(VIMRC_LOCAL) | exe "source " . VIMRC_LOCAL | endif
