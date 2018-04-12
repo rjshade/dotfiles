@@ -16,7 +16,6 @@ Plugin 'mhinz/vim-signify'              " shows git status in sidebar
 Plugin 'pboettch/vim-cmake-syntax'      " cmake syntax/formatting
 Plugin 'scrooloose/nerdcommenter'       " comment/uncomment quickly
 Plugin 'tpope/vim-fugitive'             " git commands in vim
-Plugin 'vim-scripts/a.vim'              " switch between .c and .h
 call vundle#end() " required
 call glaive#Install()
 
@@ -108,8 +107,24 @@ let g:tagbar_compact = 1     "hide help text
 let g:tagbar_autoshowtag = 1 "highlight current tag
 let g:tagbar_foldlevel = 2   "close all higher folds
 
-" a.vim - switch between cpp header/source -------------------------------------
-nnoremap <leader>a :A <CR>
+" switch between *.c* to *.h* and back -----------------------------------------
+function! SwitchFromHeaderToImpl()
+  if match(expand("%"), '\.c') > 0
+    let target_file=substitute(expand("%:t"), '\.c\(.*\)', '', "")
+    let cmd="find . \\( -iname '".target_file.".h' -o -iname '".target_file.".hh' -o -iname '".target_file.".hpp' \\) -print -quit"
+  elseif match(expand("%"), "\\.h") > 0
+    let target_file=substitute(expand("%:t"), '\.h\(.*\)', '', "")
+    let cmd="find . \\( -iname '".target_file.".c' -o -iname '".target_file.".cc' -o -iname '".target_file.".cpp' \\) -print -quit"
+  endif
+
+  let found_file=system(cmd)
+  if filereadable(found_file)
+    return 0
+  endif
+
+  execute 'edit' found_file
+endfun
+nnoremap <leader>a :call SwitchFromHeaderToImpl() <CR>
 
 " vim-codefmt ------------------------------------------------------------------
 " Format currently highlighted lines.
