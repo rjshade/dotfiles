@@ -37,8 +37,15 @@ elif [[ $platform == 'linux' ]]; then
   alias o='nautilus . &> /dev/null &!'
 fi
 
-# Git
-alias g='git'
+# Git.
+# Prefer to have aliases here rather than gitconfig, otherwise all aliases must
+# be prefixed with "git " (or "g ") and the repetitive typing of spaces is
+# annoying.
+alias g='git status'
+alias gl='git log --pretty=format:"%C(yellow)%h %C(green)%>(12)%ad %C(blue)%<(10)%an%C(red)%d %C(reset)%s" --date=relative --graph'
+alias gco='git checkout'
+alias gb='git branch'
+alias gd='git diff'
 
 # Rename something in C/C++ files.
 function rename_c() {
