@@ -138,6 +138,9 @@ map <C-G> :FormatCode<CR>
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
+  " Highlight colors seem pretty unreadable, so fix that.
+  highlight Search ctermfg=160 ctermbg=3 guifg=#969896 guibg=#f0c674
+  highlight Substitute ctermfg=160 ctermbg=3 guifg=#969896 guibg=#f0c674
 else
   colorscheme Tomorrow-Night
   highlight clear SignColumn
