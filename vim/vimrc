@@ -16,6 +16,8 @@ Plugin 'mhinz/vim-signify'              " shows git status in sidebar
 Plugin 'pboettch/vim-cmake-syntax'      " cmake syntax/formatting
 Plugin 'scrooloose/nerdcommenter'       " comment/uncomment quickly
 Plugin 'tpope/vim-fugitive'             " git commands in vim
+Plugin 'kballard/vim-swift'             " swift syntax highlighting
+Plugin 'ervandew/supertab'              " nifty tab completion
 call vundle#end() " required
 call glaive#Install()
 
@@ -133,6 +135,8 @@ nnoremap <leader>a :call SwitchFromHeaderToImpl() <CR>
 " Format currently highlighted lines.
 map <C-F> :FormatLines<CR>
 map <C-G> :FormatCode<CR>
+" Use yapf instead of autopep8 for Python
+autocmd FileType python let b:codefmt_formatter = 'yapf'
 
 " Colors -----------------------------------------------------------------------
 if filereadable(expand("~/.vimrc_background"))
@@ -157,6 +161,9 @@ match ExtraWhitespace /\s\+\%#\@<!$/
 if has('nvim')
   set inccommand=nosplit
 endif
+
+" swift ------------------------------------------------------------------------
+let g:swift_suppress_showmatch_warning=1
 
 " Source any machine-specific settings -----------------------------------------
 let VIMRC_LOCAL=expand("~/.config/local/vimrc")
