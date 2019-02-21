@@ -40,7 +40,7 @@ function check_last_exit_code() {
 PROMPT='${host_prefix} %{$fg[blue]%}%4~%{$reset_color%} ${vcs_info_msg_0_}$(check_last_exit_code) '
 
 # right prompt shows time: 18:45:01
-RPROMPT='%{$fg[yellow]%}%D{%H:%M:%S}%{$reset_color%}'
+# RPROMPT='%{$fg[yellow]%}%D{%H:%M:%S}%{$reset_color%}'
 
 # continuation prompt (open quote, etc.)
 PROMPT2="%{$fg[blue]%}%_%{$reset_color%} > "
