@@ -71,3 +71,7 @@ ln -s $DOTFILES_DIR/gitconfig ~/.gitconfig
 if find "$backup_dir" -mindepth 1 -print -quit | grep -q .; then
   echo -e "\nExisting dotfiles moved to ${backup_dir}\n\tls -a ${backup_dir}\n"
 fi
+
+# Run local config init, if it exists.
+localconfig_path=~/.config/local/init.sh
+if [ -e $localconfig_path ]; then sh $localconfig_path; fi
