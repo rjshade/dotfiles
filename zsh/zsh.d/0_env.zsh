@@ -87,7 +87,7 @@ export PATH=/usr/local/sbin:/usr/local/bin:$PATH
 export PATH=~/bin:$PATH
 
 # python/pip path
-export PATH=~/.local/bin:$PATH
+export PATH=~/.local/bin:~/Library/Python/3.6/bin:$PATH
 
 # ------------------------------------------------------------------------------
 # ZSH options
