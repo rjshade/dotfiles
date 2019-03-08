@@ -138,20 +138,12 @@ map <C-G> :FormatCode<CR>
 " Use yapf instead of autopep8 for Python
 autocmd FileType python let b:codefmt_formatter = 'yapf'
 
-" Colors -----------------------------------------------------------------------
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-  " Highlight colors seem pretty unreadable, so fix that.
-  highlight Search ctermfg=160 ctermbg=3 guifg=#969896 guibg=#f0c674
-  highlight Substitute ctermfg=160 ctermbg=3 guifg=#969896 guibg=#f0c674
-else
-  colorscheme Tomorrow-Night
-  highlight clear SignColumn
-  highlight SignifySignAdd    ctermfg=112
-  highlight SignifySignDelete ctermfg=160
-  highlight SignifySignChange ctermfg=220
-endif
+"" Colors -----------------------------------------------------------------------
+colorscheme Tomorrow-Night
+highlight clear SignColumn
+highlight SignifySignAdd    ctermfg=112
+highlight SignifySignDelete ctermfg=160
+highlight SignifySignChange ctermfg=220
 
 " Show trailing whitespace (except when typing at end of line)
 highlight ExtraWhitespace ctermbg=yellow guibg=yellow
