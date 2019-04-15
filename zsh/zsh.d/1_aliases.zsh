@@ -11,7 +11,7 @@ fi
 alias l='ls -lh'
 
 # grep
-alias grep='grep --color=always'
+alias grep='grep --color=auto'
 alias gi='grep -RIinF'
 
 # fat fingers...
