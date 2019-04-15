@@ -95,8 +95,14 @@ vnoremap k gk
  "FuzzyFinder ------------------------------------------------------------------
 set rtp+=~/.fzf
 
+" If `pwd` is inside a git repo, then run fzf from the root.
+function! s:find_git_root()
+  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+endfunction
+command! GitProjectFiles execute 'Files' s:find_git_root()
+
 " <leader>t to search files in current working directory
-map <leader>t :Files<cr>
+map <leader>t :GitProjectFiles<cr>
 
 " <leader>s to search inside files using ag
 map <leader>s :Ag<cr>
