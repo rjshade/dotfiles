@@ -1,8 +1,7 @@
 # dotfiles
 Linux/OSX configuration files.
 
-    export DOTFILES=~/.dotfiles
-    git clone git@github.com:rjshade/dotfiles.git $DOTFILES
-    sh $DOTFILES/init.sh
+To install:
 
-Then open vim and run `BundleInstall`
+    git clone git@github.com:rjshade/dotfiles.git
+    . dotfiles/init.sh
