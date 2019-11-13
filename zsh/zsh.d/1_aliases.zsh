@@ -104,7 +104,6 @@ function find_parent_dir () {
   while [[ "$PWD" != / ]]; do
     # Does the directory exist and is it a directory (not a file)?
     if [[ -e $search_dir && -d $search_dir ]]; then
-      cd "$1"
       return 0
     fi
     cd ..
@@ -115,3 +114,6 @@ function find_parent_dir () {
   cd $start_dir
   return 1
 }
+
+# Navigate to root of git repo.
+alias gitr='find_parent_dir .git'
