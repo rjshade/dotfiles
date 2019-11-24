@@ -75,3 +75,11 @@ fi
 # Run local config init, if it exists.
 localconfig_path=~/.config/local/init.sh
 if [ -e $localconfig_path ]; then sh $localconfig_path; fi
+
+# Platform specific installation
+if [[ $PLATFORM == "Linux" ]]; then
+  cmd="sudo apt-get install silversearcher-ag tmux"
+elif [[ $PLATFORM == "Darwin" ]]; then
+  cmd="brew install the_silver_searcher tmux"
+fi
+$($cmd)
