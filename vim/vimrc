@@ -18,6 +18,7 @@ Plugin 'scrooloose/nerdcommenter'       " comment/uncomment quickly
 Plugin 'tpope/vim-fugitive'             " git commands in vim
 Plugin 'kballard/vim-swift'             " swift syntax highlighting
 Plugin 'ervandew/supertab'              " nifty tab completion
+Plugin 'https://gn.googlesource.com/gn', { 'rtp': 'tools/gn/misc/vim' } " gn syntax
 call vundle#end() " required
 call glaive#Install()
 
