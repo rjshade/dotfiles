@@ -116,4 +116,4 @@ function find_parent_dir () {
 }
 
 # Navigate to root of git repo.
-alias gitr='find_parent_dir .git'
+alias gr='find_parent_dir .git'
