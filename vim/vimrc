@@ -1,26 +1,16 @@
 set nocompatible " be vImproved
 filetype off
 
-" Vundle plugin manger ---------------------------------------------------------
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'chriskempson/base16-vim'        " colorschemes
-Plugin 'gmarik/vundle'                  " plugin manager
-Plugin 'google/vim-codefmt'             " code formatting
-Plugin 'google/vim-glaive'              " needed for vim-maktaba
-Plugin 'google/vim-maktaba'             " needed for vim-codefmt
-Plugin 'junegunn/fzf.vim'               " useful fzf commands in Vim
-Plugin 'majutsushi/tagbar'              " show tags in current file
-Plugin 'mhinz/vim-signify'              " shows git status in sidebar
-Plugin 'pboettch/vim-cmake-syntax'      " cmake syntax/formatting
-Plugin 'scrooloose/nerdcommenter'       " comment/uncomment quickly
-Plugin 'tpope/vim-fugitive'             " git commands in vim
-Plugin 'kballard/vim-swift'             " swift syntax highlighting
-Plugin 'ervandew/supertab'              " nifty tab completion
-Plugin 'https://gn.googlesource.com/gn', { 'rtp': 'tools/gn/misc/vim' } " gn syntax
-call vundle#end() " required
-call glaive#Install()
+" vim-plug plugin manger ---------------------------------------------------------
+call plug#begin()
+Plug 'chriskempson/base16-vim'        " colorschemes
+Plug 'junegunn/fzf.vim'               " useful fzf commands in Vim
+Plug 'majutsushi/tagbar'              " show tags in current file
+Plug 'mhinz/vim-signify'              " shows git status in sidebar
+Plug 'scrooloose/nerdcommenter'       " comment/uncomment quickly
+Plug 'tpope/vim-fugitive'             " git commands in vim
+Plug 'ervandew/supertab'              " nifty tab completion
+call plug#end()
 
 " General settings -------------------------------------------------------------
 syntax on                                 " syntax highlighting enabled
@@ -96,6 +86,9 @@ vnoremap k gk
  "FuzzyFinder ------------------------------------------------------------------
 set rtp+=~/.fzf
 
+" Ignore .gitignore files by using ag.
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+
 " If `pwd` is inside a git repo, then run fzf from the root.
 function! s:find_git_root()
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
@@ -138,12 +131,17 @@ function! SwitchFromHeaderToImpl()
 endfun
 nnoremap <leader>a :call SwitchFromHeaderToImpl() <CR>
 
-" vim-codefmt ------------------------------------------------------------------
-" Format currently highlighted lines.
-map <C-F> :FormatLines<CR>
-map <C-G> :FormatCode<CR>
-" Use yapf instead of autopep8 for Python
-autocmd FileType python let b:codefmt_formatter = 'yapf'
+" clang-format -----------------------------------------------------------------
+function FormatBuffer()
+  if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))
+    let cursor_pos = getpos('.')
+    :%!clang-format
+    call setpos('.', cursor_pos)
+  endif
+endfunction
+
+" Format on save.
+autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.cc :call FormatBuffer()
 
 "" Colors -----------------------------------------------------------------------
 colorscheme Tomorrow-Night
@@ -160,9 +158,6 @@ match ExtraWhitespace /\s\+\%#\@<!$/
 if has('nvim')
   set inccommand=nosplit
 endif
-
-" swift ------------------------------------------------------------------------
-let g:swift_suppress_showmatch_warning=1
 
 " Source any machine-specific settings -----------------------------------------
 let VIMRC_LOCAL=expand("~/.config/local/vimrc")
