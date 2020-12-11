@@ -15,7 +15,10 @@
   excludesfile = ~/.gitignore
   autocrlf = false
   filemode = false
+	editor = nvim
 [push]
   default = simple
 [credential]
   helper = cache --timeout=3600
+[pull]
+	rebase = false

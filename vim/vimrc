@@ -4,13 +4,21 @@ filetype off
 " vim-plug plugin manger ---------------------------------------------------------
 call plug#begin()
 Plug 'chriskempson/base16-vim'        " colorschemes
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'               " useful fzf commands in Vim
 Plug 'majutsushi/tagbar'              " show tags in current file
 Plug 'mhinz/vim-signify'              " shows git status in sidebar
 Plug 'scrooloose/nerdcommenter'       " comment/uncomment quickly
 Plug 'tpope/vim-fugitive'             " git commands in vim
 Plug 'ervandew/supertab'              " nifty tab completion
+Plug 'rjshade/vim-autoformat'         " code formatting
+Plug 'ycm-core/YouCompleteMe'         " code completion
 call plug#end()
+
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_confirm_extra_conf = 0
+:nnoremap <C-]> :YcmCompleter GoToDefinition<CR>
+:nnoremap <C-l> :YcmCompleter GoToReference<CR>
 
 " General settings -------------------------------------------------------------
 syntax on                                 " syntax highlighting enabled
@@ -74,6 +82,12 @@ map <C-h> <C-W>h
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-l> <C-W>l
+if has('nvim')
+  tnoremap <C-h> <C-\><C-N><C-W>h
+  tnoremap <C-j> <C-\><C-N><C-W>j
+  tnoremap <C-k> <C-\><C-N><C-W>k
+  tnoremap <C-l> <C-\><C-N><C-W>l
+endif
 
 " move up and down using visual lines rather than actual lines
 " this means that a long paragraph written on one line but
@@ -131,17 +145,8 @@ function! SwitchFromHeaderToImpl()
 endfun
 nnoremap <leader>a :call SwitchFromHeaderToImpl() <CR>
 
-" clang-format -----------------------------------------------------------------
-function FormatBuffer()
-  if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))
-    let cursor_pos = getpos('.')
-    :%!clang-format
-    call setpos('.', cursor_pos)
-  endif
-endfunction
-
-" Format on save.
-autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.cc :call FormatBuffer()
+" code formatting ---------------------------------------------------------------
+map <C-f> :AutoformatLine<CR>
 
 "" Colors -----------------------------------------------------------------------
 colorscheme Tomorrow-Night
