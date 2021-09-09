@@ -46,6 +46,9 @@ alias gl='git log --pretty=format:"%C(yellow)%h %C(green)%>(12)%ad %C(blue)%<(10
 alias gco='git checkout'
 alias gb='git branch'
 alias gd='git diff'
+# List files changed between current branch and main branch.
+alias gm='git diff --name-only main'
+alias gmd='git diff main -- '
 
 # Rename something in C/C++ files.
 function rename_c() {
