@@ -18,6 +18,13 @@ elif [[ $PLATFORM == "Darwin" ]]; then
   backup_dir=`mktemp -d`
 fi
 
+# Install homebrew
+if [[ $PLATFORM == "Darwin" ]]; then
+  if ! [ -x "$(command -v brew)" ]; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
+fi
+
 cd $DOTFILES_DIR
 git submodule init
 git submodule update
@@ -25,6 +32,7 @@ git submodule update
 
 vim_path=~/.vim
 if [ -e $vim_path ]; then mv $vim_path $backup_dir; fi
+if [ -h $vim_path ]; then rm $vim_path; fi
 ln -s $DOTFILES_DIR/vim $vim_path
 rm -rf ~/.vim-tmp
 mkdir ~/.vim-tmp
@@ -33,39 +41,47 @@ git clone https://github.com/gmarik/Vundle.vim.git $vim_path/bundle/Vundle.vim
 
 vimrc_path=~/.vimrc
 if [ -e $vimrc_path ]; then mv $vimrc_path $backup_dir; fi
+if [ -h $vimrc_path ]; then rm $vimrc_path; fi
 ln -s $DOTFILES_DIR/vim/vimrc $vimrc_path
 vim +PluginInstall +qall
 
 mkdir -p ~/.config/nvim
 nvim_init_path=~/.config/nvim/init.vim
 if [ -e $nvim_init_path ]; then mv $nvim_init_path $backup_dir; fi
+if [ -h $nvim_init_path ]; then rm $nvim_init_path; fi
 echo -e "set runtimepath^=${vim_path} runtimepath+=${vim_path}/after\n"\
         "let &packpath = &runtimepath\n"\
         "source ${vimrc_path}" > $nvim_init_path
 
 fzf_path=~/.fzf
 if [ -e $fzf_path ]; then mv $fzf_path $backup_dir; fi
+if [ -h $fzf_path ]; then rm $fzf_path; fi
 ln -s $DOTFILES_DIR/fzf $fzf_path
 (yes | $fzf_path/install) || true
 
 zsh_path=~/.zsh
 if [ -e $zsh_path ]; then mv $zsh_path $backup_dir; fi
+if [ -h $zsh_path ]; then rm $zsh_path; fi
 ln -s $DOTFILES_DIR/zsh ~/.zsh
 
 zshrc_path=~/.zshrc
 if [ -e $zshrc_path ]; then mv $zshrc_path $backup_dir; fi
+if [ -h $zshrc_path ]; then rm $zshrc_path; fi
 ln -s $DOTFILES_DIR/zsh/zshrc ~/.zshrc
 
 tmux_conf_path=~/.tmux.conf
 if [ -e $tmux_conf_path ]; then mv $tmux_conf_path $backup_dir; fi
+if [ -h $tmux_conf_path ]; then rm $tmux_conf_path; fi
 ln -s $DOTFILES_DIR/tmux.conf ~/.tmux.conf
 
 gitignore_path=~/.gitignore
 if [ -e $gitignore_path ]; then mv $gitignore_path $backup_dir; fi
+if [ -h $gitignore_path ]; then rm $gitignore_path; fi
 ln -s $DOTFILES_DIR/gitignore ~/.gitignore
 
 gitconfig_path=~/.gitconfig
 if [ -e $gitconfig_path ]; then mv $gitconfig_path $backup_dir; fi
+if [ -h $gitconfig_path ]; then rm $gitconfig_path; fi
 ln -s $DOTFILES_DIR/gitconfig ~/.gitconfig
 
 if find "$backup_dir" -mindepth 1 -print -quit | grep -q .; then
@@ -78,8 +94,7 @@ if [ -e $localconfig_path ]; then sh $localconfig_path; fi
 
 # Platform specific installation
 if [[ $PLATFORM == "Linux" ]]; then
-  cmd="sudo apt-get install silversearcher-ag tmux"
+  sudo apt-get install tmux nvim
 elif [[ $PLATFORM == "Darwin" ]]; then
-  cmd="brew install the_silver_searcher tmux"
+  brew install tmux nvim
 fi
-$($cmd)
