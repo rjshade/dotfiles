@@ -29,29 +29,10 @@ cd $DOTFILES_DIR
 git submodule init
 git submodule update
 
-
-vim_path=~/.vim
-if [ -e $vim_path ]; then mv $vim_path $backup_dir; fi
-if [ -h $vim_path ]; then rm $vim_path; fi
-ln -s $DOTFILES_DIR/vim $vim_path
-rm -rf ~/.vim-tmp
-mkdir ~/.vim-tmp
-rm -rf $vim_path/bundle/Vundle.vim
-git clone https://github.com/gmarik/Vundle.vim.git $vim_path/bundle/Vundle.vim
-
-vimrc_path=~/.vimrc
-if [ -e $vimrc_path ]; then mv $vimrc_path $backup_dir; fi
-if [ -h $vimrc_path ]; then rm $vimrc_path; fi
-ln -s $DOTFILES_DIR/vim/vimrc $vimrc_path
-vim +PluginInstall +qall
-
-mkdir -p ~/.config/nvim
-nvim_init_path=~/.config/nvim/init.vim
-if [ -e $nvim_init_path ]; then mv $nvim_init_path $backup_dir; fi
-if [ -h $nvim_init_path ]; then rm $nvim_init_path; fi
-echo -e "set runtimepath^=${vim_path} runtimepath+=${vim_path}/after\n"\
-        "let &packpath = &runtimepath\n"\
-        "source ${vimrc_path}" > $nvim_init_path
+nvim_path=~/.config/nvim
+if [ -e $nvim_path ]; then mv $nvim_path $backup_dir; fi
+if [ -h $nvim_path ]; then rm $nvim_path; fi
+ln -s $DOTFILES_DIR/nvim ~/.config/
 
 fzf_path=~/.fzf
 if [ -e $fzf_path ]; then mv $fzf_path $backup_dir; fi
