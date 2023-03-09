@@ -120,3 +120,39 @@ function find_parent_dir () {
 
 # Navigate to root of git repo.
 alias gr='find_parent_dir .git'
+
+# Creates a Github PR from command line.
+# Copies url + title to clipboard on success.
+function ghpr() {
+  # Push to remote.
+  # Stop-gap until `gh` supports this natively without prompting.
+  # https://github.com/cli/cli/issues/1718#issuecomment-748292216
+  git push -u origin HEAD
+  if [ $? -ne 0 ]; then
+    echo "\nFailed to push remote branch!"
+    return
+  fi
+
+  # Create the PR.
+  gh pr create --fill
+  if [ $? -ne 0 ]; then
+    echo "\nFailed to create PR!"
+    return
+  fi
+
+  # TODO: Turn on auto-merge below if enabled in repo.
+  # Enable auto-merge.
+  # gh pr merge --squash --auto --delete-branch
+  # if [ $? -ne 0 ]; then
+  #   echo "\nFailed to enable auto-merge!"
+  #   return
+  # fi
+
+  # Print (and copy) string for Slack #pullrequests.
+  STATUS=$(gh pr view)
+  URL=$(echo ${STATUS} | grep 'url:' | cut -f2)
+  TITLE=$(echo ${STATUS} | grep 'title:' | cut -f2)
+  OUTPUT="${URL} | ${TITLE}"
+  echo "\n\nSuccess. Copied to clipboard:"
+  echo ${OUTPUT} && echo -n ${OUTPUT} | pbcopy
+}
