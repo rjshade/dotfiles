@@ -34,36 +34,29 @@ if [ -e $nvim_path ]; then mv $nvim_path $backup_dir; fi
 if [ -h $nvim_path ]; then rm $nvim_path; fi
 ln -s $DOTFILES_DIR/nvim ~/.config/
 
-fzf_path=~/.fzf
-if [ -e $fzf_path ]; then mv $fzf_path $backup_dir; fi
-if [ -h $fzf_path ]; then rm $fzf_path; fi
-ln -s $DOTFILES_DIR/fzf $fzf_path
-(yes | $fzf_path/install) || true
-
 zsh_path=~/.zsh
 if [ -e $zsh_path ]; then mv $zsh_path $backup_dir; fi
 if [ -h $zsh_path ]; then rm $zsh_path; fi
-ln -s $DOTFILES_DIR/zsh ~/.zsh
+ln -s $DOTFILES_DIR/zsh $zsh_path
 
 zshrc_path=~/.zshrc
-if [ -e $zshrc_path ]; then mv $zshrc_path $backup_dir; fi
 if [ -h $zshrc_path ]; then rm $zshrc_path; fi
-ln -s $DOTFILES_DIR/zsh/zshrc ~/.zshrc
+ln -s $DOTFILES_DIR/zsh/zshrc $zshrc_path
 
 tmux_conf_path=~/.tmux.conf
 if [ -e $tmux_conf_path ]; then mv $tmux_conf_path $backup_dir; fi
 if [ -h $tmux_conf_path ]; then rm $tmux_conf_path; fi
-ln -s $DOTFILES_DIR/tmux.conf ~/.tmux.conf
+ln -s $DOTFILES_DIR/tmux.conf $tmux_conf_path
 
 gitignore_path=~/.gitignore
 if [ -e $gitignore_path ]; then mv $gitignore_path $backup_dir; fi
 if [ -h $gitignore_path ]; then rm $gitignore_path; fi
-ln -s $DOTFILES_DIR/gitignore ~/.gitignore
+ln -s $DOTFILES_DIR/gitignore $gitignore_path
 
 gitconfig_path=~/.gitconfig
 if [ -e $gitconfig_path ]; then mv $gitconfig_path $backup_dir; fi
 if [ -h $gitconfig_path ]; then rm $gitconfig_path; fi
-ln -s $DOTFILES_DIR/gitconfig ~/.gitconfig
+ln -s $DOTFILES_DIR/gitconfig $gitconfig_path
 
 if find "$backup_dir" -mindepth 1 -print -quit | grep -q .; then
   echo -e "\nExisting dotfiles moved to ${backup_dir}\n\tls -a ${backup_dir}\n"
@@ -75,7 +68,7 @@ if [ -e $localconfig_path ]; then sh $localconfig_path; fi
 
 # Platform specific installation
 if [[ $PLATFORM == "Linux" ]]; then
-  sudo apt-get install tmux nvim
+  sudo apt-get install tmux nvim fzf
 elif [[ $PLATFORM == "Darwin" ]]; then
-  brew install tmux nvim
+  brew install tmux nvim fzf
 fi

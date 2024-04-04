@@ -29,3 +29,5 @@ FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # eval "$(rbenv init - zsh)"
 
 export PATH="/usr/local/opt/node@20/bin:$PATH"
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
