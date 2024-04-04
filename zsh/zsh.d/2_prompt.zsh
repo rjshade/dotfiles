@@ -30,7 +30,7 @@ fi
 
 function check_last_exit_code() {
   if [[ $? -eq 0 ]]; then
-    echo "%{$fg[gray]%}>%{$reset_color%}"
+    echo "%{$fg[blue]%}>%{$reset_color%}"
   else
     echo "%{$fg[red]%}>%{$reset_color%}"
   fi
