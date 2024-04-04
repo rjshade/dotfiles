@@ -19,7 +19,7 @@
 [push]
   default = simple
   # `git push` automatically creates remote branch.
-  autoSetupRemote = true
+	autoSetupRemote = true
 [credential]
   helper = cache --timeout=3600
 [pull]
@@ -28,3 +28,10 @@
   autocorrect = 1
 [init]
   defaultBranch = main
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[branch]
+	sort = -committerdate
