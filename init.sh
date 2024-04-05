@@ -68,7 +68,7 @@ if [ -e $localconfig_path ]; then sh $localconfig_path; fi
 
 # Platform specific installation
 if [[ $PLATFORM == "Linux" ]]; then
-  sudo apt-get install tmux nvim fzf
+  sudo apt-get install tmux nvim fzf ag ripgrep
 elif [[ $PLATFORM == "Darwin" ]]; then
-  brew install tmux nvim fzf
+  brew install tmux nvim fzf ag ripgrep
 fi
