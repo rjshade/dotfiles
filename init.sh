@@ -53,6 +53,11 @@ if [ -e $gitignore_path ]; then mv $gitignore_path $backup_dir; fi
 if [ -h $gitignore_path ]; then rm $gitignore_path; fi
 ln -s $DOTFILES_DIR/gitignore $gitignore_path
 
+rgignore_path=~/.rgignore
+if [ -e $rgignore_path ]; then mv $rgignore_path $backup_dir; fi
+if [ -h $rgignore_path ]; then rm $rgignore_path; fi
+ln -s $DOTFILES_DIR/rgignore $rgignore_path
+
 gitconfig_path=~/.gitconfig
 if [ -e $gitconfig_path ]; then mv $gitconfig_path $backup_dir; fi
 if [ -h $gitconfig_path ]; then rm $gitconfig_path; fi
@@ -68,7 +73,7 @@ if [ -e $localconfig_path ]; then sh $localconfig_path; fi
 
 # Platform specific installation
 if [[ $PLATFORM == "Linux" ]]; then
-  sudo apt-get install tmux nvim fzf ag ripgrep
+  sudo apt-get install tmux nvim fzf ripgrep cmake jq git-lfs
 elif [[ $PLATFORM == "Darwin" ]]; then
-  brew install tmux nvim fzf ag ripgrep
+  brew install tmux nvim fzf ripgrep cmake jq git-lfs
 fi
