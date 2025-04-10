@@ -1,6 +1,4 @@
-vim.g.mapleader = ','
-require("plugins")
-
+vim.g.mapleader     = ','
 vim.opt.expandtab   = true    -- Turn tabs into spaces.
 vim.opt.mouse       = 'a'     -- Mouse enabled all the time.
 vim.opt.number      = true    -- Line numbers on
@@ -51,66 +49,10 @@ autocmd('TextYankPost', {
 --  command = [[%s/\s\+$//e]],
 --})
 
-
-require("mason").setup {
-  ui = {
-    icons = {
-      package_installed = "✓",
-      package_pending = "➜",
-      package_uninstalled = "✗"
-    }
-  }
-}
-require('mason-lspconfig').setup {
-  ensure_installed = {
-    'bashls',
-    'clangd',
-    'dockerls',
-    'graphql',
-    'html',
-    'jsonls',
-    'lua_ls',
-    'pyright',
-    'ts_ls',
-    'vimls',
-    'zls'
-  }
-}
-
-require 'mason-lspconfig'.setup_handlers {
-  function(server_name) -- default handler (optional)
-    require 'lspconfig'[server_name].setup {}
-  end,
-
-  ['lua_ls'] = function()
-    require 'lspconfig'.lua_ls.setup {
-      settings = {
-        Lua = {
-          format = {
-            enable = true,
-            defaultConfig = {
-              indent_style = "space",
-              indent_size = "2",
-              max_line_length = "90",
-            },
-          },
-          diagnostics = {
-            globals = { "vim" }
-          }
-        },
-      },
-    }
-  end
-}
 vim.keymap.set('n', '<leader>F', function() vim.lsp.buf.format() end)
 
 -- File navigation
 vim.keymap.set('n', '<leader>a', ':ClangdSwitchSourceHeader<CR>')
-
-local local_config = vim.fn.expand('~/.config/local/nvim/local.lua')
-if vim.fn.filereadable(local_config) == 1 then
-  vim.cmd('source ' .. local_config)
-end
 
 vim.diagnostic.config({
   float = {
