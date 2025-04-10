@@ -23,10 +23,13 @@ alias mkae='make'
 # vim dependency!
 alias :q='exit'
 alias :wq='exit'
-alias v='vim'
-alias vi='vim'
 if command -v nvim > /dev/null; then
+  alias v='nvim'
+  alias vi='nvim'
   alias vim='nvim'
+else
+  alias v='vim'
+  alias vi='vim'
 fi
 
 # open a file browser in PWD
@@ -140,15 +143,14 @@ function ghpr() {
     return
   fi
 
-  # TODO: Turn on auto-merge below if enabled in repo.
   # Enable auto-merge.
-  # gh pr merge --squash --auto --delete-branch
-  # if [ $? -ne 0 ]; then
-  #   echo "\nFailed to enable auto-merge!"
-  #   return
-  # fi
+  gh pr merge --squash --auto --delete-branch
+  if [ $? -ne 0 ]; then
+    echo "\nFailed to enable auto-merge!"
+    return
+  fi
 
-  # Print (and copy) string for Slack #pullrequests.
+  # Print (and copy) string for pasting into Slack pull requests channel.
   STATUS=$(gh pr view)
   URL=$(echo ${STATUS} | grep 'url:' | cut -f2)
   TITLE=$(echo ${STATUS} | grep 'title:' | cut -f2)
@@ -156,3 +158,6 @@ function ghpr() {
   echo "\n\nSuccess. Copied to clipboard:"
   echo ${OUTPUT} && echo -n ${OUTPUT} | pbcopy
 }
+
+alias am='gh pr checks --watch && gh pr merge --delete-branch --squash'
+export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc

@@ -212,3 +212,25 @@ fi
 bindkey ' '   magic-space    # also do history expansion on space
 
 
+# FuzzyFinder
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Syntax highlighting of CLI commands
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Fuzzyfinder defaults.
+FZF_DEFAULT_OPTS='--height 40% --reverse'
+FZF_CTRL_T_OPTS='--preview "head -n 100 {}" --preview-window right'
+FZF_DEFAULT_COMMAND='rg --hidden --files ""'
+FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# Use the base16 colorscheme
+# # BASE16_SHELL=$HOME/.dotfiles/base16-shell/
+# [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
+# # Uncomment when working with Ruby
+# eval "$(rbenv init - zsh)"
+
+export PATH="/usr/local/opt/node@20/bin:$PATH"
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
