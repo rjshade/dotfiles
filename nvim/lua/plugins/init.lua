@@ -24,5 +24,6 @@ require("lazy").setup({
   'jparise/vim-graphql',   -- GraphQL syntax highlighting.
   { import = "plugins.mason" },
   { import = "plugins.snacks" },
-  { import = "plugins.colorscheme" },
+  { import = "plugins.fzf" },
+  -- { import = "plugins.colorscheme" },
 })

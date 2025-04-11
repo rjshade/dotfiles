@@ -3,6 +3,7 @@ require('core.keymaps')
 
 local augroup = vim.api.nvim_create_augroup -- Create/get autocommand group
 local autocmd = vim.api.nvim_create_autocmd -- Create autocommand
+
 -- Highlight on yank
 augroup('YankHighlight', { clear = true })
 autocmd('TextYankPost', {
@@ -19,8 +20,6 @@ vim.diagnostic.config({
   },
 })
 
-vim.o.fillchars = 'eob: ,fold: ,foldopen:,foldsep: ,foldclose:'
-vim.o.foldcolumn = '2'
 vim.o.foldenable = true
 vim.o.foldexpr = 'v:lua.vim.lsp.foldexpr()'
 vim.o.foldlevel = 99
