@@ -25,5 +25,4 @@ require("lazy").setup({
   { import = "plugins.mason" },
   { import = "plugins.snacks" },
   { import = "plugins.fzf" },
-  -- { import = "plugins.colorscheme" },
 })

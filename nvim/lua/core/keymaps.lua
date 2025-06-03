@@ -16,6 +16,7 @@ vim.keymap.set('n', 'gr', function() vim.lsp.buf.references() end)
 vim.keymap.set('n', 'gh', function() vim.lsp.buf.hover() end)
 vim.keymap.set('n', 'gc', function() vim.lsp.buf.code_action() end)
 vim.keymap.set('n', 'gf', function() vim.lsp.buf.format() end)
+vim.keymap.set('n', 'gR', function() vim.lsp.buf.rename() end)
 
 vim.keymap.set('n', '<leader>F', function() vim.lsp.buf.format() end)
 
