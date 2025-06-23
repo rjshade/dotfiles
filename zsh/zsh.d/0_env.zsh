@@ -87,7 +87,11 @@ export PATH=/usr/local/sbin:/usr/local/bin:$PATH
 export PATH=~/bin:$PATH
 
 # python/pip path
-export PATH=~/.local/bin:~/Library/Python/3.6/bin:$PATH
+export PATH=~/.local/bin:$PATH
+# Add current Python user bin if it exists
+if [[ -d "$(python3 -m site --user-base 2>/dev/null)/bin" ]]; then
+  export PATH="$(python3 -m site --user-base)/bin:$PATH"
+fi
 
 # ------------------------------------------------------------------------------
 # ZSH options

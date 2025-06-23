@@ -1,0 +1,43 @@
+# ripgrep ignore patterns
+# Add patterns here to ignore files/directories when using rg
+
+# Compiled files
+*.o
+*.so
+*.dylib
+*.dll
+*.exe
+
+# Package managers
+node_modules/
+.npm/
+.yarn/
+vendor/
+.bundle/
+
+# Build artifacts
+build/
+dist/
+target/
+*.log
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Version control
+.git/
+.svn/
+.hg/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+*.tmp

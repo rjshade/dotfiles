@@ -59,7 +59,7 @@ function rename_c() {
     echo "Usage: rename_c /path/to/files/ text_to_find text_to_replace"
   else
     echo "Renaming: $2 -> $3, in the following files:"
-    find $1 \(    -iname \*.h   \
+    find "$1" \(  -iname \*.h   \
                -o -iname \*.cpp \
                -o -iname \*.cc  \
                -o -iname \*.c   \
