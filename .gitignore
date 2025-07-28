@@ -2,3 +2,4 @@ vim/bundle/*
 vim/cache/*
 vim/data/log
 doc/tags
+claude/
