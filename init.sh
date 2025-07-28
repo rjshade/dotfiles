@@ -63,6 +63,13 @@ if [ -e $gitconfig_path ]; then mv $gitconfig_path $backup_dir; fi
 if [ -h $gitconfig_path ]; then rm $gitconfig_path; fi
 ln -s $DOTFILES_DIR/gitconfig $gitconfig_path
 
+claude_settings_dir=~/.claude
+claude_settings_path=$claude_settings_dir/settings.json
+mkdir -p $claude_settings_dir
+if [ -e $claude_settings_path ]; then mv $claude_settings_path $backup_dir; fi
+if [ -h $claude_settings_path ]; then rm $claude_settings_path; fi
+ln -s $DOTFILES_DIR/claude/settings.json $claude_settings_path
+
 if find "$backup_dir" -mindepth 1 -print -quit | grep -q .; then
   echo -e "\nExisting dotfiles moved to ${backup_dir}\n\tls -a ${backup_dir}\n"
 fi

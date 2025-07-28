@@ -22,3 +22,7 @@ vim.keymap.set('n', '<leader>F', function() vim.lsp.buf.format() end)
 
 -- File navigation
 vim.keymap.set('n', '<leader>a', ':ClangdSwitchSourceHeader<CR>')
+
+-- NvimTree
+vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
