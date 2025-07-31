@@ -22,6 +22,7 @@ require("lazy").setup({
   'neovim/nvim-lspconfig', -- Easy config for LSP.
   'github/copilot.vim',    -- Github's copilot code completion.
   'jparise/vim-graphql',   -- GraphQL syntax highlighting.
+  { import = "plugins.ragel" },
   { import = "plugins.mason" },
   { import = "plugins.snacks" },
   { import = "plugins.fzf" },
