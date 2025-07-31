@@ -4,9 +4,9 @@ alias ea='$EDITOR $ALIASES_FILE && source $ALIASES_FILE'
 
 # nice listings
 if [[ $platform == 'linux' ]]; then
-    alias ls='ls --color=auto'
+  alias ls='ls --color=auto'
 elif [[ $platform == 'osx' ]]; then
-    alias ls='ls -G'
+  alias ls='ls -G'
 fi
 alias l='ls -lh'
 
@@ -71,23 +71,23 @@ function rename_c() {
 # use ex to extract compressed files
 ex () {
   if [ -f $1 ] ; then
-      case $1 in
-          *.tar.bz2)   tar xvjf $1    ;;
-          *.tar.gz)    tar xvzf $1    ;;
-          *.bz2)       bunzip2 $1     ;;
-          *.rar)       unrar e $1     ;;
-          *.gz)        gunzip $1      ;;
-          *.tar)       tar xvf $1     ;;
-          *.tbz2)      tar xvjf $1    ;;
-          *.xz)        tar xvJf $1    ;;
-          *.tgz)       tar xvzf $1    ;;
-          *.zip)       unzip $1       ;;
-          *.Z)         uncompress $1  ;;
-          *.7z)        7z x $1        ;;
-          *)           echo "don't know how to extract '$1'..." ;;
-      esac
+    case $1 in
+      *.tar.bz2)   tar xvjf $1    ;;
+      *.tar.gz)    tar xvzf $1    ;;
+      *.bz2)       bunzip2 $1     ;;
+      *.rar)       unrar e $1     ;;
+      *.gz)        gunzip $1      ;;
+      *.tar)       tar xvf $1     ;;
+      *.tbz2)      tar xvjf $1    ;;
+      *.xz)        tar xvJf $1    ;;
+      *.tgz)       tar xvzf $1    ;;
+      *.zip)       unzip $1       ;;
+      *.Z)         uncompress $1  ;;
+      *.7z)        7z x $1        ;;
+      *)           echo "don't know how to extract '$1'..." ;;
+    esac
   else
-      echo "'$1' is not a valid file!"
+    echo "'$1' is not a valid file!"
   fi
 }
 

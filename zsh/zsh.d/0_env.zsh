@@ -1,53 +1,39 @@
-# ZSH environment
+# ZSH environment - Optimized
 # ------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------
-# this can be used to toggle platform specific aliases (e.g. ls -G for colors on OSX)
+# Platform detection
 # ------------------------------------------------------------------------------
 platform='unknown'
 unamestr=$(uname)
 
 if [[ "$unamestr" == 'Linux' ]]; then
-    platform='linux'
+  platform='linux'
 elif [[ "$unamestr" == 'Darwin' ]]; then
-    platform='osx'
+  platform='osx'
 fi
 
-command_exists () {
-  type "$1" &> /dev/null ;
-}
-
-#--- Autojump
-if [[ "$platform" == 'osx' ]]; then
-  if command_exists brew; then
-    if [[ -f `brew --prefix`/etc/autojump ]]; then
-      . `brew --prefix`/etc/autojump
-    fi
-  fi
-elif [[ "$platform" == 'linux' ]]; then
-  if [[ -f '/usr/share/autojump/autojump.zsh' ]]; then
-    . '/usr/share/autojump/autojump.zsh'
-  fi
-fi
-
-
+# ------------------------------------------------------------------------------
+# History settings
 # ------------------------------------------------------------------------------
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
-# timestamp history entries
-setopt extendedhistory
+setopt extendedhistory # timestamp history entries
 
+# ------------------------------------------------------------------------------
+# Load ZSH modules
 # ------------------------------------------------------------------------------
 autoload -U zutil
 autoload -U complist
-autoload -U compinit && compinit
+autoload -U compinit && compinit -C  # -C skips security check for faster startup
 autoload -U colors && colors
 autoload -Uz vcs_info
 autoload -U promptinit && promptinit
 
 # ------------------------------------------------------------------------------
-# export TERM=xterm-256color
+# Terminal settings
+# ------------------------------------------------------------------------------
 if [[ $platform == 'osx' ]]; then
   export TERM=rxvt-256color
 else
@@ -58,42 +44,35 @@ fi
 [ -n "$TMUX" ] && export TERM=screen-256color
 
 # ------------------------------------------------------------------------------
-
+# Editor settings
 # ------------------------------------------------------------------------------
-# ruby rvm
-# [[ -s "/Users/rjs/.rvm/scripts/rvm" ]] && source "/Users/rjs/.rvm/scripts/rvm"
-
-
-# ------------------------------------------------------------------------------
-export EDITOR=vim   # use a sensible editor...
+export EDITOR=vim
 export VISUAL=vim
-bindkey -e          # but still use emacs bindings on CLI
-
+bindkey -e  # emacs bindings on CLI
 
 # ------------------------------------------------------------------------------
+# Key bindings
+# ------------------------------------------------------------------------------
+
 # up/down arrows search through history like MATLAB
 bindkey "\e[A" history-beginning-search-backward
 bindkey "\e[B" history-beginning-search-forward
 
-
 # ------------------------------------------------------------------------------
 # Paths
 # ------------------------------------------------------------------------------
-
-# homebrew gets priority
-export PATH=/usr/local/sbin:/usr/local/bin:$PATH
-
 # home directory scripts
 export PATH=~/bin:$PATH
 
 # python/pip path
 export PATH=~/.local/bin:~/Library/Python/3.6/bin:$PATH
 
+# node
+export PATH="/usr/local/opt/node@20/bin:$PATH"
+
 # ------------------------------------------------------------------------------
 # ZSH options
 # ------------------------------------------------------------------------------
-
-# history:
 setopt append_history       # Append to history file at end of session
 setopt hist_ignore_all_dups # Do not store duplicate entries in history (even if non consecutive)
 setopt histignorealldups    # If  a  new  command  line being added to the history
@@ -113,12 +92,12 @@ setopt nohup                # and don't kill them, either
 setopt nonomatch            # try to avoid the 'zsh: no matches found...'
 setopt nobeep               # avoid "beep"ing
 setopt noglobdots           # * shouldn't match dotfiles. ever.
-
 setopt no_clobber           # Keep echo "station" > station from clobbering station
 
-#################################################################
-# Miscellaneous options blindly copied/pasted from somewhere...
-
+# ------------------------------------------------------------------------------
+# Completion options
+# ------------------------------------------------------------------------------
+#
 # coloured tab completion options
 highlights='${PREFIX:+=(#bi)($PREFIX:t)(?)*==$color[red]=$color[green];$color[bold]}':${(s.:.)LS_COLORS}}
 zstyle -e ':completion:*' list-colors 'reply=( "'$highlights'" )'
@@ -199,34 +178,20 @@ zstyle ':completion:*' special-dirs ..
 # what's causing the completion delay?
 zstyle ":completion:*" show-completer true
 
-## TODO: This could use some additional information
-if [[ "$NOMENU" -eq 0 ]] ; then
-    # if there are more than 5 options allow selecting from a menu
-    zstyle ':completion:*'               menu select=5
-else
-    # don't use any menus at all
-    setopt no_auto_menu
-fi
+# if there are more than 5 options allow selecting from a menu
+zstyle ':completion:*'               menu select=5
 
-# some people don't like the automatic correction - so run 'NOCOR=1 zsh' to deactivate it
 bindkey ' '   magic-space    # also do history expansion on space
 
-
-# FuzzyFinder
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# Syntax highlighting of CLI commands
+# Syntax highlighting
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Fuzzyfinder defaults.
+# Fuzzyfinder defaults
 FZF_DEFAULT_OPTS='--height 40% --reverse'
-FZF_CTRL_T_OPTS='--preview "head -n 100 {}" --preview-window right'
+FZF_CTRL_T_OPTS='--review "head -n 100 {}" --preview-window right'
 FZF_DEFAULT_COMMAND='rg --hidden --files ""'
 FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-# # Uncomment when working with Ruby
-# eval "$(rbenv init - zsh)"
-
-export PATH="/usr/local/opt/node@20/bin:$PATH"
-
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [[ "$platform" == 'osx' ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
