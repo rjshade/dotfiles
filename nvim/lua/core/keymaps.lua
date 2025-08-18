@@ -18,7 +18,26 @@ vim.keymap.set('n', 'gc', function() vim.lsp.buf.code_action() end)
 vim.keymap.set('n', 'gf', function() vim.lsp.buf.format() end)
 vim.keymap.set('n', 'gR', function() vim.lsp.buf.rename() end)
 
-vim.keymap.set('n', '<leader>F', function() vim.lsp.buf.format() end)
+vim.keymap.set('n', '<leader>F', function()
+  -- Try LSP formatting first
+  local clients = vim.lsp.get_clients({ bufnr = 0 })
+  local has_lsp_formatter = false
+
+  for _, client in pairs(clients) do
+    if client.server_capabilities.documentFormattingProvider then
+      has_lsp_formatter = true
+      break
+    end
+  end
+
+  if has_lsp_formatter then
+    vim.lsp.buf.format()
+  else
+    -- Fallback to manual indentation
+    vim.cmd('normal! gg=G')
+    vim.cmd('normal! ``')
+  end
+end)
 
 -- File navigation
 vim.keymap.set('n', '<leader>a', ':ClangdSwitchSourceHeader<CR>')

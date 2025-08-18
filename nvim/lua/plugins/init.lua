@@ -28,4 +28,7 @@ require("lazy").setup({
   { import = "plugins.snacks" },
   { import = "plugins.fzf" },
   { import = "plugins.nvim-tree" },
+  { import = "plugins.render-markdown" },
+  { import = "plugins.plantuml" },
+  { import = "plugins.preview" },
 })
