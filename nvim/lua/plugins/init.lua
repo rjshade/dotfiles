@@ -31,4 +31,5 @@ require("lazy").setup({
   { import = "plugins.render-markdown" },
   { import = "plugins.plantuml" },
   { import = "plugins.preview" },
+  { import = "plugins.image" },
 })
