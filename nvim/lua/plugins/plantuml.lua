@@ -16,5 +16,16 @@ return {
       autocmd FileType plantuml setlocal smartindent
     ]])
     
+    -- Set up PlantUML preview
+    local preview = require('plugins.plantuml-preview')
+    preview.setup()
+    
+    -- Add keybinding for PlantUML preview
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "plantuml",
+      callback = function()
+        vim.keymap.set('n', '<leader>pl', preview.toggle_preview, { buffer = true, desc = 'Toggle PlantUML preview' })
+      end,
+    })
   end,
 }
