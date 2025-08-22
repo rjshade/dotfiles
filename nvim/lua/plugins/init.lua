@@ -24,6 +24,7 @@ require("lazy").setup({
   'jparise/vim-graphql',   -- GraphQL syntax highlighting.
   'sindrets/diffview.nvim', -- Diff view for git changes.
   'charlesnicholson/plantuml.nvim', -- PlantUML preview in browser.
+  'aklt/plantuml-syntax',  -- PlantUML syntax highlighting.
   { import = "plugins.ragel" },
   { import = "plugins.mason" },
   { import = "plugins.snacks" },

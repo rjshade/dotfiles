@@ -1,4 +1,1 @@
-vim/bundle/*
-vim/cache/*
-vim/data/log
-doc/tags
+nvim/lazy-lock.json
