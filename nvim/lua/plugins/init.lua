@@ -23,6 +23,7 @@ require("lazy").setup({
   'github/copilot.vim',    -- Github's copilot code completion.
   'jparise/vim-graphql',   -- GraphQL syntax highlighting.
   'sindrets/diffview.nvim', -- Diff view for git changes.
+  'charlesnicholson/plantuml.nvim', -- PlantUML preview in browser.
   { import = "plugins.ragel" },
   { import = "plugins.mason" },
   { import = "plugins.snacks" },
