@@ -159,5 +159,5 @@ function ghpr() {
   echo ${OUTPUT} && echo -n ${OUTPUT} | pbcopy
 }
 
+# Auto-merge Github PR
 alias am='gh pr checks --watch && gh pr merge --delete-branch --squash'
-export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc

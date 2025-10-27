@@ -40,7 +40,7 @@ vim.keymap.set('n', '<leader>F', function()
 end)
 
 -- File navigation
-vim.keymap.set('n', '<leader>a', ':ClangdSwitchSourceHeader<CR>')
+vim.keymap.set('n', '<leader>a', ':LspClangdSwitchSourceHeader<CR>')
 
 -- NvimTree
 vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
