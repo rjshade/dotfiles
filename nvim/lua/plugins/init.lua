@@ -16,14 +16,15 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  'mhinz/vim-signify',     -- Shows git status in sidebar.
-  'tpope/vim-commentary',  -- Comment/uncomment easily.
-  'tpope/vim-fugitive',    -- Git commands in vim.
-  'neovim/nvim-lspconfig', -- Easy config for LSP.
-  'github/copilot.vim',    -- Github's copilot code completion.
-  'jparise/vim-graphql',   -- GraphQL syntax highlighting.
+  'mhinz/vim-signify',      -- Shows git status in sidebar.
+  'tpope/vim-commentary',   -- Comment/uncomment easily.
+  'tpope/vim-fugitive',     -- Git commands in vim.
+  'neovim/nvim-lspconfig',  -- Easy config for LSP.
+  'github/copilot.vim',     -- Github's copilot code completion.
+  'jparise/vim-graphql',    -- GraphQL syntax highlighting.
   'sindrets/diffview.nvim', -- Diff view for git changes.
-  'aklt/plantuml-syntax',  -- PlantUML syntax highlighting.
+  'aklt/plantuml-syntax',   -- PlantUML syntax highlighting.
+  'chrisbra/Colorizer',     -- Color highlighter.
   { import = "plugins.plantuml" },
   { import = "plugins.ragel" },
   { import = "plugins.mason" },
