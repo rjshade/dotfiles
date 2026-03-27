@@ -85,7 +85,12 @@ if [ -e $localconfig_path ]; then sh $localconfig_path; fi
 
 # Platform specific installation
 if [[ $PLATFORM == "Linux" ]]; then
-  sudo apt-get install tmux neovim fzf ripgrep cmake jq git-lfs
+  sudo apt-get install zsh tmux neovim fzf ripgrep cmake jq git-lfs
 elif [[ $PLATFORM == "Darwin" ]]; then
   brew install tmux nvim fzf ripgrep cmake jq git-lfs
+fi
+
+# Set zsh as default shell if it isn't already
+if [ "$(basename "$SHELL")" != "zsh" ] && command -v zsh &> /dev/null; then
+  sudo chsh -s "$(which zsh)" "$USER"
 fi
