@@ -94,3 +94,6 @@ fi
 if [ "$(basename "$SHELL")" != "zsh" ] && command -v zsh &> /dev/null; then
   sudo chsh -s "$(which zsh)" "$USER"
 fi
+
+# Install Claude Code
+curl -fsSL https://claude.ai/install.sh | bash
