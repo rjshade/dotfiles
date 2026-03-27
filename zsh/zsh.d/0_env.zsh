@@ -37,7 +37,12 @@ autoload -U promptinit && promptinit
 if [[ $platform == 'osx' ]]; then
   export TERM=rxvt-256color
 else
-  export TERM=rxvt-unicode-256color
+  # Use xterm-256color as fallback if rxvt-unicode-256color isn't available
+  if toe -a 2>/dev/null | grep -q rxvt-unicode-256color; then
+    export TERM=rxvt-unicode-256color
+  else
+    export TERM=xterm-256color
+  fi
 fi
 
 # for tmux: export 256color
