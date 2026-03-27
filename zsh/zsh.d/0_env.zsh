@@ -44,6 +44,14 @@ fi
 [ -n "$TMUX" ] && export TERM=screen-256color
 
 # ------------------------------------------------------------------------------
+# Browser settings
+# ------------------------------------------------------------------------------
+# Disable browser on headless/SSH sessions to avoid terminal browsers
+if [[ -n "$SSH_TTY" || -n "$SSH_CONNECTION" ]]; then
+  export BROWSER=
+fi
+
+# ------------------------------------------------------------------------------
 # Editor settings
 # ------------------------------------------------------------------------------
 export EDITOR=vim
