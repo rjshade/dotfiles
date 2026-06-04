@@ -208,3 +208,6 @@ FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 if [[ "$platform" == 'osx' ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
+
+# Ripgrep does not look in ~/ by default for ripgreprc??
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"

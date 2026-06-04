@@ -21,7 +21,7 @@
   # `git push` automatically creates remote branch.
   autoSetupRemote = true
 [credential]
-  helper = cache --timeout=3600
+  helper = !gh auth git-credential
 [pull]
   rebase = false
 [help]
