@@ -58,11 +58,6 @@ if [[ $IS_SYNOLOGY == false ]]; then
   link_dotfile $DOTFILES_DIR/gitignore ~/.gitignore
   link_dotfile $DOTFILES_DIR/rgignore ~/.rgignore
   link_dotfile $DOTFILES_DIR/gitconfig ~/.gitconfig
-
-  claude_settings_dir=~/.claude
-  mkdir -p $claude_settings_dir
-  link_dotfile $DOTFILES_DIR/claude/settings.json $claude_settings_dir/settings.json
-  link_dotfile $DOTFILES_DIR/claude/commands $claude_settings_dir/commands
 fi
 
 if find "$backup_dir" -mindepth 1 -print -quit | grep -q .; then
