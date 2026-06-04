@@ -3,7 +3,8 @@ set -o errexit
 set -o errtrace
 set -o nounset
 set -o pipefail
-set -o xtrace
+# Set DEBUG=1 to trace each command as it runs.
+if [[ -n "${DEBUG:-}" ]]; then set -o xtrace; fi
 
 DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PLATFORM=$(uname)
@@ -16,19 +17,19 @@ fi
 backup_dir=""
 if [[ $PLATFORM == "Linux" ]]; then
   backup_tmp_path=/tmp/dotfiles
-  mkdir -p $backup_tmp_path
-  backup_dir=`mktemp -p ${backup_tmp_path} -d`
+  mkdir -p "$backup_tmp_path"
+  backup_dir=$(mktemp -p "${backup_tmp_path}" -d)
 elif [[ $PLATFORM == "Darwin" ]]; then
-  backup_dir=`mktemp -d`
+  backup_dir=$(mktemp -d)
 fi
 
 # Helper to backup existing file/symlink and create new symlink
 link_dotfile() {
-  local target=$1
-  local link_path=$2
-  if [ -e $link_path ]; then mv $link_path $backup_dir; fi
-  if [ -h $link_path ]; then rm $link_path; fi
-  ln -s $target $link_path
+  local target="$1"
+  local link_path="$2"
+  if [ -e "$link_path" ]; then mv "$link_path" "$backup_dir"; fi
+  if [ -h "$link_path" ]; then rm "$link_path"; fi
+  ln -s "$target" "$link_path"
 }
 
 # Install homebrew
@@ -38,26 +39,26 @@ if [[ $PLATFORM == "Darwin" ]]; then
   fi
 fi
 
-cd $DOTFILES_DIR
+cd "$DOTFILES_DIR"
 git submodule init
 git submodule update
 
 # --- Core configs (all platforms) ---
 
-link_dotfile $DOTFILES_DIR/zsh ~/.zsh
+link_dotfile "$DOTFILES_DIR/zsh" ~/.zsh
 if [ -h ~/.zshrc ]; then rm ~/.zshrc; fi
-ln -s $DOTFILES_DIR/zsh/zshrc ~/.zshrc
+ln -s "$DOTFILES_DIR/zsh/zshrc" ~/.zshrc
 
-link_dotfile $DOTFILES_DIR/tmux.conf ~/.tmux.conf
+link_dotfile "$DOTFILES_DIR/tmux.conf" ~/.tmux.conf
 
 if [[ $IS_SYNOLOGY == false ]]; then
   # --- Full configs ---
 
   mkdir -p ~/.config
-  link_dotfile $DOTFILES_DIR/nvim ~/.config/nvim
-  link_dotfile $DOTFILES_DIR/gitignore ~/.gitignore
-  link_dotfile $DOTFILES_DIR/rgignore ~/.rgignore
-  link_dotfile $DOTFILES_DIR/gitconfig ~/.gitconfig
+  link_dotfile "$DOTFILES_DIR/nvim" ~/.config/nvim
+  link_dotfile "$DOTFILES_DIR/gitignore" ~/.gitignore
+  link_dotfile "$DOTFILES_DIR/ripgreprc" ~/.ripgreprc
+  link_dotfile "$DOTFILES_DIR/gitconfig" ~/.gitconfig
 fi
 
 if find "$backup_dir" -mindepth 1 -print -quit | grep -q .; then
@@ -66,7 +67,7 @@ fi
 
 # Run local config init, if it exists.
 localconfig_path=~/.config/local/init.sh
-if [ -e $localconfig_path ]; then sh $localconfig_path; fi
+if [ -e "$localconfig_path" ]; then sh "$localconfig_path"; fi
 
 if [[ $IS_SYNOLOGY == false ]]; then
   # Platform specific installation

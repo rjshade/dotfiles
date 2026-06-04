@@ -95,34 +95,8 @@ function rsync_backup {
   echo -e 'rsync -auh --progress --stats --delete SOURCE DESTINATION'
 }
 
-# Traverses upwards through directory tree until it finds a matching directory.
-# If a matching directory is found, change to that directory, otherwise print error.
-# e.g. $ find_parent_dir .git
-function find_parent_dir () {
-  if [[ $# != 1 ]]; then
-    echo "usage: $0 directory_name"
-    return 1
-  fi
-
-  start_dir="$PWD"
-  search_dir="$1"
-
-  while [[ "$PWD" != / ]]; do
-    # Does the directory exist and is it a directory (not a file)?
-    if [[ -e $search_dir && -d $search_dir ]]; then
-      return 0
-    fi
-    cd ..
-  done
-
-  # Print error and return to original dir.
-  echo "Could not find parent directory $search_dir"
-  cd $start_dir
-  return 1
-}
-
 # Navigate to root of git repo.
-alias gr='find_parent_dir .git'
+alias gr='cd "$(git rev-parse --show-toplevel)"'
 
 # Creates a Github PR from command line.
 # Copies url + title to clipboard on success.

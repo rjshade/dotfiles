@@ -2,7 +2,7 @@ vim.g.mapleader     = ','
 vim.opt.expandtab   = true    -- Turn tabs into spaces.
 vim.opt.mouse       = 'a'     -- Mouse enabled all the time.
 vim.opt.number      = true    -- Line numbers on
-vim.opt.scrolloff   = 10      -- Keep 5 context lines around cursor.
+vim.opt.scrolloff   = 10      -- Keep 10 context lines around cursor.
 vim.opt.shiftwidth  = 2       -- tab == 2 spaces.
 vim.opt.showmatch   = true    -- Highlight matching braces.
 vim.opt.ignorecase  = true    -- Case insensitive search...
@@ -27,6 +27,6 @@ augroup('YankHighlight', { clear = true })
 autocmd('TextYankPost', {
   group = 'YankHighlight',
   callback = function()
-    vim.highlight.on_yank({ higroup = 'IncSearch', timeout = '150', on_visual = true })
+    vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 150, on_visual = true })
   end
 })

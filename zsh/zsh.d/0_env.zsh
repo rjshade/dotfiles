@@ -35,7 +35,7 @@ autoload -U promptinit && promptinit
 # Terminal settings
 # ------------------------------------------------------------------------------
 if [[ $platform == 'osx' ]]; then
-  export TERM=rxvt-256color
+  export TERM=xterm-256color
 else
   # Use xterm-256color as fallback if rxvt-unicode-256color isn't available
   if toe -a 2>/dev/null | grep -q rxvt-unicode-256color; then
@@ -78,10 +78,9 @@ bindkey "\e[B" history-beginning-search-forward
 export PATH=~/bin:$PATH
 
 # python/pip path
-export PATH=~/.local/bin:~/Library/Python/3.6/bin:$PATH
+export PATH=~/.local/bin:$PATH
 
-# node
-export PATH="/usr/local/opt/node@20/bin:$PATH"
+# node is managed via nvm (see ~/.zshrc)
 
 # ------------------------------------------------------------------------------
 # ZSH options
@@ -196,12 +195,9 @@ zstyle ':completion:*'               menu select=5
 
 bindkey ' '   magic-space    # also do history expansion on space
 
-# Syntax highlighting
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # Fuzzyfinder defaults
 FZF_DEFAULT_OPTS='--height 40% --reverse'
-FZF_CTRL_T_OPTS='--review "head -n 100 {}" --preview-window right'
+FZF_CTRL_T_OPTS='--preview "head -n 100 {}" --preview-window right'
 FZF_DEFAULT_COMMAND='rg --hidden --files ""'
 FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 

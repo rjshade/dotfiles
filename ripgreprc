@@ -1,0 +1,11 @@
+# ripgrep configuration. Loaded via RIPGREP_CONFIG_PATH (see zsh/zsh.d/0_env.zsh).
+
+# Search hidden files/dirs by default...
+--hidden
+# ...but never descend into the git database.
+--glob=!.git/
+
+# Nicer output.
+--smart-case
+--max-columns=200
+--max-columns-preview
