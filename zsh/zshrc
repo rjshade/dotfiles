@@ -16,3 +16,6 @@ export NVM_DIR="$HOME/.nvm"
 if command -v fzf &> /dev/null; then
   source <(fzf --zsh) # Sets up fzf integration (history search etc.)
 fi
+
+# Syntax highlighting must be sourced last, after all widgets/keybindings.
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
