@@ -23,6 +23,8 @@
   # `git push` automatically creates remote branch.
   autoSetupRemote = true
 [credential]
+  # Empty helper resets any helpers set at lower levels (e.g. Homebrew's osxkeychain)
+  helper =
   helper = !gh auth git-credential
 [pull]
   rebase = false
