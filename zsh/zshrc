@@ -15,3 +15,7 @@ fi
 
 # Syntax highlighting must be sourced last, after all widgets/keybindings.
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/robbie/.local/bin:$PATH"
