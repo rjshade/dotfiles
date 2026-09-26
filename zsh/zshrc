@@ -14,7 +14,7 @@ if command -v fzf &> /dev/null; then
 fi
 
 # Syntax highlighting must be sourced last, after all widgets/keybindings.
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 
 # Added by Antigravity CLI installer

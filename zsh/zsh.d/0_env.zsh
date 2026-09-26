@@ -28,7 +28,6 @@ autoload -U zutil
 autoload -U complist
 autoload -U compinit && compinit -C  # -C skips security check for faster startup
 autoload -U colors && colors
-autoload -Uz vcs_info
 autoload -U promptinit && promptinit
 
 # ------------------------------------------------------------------------------

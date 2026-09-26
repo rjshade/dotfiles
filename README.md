@@ -12,7 +12,7 @@ sh ~/.dotfiles/init.sh
 `init.sh`:
 - backs up any existing files it's about to replace (it prints the backup dir),
 - symlinks the configs into place,
-- initializes the `zsh-syntax-highlighting` submodule,
+- initializes the `fast-syntax-highlighting` submodule,
 - installs dependencies via `brew` (macOS) or `apt-get` (Linux).
 
 Set `DEBUG=1 sh ~/.dotfiles/init.sh` to trace each command.

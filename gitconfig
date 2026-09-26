@@ -16,6 +16,8 @@
   autocrlf = false
   filemode = false
   editor = nvim
+  untrackedCache = true
+  fsmonitor = true
 [push]
   default = simple
   # `git push` automatically creates remote branch.
