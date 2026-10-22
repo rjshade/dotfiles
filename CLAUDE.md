@@ -6,6 +6,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a personal dotfiles repository containing configuration files for a development environment including Neovim, tmux, zsh, and git. The repository is designed to work on both Linux and macOS systems.
 
+## Git Workflow for This Repo
+
+This repo is an exception to the usual branch + PR rule: commit and push directly to `main`. Don't create branches or PRs here.
+
 ## Setup and Installation
 
 The repository uses a central installation script:
